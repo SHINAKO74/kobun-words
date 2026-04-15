@@ -1197,7 +1197,42 @@
     cursor: pointer;
     user-select: none;
     -webkit-user-select: none;
+    touch-action: pan-y;
+    transition: transform 0.25s ease, opacity 0.25s ease;
   }
+  .stage-card.swipe-left {
+    transform: translateX(-120%) rotate(-8deg);
+    opacity: 0;
+  }
+  .stage-card.swipe-right {
+    transform: translateX(120%) rotate(8deg);
+    opacity: 0;
+  }
+  .stage-card.dragging { transition: none; }
+
+  /* Swipe overlay indicators */
+  .swipe-indicator {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Shippori Mincho', serif;
+    font-size: 56px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s;
+    z-index: 5;
+  }
+  .swipe-indicator.left {
+    left: 24px;
+    color: var(--shu);
+  }
+  .swipe-indicator.right {
+    right: 24px;
+    color: var(--gold);
+  }
+  .swipe-indicator.show { opacity: 1; }
   .stage-card::before {
     content: '';
     position: absolute;
@@ -1261,7 +1296,7 @@
   <main id="card-area" role="tabpanel" aria-live="polite" aria-atomic="false"></main>
 
   <footer role="contentinfo">
-    KOGO LEXICON v1.4 · 303 words · <span aria-label="キーボードショートカット">⌨ space:めくる 1-2:評価</span><br>
+    KOGO LEXICON v1.5 · 303 words · <span aria-label="キーボードショートカット">⌨ space:めくる 1-2:評価 ←→:スワイプ</span><br>
     <button class="reset-btn" onclick="resetProgress()" type="button">reset progress</button>
   </footer>
 </div>
@@ -2786,6 +2821,8 @@ function renderCardFace() {
 
   area.innerHTML = `
     <div class="stage-card" id="stage-card">
+      <span class="swipe-indicator left" id="swipe-left">あし</span>
+      <span class="swipe-indicator right" id="swipe-right">よし</span>
       ${header}
       <div class="stage-progress" aria-hidden="true">${dots}</div>
       ${stage0}
@@ -2800,6 +2837,8 @@ function renderCardFace() {
 function attachStageInteractions() {
   const card = document.getElementById('stage-card');
   if (!card) return;
+
+  // Tap-to-advance (only on the card surface, not on rate buttons / chips)
   card.addEventListener('click', (e) => {
     if (e.target.closest('.rate-btn')) return;
     if (e.target.closest('.chip')) return;
@@ -2807,6 +2846,72 @@ function attachStageInteractions() {
       advanceStage();
     }
   });
+
+  // Swipe handling (only when fully open)
+  if (cardStage < STAGE_COUNT - 1) return;
+
+  let startX = 0, startY = 0, currentX = 0, dragging = false;
+  const SWIPE_THRESHOLD = 90;
+
+  function onStart(e) {
+    if (e.target.closest('.rate-btn') || e.target.closest('.chip')) return;
+    const t = e.touches ? e.touches[0] : e;
+    startX = t.clientX;
+    startY = t.clientY;
+    currentX = 0;
+    dragging = true;
+    card.classList.add('dragging');
+  }
+  function onMove(e) {
+    if (!dragging) return;
+    const t = e.touches ? e.touches[0] : e;
+    const dx = t.clientX - startX;
+    const dy = t.clientY - startY;
+    // Cancel if vertical movement dominates (allow page scroll)
+    if (Math.abs(dy) > Math.abs(dx) * 1.4 && Math.abs(dy) > 10) {
+      dragging = false;
+      card.classList.remove('dragging');
+      card.style.transform = '';
+      const sl = document.getElementById('swipe-left');
+      const sr = document.getElementById('swipe-right');
+      if (sl) sl.classList.remove('show');
+      if (sr) sr.classList.remove('show');
+      return;
+    }
+    if (e.cancelable && Math.abs(dx) > 8) e.preventDefault();
+    currentX = dx;
+    const rot = dx * 0.05;
+    card.style.transform = `translateX(${dx}px) rotate(${rot}deg)`;
+    const sl = document.getElementById('swipe-left');
+    const sr = document.getElementById('swipe-right');
+    if (sl) sl.classList.toggle('show', dx < -30);
+    if (sr) sr.classList.toggle('show', dx > 30);
+  }
+  function onEnd() {
+    if (!dragging) return;
+    dragging = false;
+    card.classList.remove('dragging');
+    if (currentX < -SWIPE_THRESHOLD) {
+      card.classList.add('swipe-left');
+      setTimeout(() => rate(0), 180);  // あし
+    } else if (currentX > SWIPE_THRESHOLD) {
+      card.classList.add('swipe-right');
+      setTimeout(() => rate(2), 180);  // よし
+    } else {
+      card.style.transform = '';
+      const sl = document.getElementById('swipe-left');
+      const sr = document.getElementById('swipe-right');
+      if (sl) sl.classList.remove('show');
+      if (sr) sr.classList.remove('show');
+    }
+  }
+
+  card.addEventListener('touchstart', onStart, { passive: true });
+  card.addEventListener('touchmove', onMove, { passive: false });
+  card.addEventListener('touchend', onEnd);
+  card.addEventListener('mousedown', onStart);
+  document.addEventListener('mousemove', onMove);
+  document.addEventListener('mouseup', onEnd);
 }
 
 function advanceStage() {
