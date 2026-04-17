@@ -1256,7 +1256,7 @@
   <main id="card-area" role="tabpanel" aria-live="polite" aria-atomic="false"></main>
 
   <footer role="contentinfo">
-    KOGO LEXICON v1.9 · 303 words · <span aria-label="キーボードショートカット">⌨ space:めくる 1-2:評価 ←→:スワイプ</span><br>
+    KOGO LEXICON v2.0 · 303 words · <span aria-label="キーボードショートカット">⌨ space:めくる 1-2:評価 ←→:スワイプ</span><br>
     <button class="reset-btn" onclick="resetProgress()" type="button">reset progress</button>
   </footer>
 </div>
@@ -1270,7 +1270,7 @@ const WORDS = [
   { id:3, word:"ありがたし", pos:"形ク", meaning:"めったにない・貴重だ。(現代の「感謝」の意ではない)", etym:"「有り難し」=「存在することが難しい」が原義。稀少→貴重→感謝へと意味が変遷した。", example:"この世にありがたきもの。舅にほめらるる婿。", translation:"この世にめったにないもの。舅にほめられる婿。", highlight:"ありがたき", source:"枕草子", trivia:"現代語の「ありがとう」はこの語が変化したもの。", related:[{id:13,type:"参"},{id:19,type:"参"}] },
   { id:4, word:"うつくし", pos:"形シク", meaning:"かわいらしい・いとおしい。(現代の「美しい」とは別)", etym:"親が幼い子を慈しむ気持ちが原義。中世以降、視覚的な「美」の意味へ移った。", example:"うつくしきもの。瓜にかきたるちごの顔。", translation:"かわいらしいもの。瓜に描いた幼児の顔。", highlight:"うつくしき", source:"枕草子", trivia:"現代の「美しい」に近い意味は古語では「うるはし」。", related:[{id:5,type:"対"},{id:17,type:"類"},{id:28,type:"類"}] },
   { id:5, word:"うるはし", pos:"形シク", meaning:"整っていて美しい・端正だ・きちんとしている", etym:"「潤(うるほ)ふ」と同根説。乱れなく整った美を表す。「うつくし」が情的なのに対し、こちらは形式的・公的な美。", example:"うるはしき御方なれば、もてなしも重々しく。", translation:"端正で気品あるお方なので、もてなしも重々しく。", highlight:"うるはしき", source:"源氏物語", trivia:null, related:[{id:4,type:"対"},{id:11,type:"類"},{id:18,type:"類"}] },
-  { id:6, word:"かなし", pos:"形シク", meaning:"①いとしい・かわいい ②悲しい・つらい", etym:"「敵(かたき)」と同根で、自分の力ではどうにもならない強い感情を指す。プラスにもマイナスにも振れる。", example:"妻子(めこ)どもは、外に立ちてかなしがれど。", translation:"妻や子どもたちは外に立って(別れを)悲しんだけれども。", highlight:"かなし", source:"竹取物語", trivia:"「愛し」と書けば①、「悲し」と書けば②。文脈で判断。", related:[{id:1,type:"類"}] },
+  { id:6, word:"かなし", pos:"形シク", meaning:"①いとしい・かわいい ②悲しい・つらい", etym:"「敵(かたき)」と同根で、自分の力ではどうにもならない強い感情を指す。プラスにもマイナスにも振れる。", example:"いとかなしうしたまふ御子なり。｜妻子どもは、外に立ちてかなしがれど。", translation:"(帝が)とてもいとしくしていらっしゃるお子である。｜妻や子どもたちは外に立って悲しんだけれども。", highlight:"かなしう｜かなし", source:"源氏物語｜竹取物語", trivia:"「愛し」と書けば①、「悲し」と書けば②。文脈で判断。", related:[{id:1,type:"類"}] },
   { id:7, word:"ゆかし", pos:"形シク", meaning:"心ひかれる・見たい・聞きたい・知りたい", etym:"動詞「行く」の形容詞化。「そちらへ行きたい」気持ち→対象への憧れ。", example:"そのなかに、五月の節句のあやめ、九月の菊、ゆゆしげなり。心にくくゆかし。", translation:"その中で、五月の節句の菖蒲、九月の菊は格別だ。奥ゆかしく心ひかれる。", highlight:"ゆかし", source:"枕草子", trivia:null, related:[{id:26,type:"類"}] },
   { id:8, word:"つとめて", pos:"名", meaning:"①早朝 ②(何かがあった)翌朝", etym:"「つとに(早く)」と同根。夜明け直後の時間帯を指す古語の重要語。", example:"冬はつとめて。雪の降りたるは言ふべきにもあらず。", translation:"冬は早朝がよい。雪が降っているのは言うまでもない。", highlight:"つとめて", source:"枕草子", trivia:"「あした」も古語では「翌朝」を意味する点に注意。", related:[{id:9,type:"類"}] },
   { id:9, word:"あした", pos:"名", meaning:"朝・翌朝。(現代語の「明日」ではない)", etym:"「夕(ゆふべ)」の対語。一日の始まりとしての「朝」が原義。後に「翌日」の意も派生。", example:"今日のあしたは、雪のいと高う降りたるを。", translation:"今日の朝は、雪がたいそう高く降り積もっているのに。", highlight:"あした", source:"枕草子", trivia:"現代語「あした(明日)」とは別物。古文では必ず「朝」。", related:[{id:8,type:"類"},{id:3,type:"参"}] },
@@ -1278,24 +1278,24 @@ const WORDS = [
   { id:11, word:"つきづきし", pos:"形シク", meaning:"似つかわしい・ふさわしい・調和している", etym:"「付き」を重ねた語。場面や物にぴたりと寄り添う感じ。", example:"冬はつとめて。雪の降りたるは言ふべきにもあらず、霜のいと白きも、またさらでもいと寒きに、火など急ぎ起こして、炭もて渡るも、いとつきづきし。", translation:"冬は早朝がよい。雪が降っているのは言うまでもなく、霜がとても白いのも、またそうでなくてもとても寒いのに、火などを急いで起こして、炭を持って渡る様子も、たいそう似つかわしい。", highlight:"つきづきし", source:"枕草子", trivia:null, related:[{id:5,type:"類"}] },
   { id:12, word:"いみじ", pos:"形シク", meaning:"程度がはなはだしい(良くも悪くも)。「とても」の万能語", etym:"「忌(いみ)」由来。元は「忌み避けたいほど」の意で、極端さを表す。文脈次第でプラスにもマイナスにも。", example:"いみじう美し。/ いみじう恐ろし。", translation:"たいそう美しい。/ たいそう恐ろしい。", highlight:"いみじう", source:"各所", trivia:"古文単語界の最強万能語。訳すときは文脈から「とても○○」と補う。", related:[{id:22,type:"類"}] },
   { id:13, word:"ののしる", pos:"動ラ四", meaning:"大声で騒ぐ・評判が高い。(現代の「悪口を言う」ではない)", etym:"擬声語「のの」+「鳴る」とも。本来は単に「声高に言い立てる」中立語。", example:"世にののしりたまふ光る源氏。", translation:"世に評判高くいらっしゃる光源氏。", highlight:"ののしり", source:"源氏物語", trivia:"現代語と意味が真逆になりがちな代表例。", related:[{id:3,type:"参"},{id:19,type:"参"}] },
-  { id:14, word:"おどろく", pos:"動カ四", meaning:"①はっと気づく・目覚める ②驚く", etym:"「お(止)」+「とどろく」由来説。意識がふと覚める感覚が原義。", example:"秋来ぬと目にはさやかに見えねども風の音にぞおどろかれぬる。", translation:"秋が来たと目にははっきりとは見えないけれど、風の音にはっと気づかされたことだ。", highlight:"おどろか", source:"古今集・藤原敏行", trivia:"和歌でこの語が出たら大抵「気づく」の意味。", related:[] },
-  { id:15, word:"かしこし", pos:"形ク", meaning:"①恐れ多い・畏れ多い ②(才能が)優れている・賢い", etym:"「畏(かしこ)む」と同根。神や貴人への畏怖が原義。後に「賢明だ」の意が派生。", example:"かしこき仰せ言を、たびたび承りながら。", translation:"畏れ多い仰せ言を、何度もお受けしながら。", highlight:"かしこき", source:"源氏物語", trivia:null, related:[{id:22,type:"類"}] },
-  { id:16, word:"やさし", pos:"形シク", meaning:"①恥ずかしい・きまり悪い ②優美だ・上品だ", etym:"「痩(や)す」と同根。身が痩せ細るほど恥じ入る感じ。後に「優美」の意へ。", example:"世の中を憂しとやさしと思へども飛び立ちかねつ鳥にしあらねば。", translation:"世の中をつらく恥ずかしいものと思うけれど、飛び立つこともできない、鳥ではないのだから。", highlight:"やさし", source:"万葉集・山上憶良", trivia:"現代語の「優しい(親切)」の意味にはまだなっていない。", related:[{id:27,type:"類"}] },
+  { id:14, word:"おどろく", pos:"動カ四", meaning:"①はっと気づく・目覚める ②驚く", etym:"「お(止)」+「とどろく」由来説。意識がふと覚める感覚が原義。", example:"風の音にぞおどろかれぬる。｜おどろきあきれて物も言はず。", translation:"風の音にはっと気づかされたことだ。｜驚きあきれて物も言えない。", highlight:"おどろか｜おどろき", source:"古今集・藤原敏行｜(作例)", trivia:"和歌でこの語が出たら大抵「気づく」の意味。", related:[] },
+  { id:15, word:"かしこし", pos:"形ク", meaning:"①恐れ多い・畏れ多い ②(才能が)優れている・賢い", etym:"「畏(かしこ)む」と同根。神や貴人への畏怖が原義。後に「賢明だ」の意が派生。", example:"かしこき仰せ言を、たびたび承りながら。｜いとかしこき人にて。", translation:"畏れ多い仰せ言を、何度もお受けしながら。｜とても賢い人であって。", highlight:"かしこき｜かしこき", source:"源氏物語｜(作例)", trivia:null, related:[{id:22,type:"類"}] },
+  { id:16, word:"やさし", pos:"形シク", meaning:"①恥ずかしい・きまり悪い ②優美だ・上品だ", etym:"「痩(や)す」と同根。身が痩せ細るほど恥じ入る感じ。後に「優美」の意へ。", example:"世の中を憂しとやさしと思へども飛び立ちかねつ鳥にしあらねば。｜いとやさしき御さまなり。", translation:"世の中をつらく恥ずかしいと思うけれど飛び立てない、鳥ではないから。｜とても優美なお姿である。", highlight:"やさし｜やさしき", source:"万葉集・山上憶良｜(作例)", trivia:"現代語の「優しい(親切)」の意味にはまだなっていない。", related:[{id:27,type:"類"}] },
   { id:17, word:"らうたし", pos:"形ク", meaning:"いたわってやりたいほどかわいらしい", etym:"「労(らう)甚(いた)し」が語源。世話をしてあげたいほど、の意。", example:"いとらうたげなる児の、ふと寝入りたる。", translation:"とてもかわいらしげな幼児が、ふと寝入っている(様子)。", highlight:"らうたげ", source:"枕草子", trivia:"「うつくし」より一段と情のこもった「かわいい」。", related:[{id:4,type:"類"}] },
   { id:18, word:"まめなり", pos:"形動ナリ", meaning:"①真面目だ・誠実だ ②実用的だ・日常的だ", etym:"「まめ」は古くから「真実・誠実」を表す語幹。漢字「忠実」は当て字。", example:"まめなる方の御後見(うしろみ)は、もとより重き人にて。", translation:"誠実な方の後見人は、もともと重んじられる人物で。", highlight:"まめなる", source:"源氏物語", trivia:"「まめ人」=誠実な人。色好みの対義語的に使われる。", related:[{id:5,type:"類"}] },
   { id:19, word:"あからさまなり", pos:"形動ナリ", meaning:"ほんのちょっと・かりそめだ。(現代の「露骨だ」ではない)", etym:"「あから」=明るく一瞬きらめく様。短い時間を表した。", example:"あからさまに立ち出でたるすきに。", translation:"ほんのちょっとの間立ち出ていた隙に。", highlight:"あからさま", source:"源氏物語", trivia:"現代語と完全に違う意味になる要注意語。", related:[{id:3,type:"参"},{id:13,type:"参"}] },
   { id:20, word:"すさまじ", pos:"形シク", meaning:"興ざめだ・殺風景だ・期待外れだ", etym:"「進(すさ)む」由来。心が進んで離れていく=しらける感覚。", example:"すさまじきもの。昼ほゆる犬。春の網代。三、四月の紅梅の衣。", translation:"興ざめなもの。昼間に吠える犬。春の網代。三、四月の紅梅襲(がさね)の衣。", highlight:"すさまじき", source:"枕草子", trivia:"清少納言の「すさまじきもの」段は古文単語の宝庫。", related:[{id:24,type:"類"}] },
   { id:21, word:"つれづれなり", pos:"形動ナリ", meaning:"①することがなく退屈だ ②しんみりともの寂しい", etym:"「連れ連れ」=同じ状態が続くこと。変化のない時間の重さ。", example:"つれづれなるままに、日暮らし、硯にむかひて。", translation:"することもなく退屈なのに任せて、一日中、硯に向かって。", highlight:"つれづれなる", source:"徒然草", trivia:"『徒然草』の書名そのもの。冒頭文は必修。", related:[{id:25,type:"類"}] },
-  { id:22, word:"ゆゆし", pos:"形シク", meaning:"①不吉だ・恐れ多い ②程度がはなはだしい・素晴らしい", etym:"「斎(ゆ)」=神聖で触れてはならぬもの。畏怖が原義で、後に「程度の甚だしさ」へ。", example:"ゆゆしきこと言ふとや思さむ。", translation:"不吉なことを言うとお思いになるだろうか。", highlight:"ゆゆしき", source:"源氏物語", trivia:"「いみじ」に似た両義性を持つ。", related:[{id:12,type:"類"},{id:15,type:"類"}] },
+  { id:22, word:"ゆゆし", pos:"形シク", meaning:"①不吉だ・恐れ多い ②程度がはなはだしい・素晴らしい", etym:"「斎(ゆ)」=神聖で触れてはならぬもの。畏怖が原義で、後に「程度の甚だしさ」へ。", example:"ゆゆしきこと言ふとや思さむ。｜ゆゆしく美しき御さま。", translation:"不吉なことを言うとお思いになるだろうか。｜たいそう美しいお姿。", highlight:"ゆゆしき｜ゆゆしく", source:"源氏物語｜(作例)", trivia:"「いみじ」に似た両義性を持つ。", related:[{id:12,type:"類"},{id:15,type:"類"}] },
   { id:23, word:"こころもとなし", pos:"形ク", meaning:"①待ち遠しい・じれったい ②不安だ・気がかりだ", etym:"「心」+「許し無し」。心が落ち着かず、定まらない状態。", example:"こころもとなく日を経るままに。", translation:"待ち遠しく日を過ごすうちに。", highlight:"こころもとなく", source:"源氏物語", trivia:null, related:[{id:30,type:"類"}] },
   { id:24, word:"あぢきなし", pos:"形ク", meaning:"つまらない・どうしようもない・無益だ", etym:"「味気無し」。本来「味わいがない」の意から、無意味さ・不本意さを表す語に。", example:"あぢきなきもの、わざと思ひ立ちて宮仕へに出で立ちたる人の、ものうがり、うるさげに思ひたる。", translation:"つまらないもの。わざわざ決心して宮仕えに出た人が、面倒くさがり、うるさそうに思っているの。", highlight:"あぢきなき", source:"枕草子", trivia:null, related:[{id:20,type:"類"}] },
-  { id:25, word:"いたづらなり", pos:"形動ナリ", meaning:"①無駄だ・むなしい ②役に立たない ③ひまだ", etym:"「徒(いたづら)」=実のないこと。現代の「いたずら(悪さ)」の意は後世。", example:"花の色はうつりにけりないたづらにわが身世にふるながめせしまに。", translation:"花の色はすっかりあせてしまったなあ、空しく長雨が降る間に、わが身もまた物思いに沈んで日々を過ごしてしまった。", highlight:"いたづらに", source:"古今集・小野小町", trivia:"小野小町の代表歌。「いたづらに」=空しく時が過ぎる意。", related:[{id:21,type:"類"}] },
+  { id:25, word:"いたづらなり", pos:"形動ナリ", meaning:"①無駄だ・むなしい ②役に立たない ③ひまだ", etym:"「徒(いたづら)」=実のないこと。現代の「いたずら(悪さ)」の意は後世。", example:"花の色はうつりにけりないたづらにわが身世にふるながめせしまに。｜いたづらに日を暮らす。", translation:"花の色はあせてしまった、空しくわが身も衰えていくのに。｜することもなく日を過ごす。", highlight:"いたづらに｜いたづらに", source:"古今集・小野小町｜(作例)", trivia:"小野小町の代表歌。「いたづらに」=空しく時が過ぎる意。", related:[{id:21,type:"類"}] },
   { id:26, word:"なつかし", pos:"形シク", meaning:"心ひかれる・親しみを感じる。(現代の「過去を懐かしむ」より広い)", etym:"動詞「なつく(懐く)」の形容詞化。そばに寄り添いたい気持ち。", example:"なつかしき人の御けはひ。", translation:"心ひかれる(慕わしい)人の気配。", highlight:"なつかしき", source:"源氏物語", trivia:"古文では現在進行で「親しみたい」の意味で使うことが多い。", related:[{id:7,type:"類"}] },
   { id:27, word:"はづかし", pos:"形シク", meaning:"こちらが恥ずかしくなるほど(相手が)立派だ", etym:"「恥づ」の形容詞化。原義は「気後れする」で、対象の素晴らしさに対する反応。", example:"はづかしき御ありさまに、こちらも身が縮む心地す。", translation:"(こちらが)気後れするほど立派なご様子に、こちらも身が縮む心地がする。", highlight:"はづかしき", source:"源氏物語", trivia:"主語の取り違えに注意。立派なのは相手の方。", related:[{id:16,type:"類"}] },
   { id:28, word:"なまめかし", pos:"形シク", meaning:"優美だ・上品で美しい・若々しく魅力的だ", etym:"「なまめく」+「し」。「なま(若い・未熟)」の語感を含み、若々しく上品な美をいう。民間語源で「生(なま)」と説明されることもあるが学術的には「なよやか」系と関連。", example:"なまめかしう、よしあるさまして。", translation:"優美で、由緒ありげな様子をして。", highlight:"なまめかしう", source:"源氏物語", trivia:"現代語の「艶めかしい(色っぽい)」とはニュアンスが異なる。", related:[{id:4,type:"類"},{id:5,type:"類"}] },
   { id:29, word:"ゆめゆめ", pos:"副", meaning:"(下に禁止を伴って)決して〜するな", etym:"「努(ゆめ)」を重ねた強調形。下に「な」「べからず」など禁止表現を伴う呼応の副詞。", example:"ゆめゆめ人に語るべからず。", translation:"決して人に語ってはならない。", highlight:"ゆめゆめ", source:"各所", trivia:"呼応の副詞。下の禁止形とセットで暗記する。", related:[] },
   { id:30, word:"おぼつかなし", pos:"形ク", meaning:"①はっきりしない・ぼんやりしている ②気がかりだ・不安だ", etym:"「おぼ」=ぼんやりした状態+「つかなし」。輪郭の不明瞭さが原義。", example:"おぼつかなく月日を経るままに。", translation:"気がかりに月日を過ごすうちに。", highlight:"おぼつかなく", source:"源氏物語", trivia:null, related:[{id:23,type:"類"}] },
-  { id:31, word:"いとほし", pos:"形シク", meaning:"①かわいそうだ・気の毒だ ②いとしい・かわいい", etym:"「厭(いと)はし」=避けたいの意から、見るに忍びない感情を経て憐れみへ。", example:"いとほしき御ありさまを見たてまつる。", translation:"おいたわしいご様子を拝見する。", highlight:"いとほしき", source:"源氏物語", trivia:"現代語「愛しい」の語源だが、古文ではまず「気の毒だ」の意。", related:[{id:6,type:"類"}] },
+  { id:31, word:"いとほし", pos:"形シク", meaning:"①かわいそうだ・気の毒だ ②いとしい・かわいい", etym:"「厭(いと)はし」=避けたいの意から、見るに忍びない感情を経て憐れみへ。", example:"いとほしき御ありさまを見たてまつる。｜いとほしき子なり。", translation:"おいたわしいご様子を拝見する。｜いとしい子である。", highlight:"いとほしき｜いとほしき", source:"源氏物語｜(作例)", trivia:"現代語「愛しい」の語源だが、古文ではまず「気の毒だ」の意。", related:[{id:6,type:"類"}] },
   { id:32, word:"うし", pos:"形ク", meaning:"つらい・いやだ・気が進まない", etym:"「憂(うれ)ふ」と同根。心が重く沈む状態。", example:"世の中をうしと思へど。", translation:"世の中をつらいと思うけれど。", highlight:"うし", source:"万葉集", trivia:"「憂し」と書く。同音の「大人(うし)=主君」とは別語。", related:[{id:24,type:"類"}] },
   { id:33, word:"わびし", pos:"形シク", meaning:"つらい・困った・寂しい・興ざめだ", etym:"動詞「侘ぶ」の形容詞化。気落ちしてやるせない感じ。", example:"いとわびしくて、こは、いかにすべきことぞとて。", translation:"とてもつらくて、「これはどうしたらよいことか」と言って。", highlight:"わびしく", source:"竹取物語", trivia:"「侘び寂び」の「侘び」。中世以降は美的理念に。", related:[{id:32,type:"類"}] },
   { id:34, word:"さびし", pos:"形シク", meaning:"もの寂しい・心細い・荒れている", etym:"動詞「さぶ」(古びる)の形容詞化。生気の失われた状態。", example:"いとさびしき山里に。", translation:"とても寂しい山里に。", highlight:"さびしき", source:"(作例)", trivia:null, related:[{id:33,type:"類"}] },
@@ -1313,7 +1313,7 @@ const WORDS = [
   { id:46, word:"あらまほし", pos:"形シク", meaning:"理想的だ・望ましい・好ましい", etym:"動詞「あり」+希望の助動詞「まほし」。「そうあってほしい」状態。", example:"少しのことにも、先達はあらまほしき事なり。", translation:"ちょっとしたことにも、案内者はあってほしいものである。", highlight:"あらまほしき", source:"徒然草・第109段", trivia:"『徒然草』第109段「高名の木登り」段の一節。なお有名な「少しのことにも、先達はあらまほしき事なり」は別段。", related:[] },
   { id:47, word:"あいなし", pos:"形ク", meaning:"つまらない・気に入らない・不本意だ", etym:"「合(あ)ひ無し」=しっくりこない。", example:"あいなく涙ぞこぼるる。", translation:"わけもなく涙がこぼれる。", highlight:"あいなく", source:"源氏物語", trivia:null, related:[{id:24,type:"類"}] },
   { id:48, word:"いとけなし", pos:"形ク", meaning:"幼い・あどけない", etym:"「いとけ(幼児)」+「無し」。", example:"いとけなき子のものまうで。", translation:"幼い子の参詣。", highlight:"いとけなき", source:"源氏物語", trivia:null, related:[{id:17,type:"類"}] },
-  { id:49, word:"あやし", pos:"形シク", meaning:"①不思議だ ②身分が低い・粗末だ ③異様だ", etym:"「奇(あや)し」=普通でないことへの驚き。", example:"あやしの法師ばらやな。", translation:"怪しい法師たちだなあ。", highlight:"あやしの", source:"徒然草・第89段", trivia:"「賤し」と書けば②、「怪し」「奇し」と書けば①③。", related:[] },
+  { id:49, word:"あやし", pos:"形シク", meaning:"①不思議だ ②身分が低い・粗末だ ③異様だ", etym:"「奇(あや)し」=普通でないことへの驚き。", example:"いとあやしう、そらおそろしう。｜あやしの法師ばらやな。", translation:"とても不思議で、何となく恐ろしく。｜身分の低い法師たちだなあ。", highlight:"あやしう｜あやしの", source:"源氏物語｜徒然草・第89段", trivia:"「賤し」と書けば②、「怪し」「奇し」と書けば①③。", related:[] },
   { id:50, word:"いやし", pos:"形シク", meaning:"身分が低い・下品だ・粗末だ", etym:"「卑(いや)し」。地位や品位の低さ。", example:"いやしき家の女。", translation:"身分の低い家の女。", highlight:"いやしき", source:"(作例)", trivia:null, related:[{id:49,type:"類"}] },
   { id:51, word:"こころにくし", pos:"形ク", meaning:"奥ゆかしい・上品だ・心ひかれる", etym:"「心+憎し」=心憎いほど立派、の意で良い意味へ。", example:"こころにくきさまにて住みなしたり。", translation:"奥ゆかしい様子で住み暮らしている。", highlight:"こころにくき", source:"徒然草", trivia:"良い意味で使うのが古文。現代の「心憎い」と近い。", related:[{id:7,type:"類"}] },
   { id:52, word:"よしなし", pos:"形ク", meaning:"つまらない・しかたない・わけがない", etym:"「由(よし)無し」=理由・趣がない。", example:"よしなしごとを、そこはかとなく書きつくれば。", translation:"とりとめもないことを、なんとなく書きつけると。", highlight:"よしなし", source:"徒然草", trivia:"『徒然草』序段。", related:[{id:35,type:"類"}] },
@@ -1337,29 +1337,29 @@ const WORDS = [
   { id:70, word:"おはします", pos:"動サ四", meaning:"いらっしゃる(「おはす」より高い尊敬)", etym:"「おはす」+「ます」。「おはす」よりさらに高い尊敬を表す最高敬語。", example:"帝、清涼殿におはします。", translation:"帝は清涼殿にいらっしゃる。", highlight:"おはします", source:"源氏物語", trivia:null, related:[{id:69,type:"類"}] },
   { id:71, word:"のたまふ", pos:"動ハ四", meaning:"おっしゃる(「言ふ」の尊敬語)", etym:"「宣(の)り給ふ」の縮約。貴人が言葉を発する動作の尊敬語。", example:"帝、のたまはく。", translation:"帝が、おっしゃるには。", highlight:"のたまはく", source:"竹取物語", trivia:null, related:[{id:72,type:"類"}] },
   { id:72, word:"のたまはす", pos:"動下二", meaning:"おっしゃる(「のたまふ」より高い尊敬)", etym:"「のたまふ」+使役・尊敬「す」。最高敬語。", example:"院、しか、のたまはす。", translation:"院は、そのようにおっしゃる。", highlight:"のたまはす", source:"(作例)", trivia:null, related:[{id:71,type:"類"}] },
-  { id:73, word:"きこゆ", pos:"動ヤ下二", meaning:"①聞こえる ②申し上げる(「言ふ」の謙譲) ③評判だ・有名だ", etym:"「聞こ+ゆ(自発)」。聞こえてくる→評判になる、また謙譲にも転用。", example:"うけたまはりきこゆ。", translation:"承り申し上げる。", highlight:"きこゆ", source:"源氏物語", trivia:null, related:[{id:74,type:"類"}] },
+  { id:73, word:"きこゆ", pos:"動ヤ下二", meaning:"①聞こえる ②申し上げる(「言ふ」の謙譲) ③評判だ・有名だ", etym:"「聞こ+ゆ(自発)」。聞こえてくる→評判になる、また謙譲にも転用。", example:"鐘の音のきこゆるなり。｜うけたまはりきこゆ。｜世にきこゆる人。", translation:"鐘の音が聞こえるようだ。｜承り申し上げる。｜世に評判の人。", highlight:"きこゆる｜きこゆ｜きこゆる", source:"(作例)｜源氏物語｜源氏物語", trivia:null, related:[{id:74,type:"類"}] },
   { id:74, word:"きこえさす", pos:"動下二", meaning:"申し上げる(「きこゆ」より高い謙譲)", etym:"「きこゆ」+「さす」。最高謙譲。", example:"宮にきこえさせ給ふ。", translation:"宮に申し上げなさる。", highlight:"きこえさせ", source:"源氏物語", trivia:null, related:[{id:73,type:"類"}] },
   { id:75, word:"まうす", pos:"動サ四", meaning:"申し上げる・お願いする(「言ふ」の謙譲)", etym:"「申(まう)す」。「言ふ」の謙譲語。自分の発言を低める。", example:"君に申すべきことありて。", translation:"あなたに申し上げるべきことがあって。", highlight:"申す", source:"(作例)", trivia:null, related:[{id:73,type:"類"}] },
   { id:76, word:"はべり", pos:"動ラ変", meaning:"①あります・おります(丁寧) ②お仕えする(謙譲)", etym:"「侍(はべ)り」。貴人のそば近くに仕える意から、丁寧語へ。", example:"昔、男ありはべりけり。", translation:"昔、男がおりました。", highlight:"はべり", source:"伊勢物語", trivia:"古文の最重要丁寧語。", related:[{id:77,type:"類"}] },
   { id:77, word:"さぶらふ", pos:"動ハ四", meaning:"①お仕えする(謙譲) ②あります(丁寧)", etym:"「候(さぶら)ふ」=身分の高い人のそばに控える。", example:"御前にさぶらふ女房。", translation:"御前にお仕えしている女房。", highlight:"さぶらふ", source:"枕草子", trivia:"中世以降「さうらふ」と発音。", related:[{id:76,type:"類"}] },
-  { id:78, word:"まゐる", pos:"動ラ四", meaning:"①参上する(謙譲) ②差し上げる ③召し上がる(尊敬)", etym:"「参(まゐ)る」。本来「行く・来」の謙譲だが、「食ふ・飲む」の尊敬にも。", example:"内裏(うち)にまゐる。", translation:"宮中に参上する。", highlight:"まゐる", source:"源氏物語", trivia:"文脈で謙譲か尊敬か判断する語。", related:[{id:79,type:"対"}] },
+  { id:78, word:"まゐる", pos:"動ラ四", meaning:"①参上する(謙譲) ②差し上げる ③召し上がる(尊敬)", etym:"「参(まゐ)る」。本来「行く・来」の謙譲だが、「食ふ・飲む」の尊敬にも。", example:"内裏にまゐる。｜御薬をまゐらす。｜御粥などまゐれ。", translation:"宮中に参上する。｜お薬を差し上げる。｜お粥などを召し上がれ。", highlight:"まゐる｜まゐらす｜まゐれ", source:"源氏物語｜(作例)｜枕草子", trivia:"文脈で謙譲か尊敬か判断する語。", related:[{id:79,type:"対"}] },
   { id:79, word:"まかる", pos:"動ラ四", meaning:"①退出する(謙譲) ②(高貴な所から)出かける", etym:"「罷(まか)る」=高貴な場から下がる。", example:"宮中をまかり出づ。", translation:"宮中を退出する。", highlight:"まかり", source:"源氏物語", trivia:"「まゐる」の対義語。", related:[{id:78,type:"対"}] },
-  { id:80, word:"たまふ", pos:"動ハ四・下二", meaning:"①お与えになる(尊敬) ②〜なさる(尊敬補助動詞) ③(下二段)〜させていただく(謙譲)", etym:"「賜ふ」。神仏や貴人が下々に与える意。", example:"御衣をたまふ。", translation:"お召し物をお与えになる。", highlight:"たまふ", source:"伊勢物語", trivia:"四段(尊敬)と下二段(謙譲)で意味が逆。要識別。", related:[] },
+  { id:80, word:"たまふ", pos:"動ハ四・下二", meaning:"①お与えになる(尊敬) ②〜なさる(尊敬補助動詞) ③(下二段)〜させていただく(謙譲)", etym:"「賜ふ」。神仏や貴人が下々に与える意。", example:"御衣をたまふ。｜のたまひしこと。", translation:"お召し物をお与えになる。｜おっしゃったこと(〜なさった)。", highlight:"たまふ｜たまひ", source:"伊勢物語｜徒然草", trivia:"四段(尊敬)と下二段(謙譲)で意味が逆。要識別。", related:[] },
   { id:81, word:"たてまつる", pos:"動ラ四", meaning:"①差し上げる(謙譲) ②お召しになる・召し上がる(尊敬)", etym:"「奉る」。神仏に物を捧げる原義から。", example:"御文たてまつる。", translation:"お手紙を差し上げる。", highlight:"たてまつる", source:"源氏物語", trivia:null, related:[{id:78,type:"類"}] },
   { id:82, word:"おぼす", pos:"動サ四", meaning:"お思いになる(「思ふ」の尊敬語)", etym:"「思(おも)ほす」の縮約。「思ふ」の尊敬語で、貴人の心理を表す。", example:"いとあはれとおぼす。", translation:"たいそうしみじみとお思いになる。", highlight:"おぼす", source:"源氏物語", trivia:null, related:[{id:83,type:"類"}] },
   { id:83, word:"おぼしめす", pos:"動サ四", meaning:"お思いになる(「おぼす」より高い尊敬)", etym:"「おぼす」+「めす」。最高敬語。", example:"君、いかにおぼしめすにか。", translation:"あなたは、どのようにお思いになるか。", highlight:"おぼしめす", source:"源氏物語", trivia:null, related:[{id:82,type:"類"}] },
   { id:84, word:"おもほゆ", pos:"動ヤ下二", meaning:"自然と思われる・思い出される", etym:"「思(おも)ふ」+自発「ゆ」。", example:"昔のことぞおもほゆる。", translation:"昔のことが自然と思い出される。", highlight:"おもほゆる", source:"(作例)", trivia:null, related:[] },
-  { id:85, word:"おぼゆ", pos:"動ヤ下二", meaning:"①自然と思われる ②思い出される ③似ている", etym:"「思ふ」+自発「ゆ」。自然に心にわき上がる感覚を表す。", example:"いとあはれにおぼゆ。", translation:"たいそうしみじみと感じられる。", highlight:"おぼゆ", source:"源氏物語", trivia:null, related:[{id:84,type:"類"}] },
-  { id:86, word:"ながむ", pos:"動マ下二", meaning:"①物思いにふける ②じっと見つめる", etym:"「眺む」。「長雨(ながめ)」とかけ詞になることが多い。", example:"いたづらにながめせしまに。", translation:"むなしく物思いにふけっている間に。", highlight:"ながめ", source:"古今集・小野小町", trivia:"小野小町歌の「ながめ」は「眺め」と「長雨」の掛詞。", related:[{id:25,type:"類"}] },
+  { id:85, word:"おぼゆ", pos:"動ヤ下二", meaning:"①自然と思われる ②思い出される ③似ている", etym:"「思ふ」+自発「ゆ」。自然に心にわき上がる感覚を表す。", example:"いとあはれにおぼゆ。｜昔のことぞおぼゆる。｜父にいとよくおぼえたり。", translation:"たいそうしみじみと感じられる。｜昔のことが思い出される。｜父にとてもよく似ていた。", highlight:"おぼゆ｜おぼゆる｜おぼえ", source:"源氏物語｜(作例)｜源氏物語", trivia:null, related:[{id:84,type:"類"}] },
+  { id:86, word:"ながむ", pos:"動マ下二", meaning:"①物思いにふける ②じっと見つめる", etym:"「眺む」。「長雨(ながめ)」とかけ詞になることが多い。", example:"いたづらにながめせしまに。｜月をながむ。", translation:"むなしく物思いにふけっている間に。｜月をじっと見つめる。", highlight:"ながめ｜ながむ", source:"古今集・小野小町｜(作例)", trivia:"小野小町歌の「ながめ」は「眺め」と「長雨」の掛詞。", related:[{id:25,type:"類"}] },
   { id:87, word:"あく", pos:"動カ四", meaning:"満足する・十分になる。(同音の「明く(夜が明ける)」とは別語)", etym:"「飽く」=十分に満たされる。和歌では「あかず」(=いつまでも見飽きない)の形で頻出。", example:"見れどもあかず。", translation:"見ても飽きない(満足しない)。", highlight:"あか", source:"万葉集", trivia:"「飽く」と書く。「飽かず」=満足しない、いつまでも見ていたい、の意で和歌に頻出。", related:[] },
   { id:88, word:"あふ", pos:"動ハ四", meaning:"①出会う ②結婚する ③(下二段で)合致する", etym:"「会ふ・逢ふ・合ふ」。和歌では「逢ふ」は男女が結ばれる意で使われることが多い。", example:"夢にあひ見し人。", translation:"夢で出会った人。", highlight:"あひ", source:"古今集", trivia:"和歌では「逢ふ」=男女の関係。", related:[] },
   { id:89, word:"あく", pos:"動カ下二", meaning:"夜が明ける・明るくなる。(同音の「飽く(満足する)」とは別語)", etym:"「明く」。四段活用。「夜が明く」「門(かど)を明く」など。「飽く」(id:87)とは別語。", example:"夜やうやう明けゆく。", translation:"夜がだんだん明けていく。", highlight:"明け", source:"枕草子", trivia:null, related:[] },
   { id:90, word:"くる", pos:"動ラ下二", meaning:"日が暮れる", etym:"「暮る」。一日や季節の終わり。", example:"日くれ、月のぼる。", translation:"日が暮れ、月が昇る。", highlight:"くれ", source:"伊勢物語", trivia:null, related:[{id:89,type:"対"}] },
-  { id:91, word:"おどろかす", pos:"動サ四", meaning:"①気づかせる ②目を覚まさせる ③びっくりさせる", etym:"「おどろく」(id:14)の他動詞形(使役的)。相手の注意を引く・目を覚まさせる。", example:"さるべき人を、おどろかし給へ。", translation:"しかるべき人を、お知らせなさいませ。", highlight:"おどろかし", source:"源氏物語", trivia:null, related:[{id:14,type:"類"}] },
+  { id:91, word:"おどろかす", pos:"動サ四", meaning:"①気づかせる ②目を覚まさせる ③びっくりさせる", etym:"「おどろく」(id:14)の他動詞形(使役的)。相手の注意を引く・目を覚まさせる。", example:"さるべき人を、おどろかし給へ。｜鐘の音におどろかされて。", translation:"しかるべき人にお知らせなさいませ。｜鐘の音に目を覚まさせられて。", highlight:"おどろかし｜おどろかさ", source:"源氏物語｜(作例)", trivia:null, related:[{id:14,type:"類"}] },
   { id:92, word:"あくがる", pos:"動ラ下二", meaning:"①魂が体から離れさまよう ②心がうわの空になる", etym:"「あく(離)」+「かる(離)」。", example:"もの思へば沢の蛍もわが身よりあくがれ出づる魂かとぞ見る。", translation:"物思いにふければ、沢の蛍さえも、わが身から抜け出した魂かと見える。", highlight:"あくがれ", source:"後拾遺集・和泉式部", trivia:"和泉式部の名歌。", related:[] },
   { id:93, word:"ふ", pos:"動ハ下二", meaning:"①(月日が)経過する ②(場所を)通り過ぎる", etym:"「経(ふ)」。下二段活用。時間の経過・場所の通過を表す基本語。", example:"月日のふるままに。", translation:"月日が経つにつれて。", highlight:"ふる", source:"源氏物語", trivia:"古今集の「ふる」は「経る」と「降る」の掛詞によく使われる。", related:[] },
   { id:94, word:"ためらふ", pos:"動ハ四", meaning:"①心を落ち着ける ②(病が)快方に向かう", etym:"「タムル」と関連。気持ちを抑制する。", example:"涙をためらひて。", translation:"涙をこらえて。", highlight:"ためらひ", source:"(作例)", trivia:"現代語「ためらう(躊躇)」とは違う。", related:[] },
-  { id:95, word:"おこたる", pos:"動ラ四", meaning:"①病が治る・回復する ②怠ける", etym:"「怠る」。本来「気がゆるむ」で、病気の文脈では「峠を越える」。", example:"日ごろの病、いささかおこたりて。", translation:"このごろの病が、少し回復して。", highlight:"おこたり", source:"(作例)", trivia:"古文では「治る」が頻出。", related:[] },
+  { id:95, word:"おこたる", pos:"動ラ四", meaning:"①病が治る・回復する ②怠ける", etym:"「怠る」。本来「気がゆるむ」で、病気の文脈では「峠を越える」。", example:"御ここち例ならずおこたりて。｜おこたらず勤む。", translation:"ご気分がいつもと違って快方に向かって。｜怠ることなく勤める。", highlight:"おこたり｜おこたら", source:"源氏物語｜(作例)", trivia:"古文では「治る」が頻出。", related:[] },
   { id:96, word:"こころざす", pos:"動サ四", meaning:"①意図する ②愛情を寄せる ③贈り物をする", etym:"「心+差す」=心を特定の方向に向ける。意志・愛情・贈り物の三義がある。", example:"女の方にこころざしふかし。", translation:"女の方に愛情が深い。", highlight:"こころざし", source:"伊勢物語", trivia:null, related:[] },
   { id:97, word:"したたむ", pos:"動マ下二", meaning:"①整える・準備する ②食べる ③書きしるす", etym:"「したためる」=きちんと整える意の下二段動詞。漢字「認」を当てることも。", example:"旅のしたくをしたたむ。", translation:"旅の支度を整える。", highlight:"したたむ", source:"徒然草", trivia:null, related:[] },
   { id:98, word:"いとし", pos:"形シク", meaning:"いとおしい・かわいい・つらい", etym:"動詞「いとふ(厭)」と同根。心が痛むほど大切。", example:"いとし子を袖にかかへて。", translation:"いとしい子を袖に抱えて。", highlight:"いとし", source:"(作例)", trivia:null, related:[{id:31,type:"類"}] },
@@ -1369,7 +1369,7 @@ const WORDS = [
   { id:102, word:"はかばかし", pos:"形シク", meaning:"しっかりしている・きちんとしている", etym:"「果(はか)」を重ねた語。きちんとした成果。", example:"はかばかしき後見もなく。", translation:"しっかりした後見人もなく。", highlight:"はかばかしき", source:"(作例)", trivia:"「はかなし」の対。", related:[{id:101,type:"対"}] },
   { id:103, word:"いそぎ", pos:"名", meaning:"準備・支度", etym:"動詞「急ぐ」の名詞形。事を進める準備。", example:"年のいそぎ。", translation:"新年の準備。", highlight:"いそぎ", source:"枕草子", trivia:"現代の「急ぐ」と意味が違う。「準備」が中心義。", related:[] },
   { id:104, word:"ありさま", pos:"名", meaning:"様子・状態・身の上", etym:"「在り様」=あること(存在)の様相。人の様子から事件の顛末まで幅広く使う。", example:"そのありさま、心ことなり。", translation:"その様子は、格別である。", highlight:"ありさま", source:"源氏物語", trivia:null, related:[] },
-  { id:105, word:"けしき", pos:"名", meaning:"①様子・態度 ②機嫌", etym:"「気色」。気配・雰囲気。現代の「景色」とは違う。", example:"御けしきあしくなりぬ。", translation:"ご機嫌が悪くなった。", highlight:"けしき", source:"源氏物語", trivia:"古文では「気持ち・様子」、現代の自然風景の意は中世以降。", related:[{id:104,type:"類"}] },
+  { id:105, word:"けしき", pos:"名", meaning:"①様子・態度 ②機嫌", etym:"「気色」。気配・雰囲気。現代の「景色」とは違う。", example:"山のけしきをながむ。｜御けしきあしくなりぬ。", translation:"山の様子を眺める。｜ご機嫌が悪くなった。", highlight:"けしき｜けしき", source:"(作例)｜源氏物語", trivia:"古文では「気持ち・様子」、現代の自然風景の意は中世以降。", related:[{id:104,type:"類"}] },
   { id:106, word:"けはひ", pos:"名", meaning:"気配・様子・雰囲気", etym:"「気配(けはひ)」。五感で総合的に捉えた場の空気感・人の気配。", example:"なつかしき御けはひ。", translation:"心ひかれるご気配。", highlight:"けはひ", source:"(作例)", trivia:null, related:[{id:105,type:"類"}] },
   { id:107, word:"心ばへ", pos:"名", meaning:"①心遣い ②趣・風情", etym:"「在り様」=存在のしかた。人の暮らしぶりや出来事の成り行きを表す。", example:"心ばへある人。", translation:"心遣いのある人。", highlight:"心ばへ", source:"(作例)", trivia:null, related:[] },
   { id:108, word:"うし", pos:"名", meaning:"主君・敬うべき方。(同音の「憂し(つらい)」とは別語)", etym:"「気色(けしき)」=心の色合い。現代語「景色(風景)」の意は中世以降に生まれた転義。", example:"わがうしの仰せ。", translation:"わが主君の仰せ。", highlight:"うし", source:"万葉集", trivia:"上代の敬称「大人(うし)」。形容詞「憂し」(id:32)とは無関係。", related:[] },
@@ -1404,33 +1404,33 @@ const WORDS = [
   { id:137, word:"ともがら", pos:"名", meaning:"仲間・同類の人々", etym:"「友・輩(ともがら)」。同じ立場・志を共有する者の集まりを指す。", example:"わがともがら。", translation:"わが仲間。", highlight:"ともがら", source:"(作例)", trivia:null, related:[] },
   { id:138, word:"ものす", pos:"動サ変", meaning:"①ある・いる ②行く・来る ③する(代動詞)", etym:"「物+す」。具体的な動作をぼかして言う婉曲表現。", example:"いづちかものし給ふ。", translation:"どちらへいらっしゃるのか。", highlight:"ものし", source:"(作例)", trivia:"文脈で訳し分ける必要がある婉曲動詞。", related:[] },
   { id:139, word:"ふす", pos:"動サ四", meaning:"①横になる ②寝る", etym:"「伏(ふ)す」。横たわる動作を広く表す。病臥にも休息にも使う。", example:"日ごろ床にふしたり。", translation:"このごろ床に伏している。", highlight:"ふし", source:"源氏物語", trivia:null, related:[] },
-  { id:140, word:"おく", pos:"動カ四", meaning:"①起きる ②(露・霜が)降りる", etym:"「起(お)く」。四段活用。人が起き上がることと、露や霜が降りること(置く)の二義。", example:"露おく秋の野。", translation:"露が降りる秋の野。", highlight:"おく", source:"(作例)", trivia:null, related:[] },
+  { id:140, word:"おく", pos:"動カ四", meaning:"①起きる ②(露・霜が)降りる", etym:"「起(お)く」。四段活用。人が起き上がることと、露や霜が降りること(置く)の二義。", example:"朝早くおきて。｜露おく秋の野。", translation:"朝早く起きて。｜露が降りる秋の野。", highlight:"おき｜おく", source:"(作例)｜古今集", trivia:null, related:[] },
   { id:141, word:"つく", pos:"動カ下二", meaning:"①(目に)つく・触れる ②気づく", etym:"「付(つ)く」。下二段。何かに接触する・気づく。目に付く・手に付くなど広義。", example:"目につく梅の花。", translation:"目に入る梅の花。", highlight:"つく", source:"(作例)", trivia:null, related:[] },
   { id:142, word:"かづく", pos:"動カ下二", meaning:"①(衣服などを)褒美として与える ②頭にかぶる", etym:"「伏す」。横になる・寝る。病臥を含む広い意味の動詞。", example:"御衣をかづけ給ふ。", translation:"お召し物を褒美としてお与えになる。", highlight:"かづけ", source:"伊勢物語", trivia:null, related:[] },
   { id:143, word:"そす", pos:"動サ四", meaning:"そっと言う・密かに言う", etym:"「起く」。四段活用。人が起き上がる、露が降りるなど、上方への動きを表す。", example:"耳にそす。", translation:"耳元でささやく。", highlight:"そす", source:"(作例)", trivia:null, related:[] },
   { id:144, word:"のぼる", pos:"動ラ四", meaning:"①(地方から京へ)上京する ②上る", etym:"「登る」。京を中心とした方向感覚。", example:"都にのぼる。", translation:"京に上京する。", highlight:"のぼる", source:"土佐日記", trivia:"古文では「上る」=都へ向かう。地理的高低ではない。", related:[{id:145,type:"対"}] },
   { id:145, word:"くだる", pos:"動ラ四", meaning:"(京から地方へ)下る・下向する", etym:"「下(くだ)る」。都を中心とした上下関係で、地方へ向かうこと。物理的高低ではない。", example:"東国にくだる。", translation:"東国に下向する。", highlight:"くだる", source:"伊勢物語", trivia:null, related:[{id:144,type:"対"}] },
-  { id:146, word:"わたる", pos:"動ラ四", meaning:"①移動する・行く ②(時を)経る ③ずっと〜し続ける(補助動詞)", etym:"「渡る」。空間・時間どちらにも使う。", example:"内裏(うち)へわたり給ふ。", translation:"宮中へお移りになる。", highlight:"わたり", source:"源氏物語", trivia:null, related:[] },
+  { id:146, word:"わたる", pos:"動ラ四", meaning:"①移動する・行く ②(時を)経る ③ずっと〜し続ける(補助動詞)", etym:"「渡る」。空間・時間どちらにも使う。", example:"内裏へわたり給ふ。｜月日のわたるままに。", translation:"宮中へお移りになる。｜月日が過ぎるにつれて。", highlight:"わたり｜わたる", source:"源氏物語｜(作例)", trivia:null, related:[] },
   { id:147, word:"いづ", pos:"動ダ下二", meaning:"出る・現れる", etym:"「登る」。京を上位とする中世の空間感覚を反映。地理的高低より社会的上下。", example:"月いでて。", translation:"月が出て。", highlight:"いで", source:"伊勢物語", trivia:null, related:[] },
   { id:148, word:"あふぐ", pos:"動ガ四", meaning:"①敬う・尊敬する ②あおぐ", etym:"「下る」。宮中・都から離れることを表す。「のぼる」(id:147)の対義語。", example:"君をあふぐ心。", translation:"あなたを敬う気持ち。", highlight:"あふぐ", source:"(作例)", trivia:null, related:[] },
   { id:149, word:"いつく", pos:"動カ四", meaning:"大切に育てる・かしずく", etym:"「渡る」。空間の移動にも時間の経過にも使う。補助動詞「〜しわたる」=「ずっと〜する」。", example:"姫君をいつき給ふ。", translation:"姫君を大切にお育てになる。", highlight:"いつき", source:"(作例)", trivia:null, related:[] },
   { id:150, word:"いとふ", pos:"動ハ四", meaning:"嫌う・避ける・(世を)厭う", etym:"「出づ」。下二段活用。屋内から屋外へ、また何かが現れる動きを表す。", example:"世をいとふ人。", translation:"世間を厭う人(出家者)。", highlight:"いとふ", source:"徒然草", trivia:"「世を厭う」=出家する、の婉曲表現。", related:[] },
-  { id:151, word:"うつる", pos:"動ラ四", meaning:"①(色が)あせる ②(場所が)移る ③(心が)変わる", etym:"「仰ぐ」。四段活用。上を見上げる動作から、尊敬・信頼の意が派生。", example:"花の色はうつりにけりな。", translation:"花の色はあせてしまったなあ。", highlight:"うつり", source:"古今集・小野小町", trivia:null, related:[] },
-  { id:152, word:"ねんず", pos:"動サ変", meaning:"①祈る ②念じる・我慢する", etym:"漢語「念(ねん)ず」。サ変動詞。仏に祈念する、苦痛を我慢するの二義がある。", example:"いみじう心の中にねんじて。", translation:"たいそう心の中で我慢して。", highlight:"ねんじ", source:"源氏物語", trivia:null, related:[] },
+  { id:151, word:"うつる", pos:"動ラ四", meaning:"①(色が)あせる ②(場所が)移る ③(心が)変わる", etym:"「仰ぐ」。四段活用。上を見上げる動作から、尊敬・信頼の意が派生。", example:"花の色はうつりにけりな。｜大和の国にうつる。", translation:"花の色はあせてしまったなあ。｜大和の国に移る。", highlight:"うつり｜うつる", source:"古今集・小野小町｜(作例)", trivia:null, related:[] },
+  { id:152, word:"ねんず", pos:"動サ変", meaning:"①祈る ②念じる・我慢する", etym:"漢語「念(ねん)ず」。サ変動詞。仏に祈念する、苦痛を我慢するの二義がある。", example:"御仏にねんず。｜いみじう心の中にねんじて。", translation:"仏様に祈る。｜たいそう心の中で我慢して。", highlight:"ねんず｜ねんじ", source:"(作例)｜源氏物語", trivia:null, related:[] },
   { id:153, word:"いのる", pos:"動ラ四", meaning:"祈る・神仏に願う", etym:"「祈(いの)る」。神仏に心をこめて願をかける動作。「念ず」より和語的で切実な語感。", example:"いのる験(しるし)もなし。", translation:"祈っても効果がない。", highlight:"いのる", source:"枕草子", trivia:null, related:[{id:152,type:"類"}] },
   { id:154, word:"あやまつ", pos:"動タ四", meaning:"間違える・しくじる", etym:"「過(あやま)つ」。判断・行動を誤る。失敗した結果に焦点がある。", example:"歌をあやまつ。", translation:"歌を間違える。", highlight:"あやまつ", source:"(作例)", trivia:null, related:[] },
   { id:155, word:"おこなふ", pos:"動ハ四", meaning:"①仏道修行をする ②する・実行する", etym:"「移る・遷る」。色あせる(衰退)・場所が変わる(移動)・心変わりする(変心)の三義。", example:"山にこもりておこなふ。", translation:"山にこもって修行する。", highlight:"おこなふ", source:"徒然草", trivia:"古文では「修行する」が中心義。", related:[{id:150,type:"類"}] },
   { id:156, word:"よばふ", pos:"動ハ四", meaning:"求婚する・言い寄る", etym:"「呼(よ)ばふ」=継続して呼びかける。", example:"よばふ人あまたありけり。", translation:"求婚する人が大勢いた。", highlight:"よばふ", source:"竹取物語", trivia:null, related:[] },
   { id:157, word:"げに", pos:"副", meaning:"なるほど・本当に・いかにも", etym:"「実(げ)に」。相手の言葉や目前の事実に接して「なるほどその通り」と納得する気持ち。", example:"げに、ことわりなり。", translation:"なるほど、もっともだ。", highlight:"げに", source:"(作例)", trivia:null, related:[] },
-  { id:158, word:"いと", pos:"副", meaning:"①とても・たいそう ②(打消で)それほど〜ない", etym:"上代から続く程度副詞。「いとをかし」「いとあはれ」など、核心となる語を強調する。", example:"いとをかし。", translation:"とても趣深い。", highlight:"いと", source:"枕草子", trivia:"古文最頻出の副詞。", related:[{id:159,type:"類"}] },
+  { id:158, word:"いと", pos:"副", meaning:"①とても・たいそう ②(打消で)それほど〜ない", etym:"上代から続く程度副詞。「いとをかし」「いとあはれ」など、核心となる語を強調する。", example:"いとをかし。｜いと見苦しからず。", translation:"とても趣深い。｜それほど見苦しくはない。", highlight:"いと｜いと", source:"枕草子｜(作例)", trivia:"古文最頻出の副詞。", related:[{id:159,type:"類"}] },
   { id:159, word:"いとど", pos:"副", meaning:"いっそう・ますます", etym:"「行(おこな)ふ」。古文では仏道修行・読経がほぼ中心義。世俗の「する」は近世以降。", example:"いとどあはれにおぼゆ。", translation:"いっそうしみじみと感じられる。", highlight:"いとど", source:"源氏物語", trivia:null, related:[{id:158,type:"類"}] },
-  { id:160, word:"なほ", pos:"副", meaning:"①やはり・依然として ②さらに・もっと", etym:"「直(なほ)」=変わらず真っ直ぐ。", example:"なほこの事思ひ止まるまじ。", translation:"やはりこのことは諦めることはできまい。", highlight:"なほ", source:"源氏物語", trivia:null, related:[] },
+  { id:160, word:"なほ", pos:"副", meaning:"①やはり・依然として ②さらに・もっと", etym:"「直(なほ)」=変わらず真っ直ぐ。", example:"なほこの事思ひ止まるまじ。｜なほ優りたる方のよし。", translation:"やはりこのことは諦めることはできまい。｜さらに優れた方がよい。", highlight:"なほ｜なほ", source:"源氏物語｜(作例)", trivia:null, related:[] },
   { id:161, word:"さらなり", pos:"形動ナリ", meaning:"言うまでもない・もちろんだ", etym:"「更なり」=改めて言うまでもない。", example:"月のころはさらなり。", translation:"月の出る頃は言うまでもない。", highlight:"さらなり", source:"枕草子", trivia:null, related:[] },
   { id:162, word:"いはむや", pos:"副", meaning:"まして・なおさら", etym:"上代から続く最頻出の程度副詞。肯定文で「とても」、打消文で「それほど〜ない」。", example:"大人だにかなし、いはむや子をや。", translation:"大人でさえ悲しい、まして子はなおさらだ。", highlight:"いはむや", source:"(作例)", trivia:null, related:[{id:161,type:"類"}] },
   { id:163, word:"ましてや", pos:"副", meaning:"なおさら・いっそう", etym:"「いと」を強めた副詞。すでに程度が高い状態がさらに増す感覚。", example:"ましてや、若き人をや。", translation:"なおさら、若い人にとっては。", highlight:"ましてや", source:"(作例)", trivia:null, related:[{id:162,type:"類"}] },
   { id:164, word:"さて", pos:"副", meaning:"①そのままで ②ところで", etym:"指示副詞「然(さ)て」。先行する状況を受けた上で、次の話題・動作に転じる接続機能。", example:"さて、いかがし給ふべき。", translation:"さて、どうなさるべきか。", highlight:"さて", source:"源氏物語", trivia:null, related:[] },
   { id:165, word:"しか", pos:"副", meaning:"そう・そのように", etym:"指示副詞「然(しか)」。相手の発言や直前の事態を「そのように」と受ける。", example:"しか言ふ。", translation:"そのように言う。", highlight:"しか", source:"(作例)", trivia:null, related:[] },
-  { id:166, word:"にほふ", pos:"動ハ四", meaning:"①美しく咲く・色が映える ②香る", etym:"「丹(に)+秀(ほ)」=赤色が映える。視覚→嗅覚へ転義。", example:"梅の花にほふ。", translation:"梅の花が美しく咲き香る。", highlight:"にほふ", source:"(作例)", trivia:"古文では視覚的「映え」が中心義。香りは中世以降。", related:[] },
+  { id:166, word:"にほふ", pos:"動ハ四", meaning:"①美しく咲く・色が映える ②香る", etym:"「丹(に)+秀(ほ)」=赤色が映える。視覚→嗅覚へ転義。", example:"梅の花にほふ春べに。｜にほひやかなる御衣。", translation:"梅の花が美しく映える春に。｜かぐわしい(つやのある)お召し物。", highlight:"にほふ｜にほひ", source:"万葉集｜源氏物語", trivia:"古文では視覚的「映え」が中心義。香りは中世以降。", related:[] },
   { id:167, word:"におひ", pos:"名", meaning:"①色つや・つややかな美しさ ②香り", etym:"動詞「にほふ」の名詞形。古文では視覚的な「色つや」が第一義で、嗅覚は後世の転義。", example:"花のにほひ。", translation:"花の色つや。", highlight:"にほひ", source:"(作例)", trivia:null, related:[{id:166,type:"類"}] },
   { id:168, word:"あてなり", pos:"形動ナリ", meaning:"①高貴だ ②上品だ", etym:"「貴(あて)なり」。外見・立ち居振る舞いに表れた上品さ・高貴さを形容する。", example:"あてなる人の御娘。", translation:"高貴な方のご息女。", highlight:"あてなる", source:"(作例)", trivia:null, related:[{id:99,type:"類"}] },
   { id:169, word:"きよげなり", pos:"形動ナリ", meaning:"美しい・清らかだ・小奇麗だ", etym:"指示副詞「然(さ)て」。前の事態を受けて次に進む接続機能。", example:"いときよげなる若き人。", translation:"とても美しい若い人。", highlight:"きよげなる", source:"源氏物語", trivia:null, related:[{id:5,type:"類"},{id:28,type:"類"}] },
@@ -1442,7 +1442,7 @@ const WORDS = [
   { id:175, word:"あなかま", pos:"連語・感", meaning:"静かに・しっ", etym:"「清(きよ)げ」。整って美しい様子。「きよらなり」(id:176)より一段低い美。", example:"あなかま、と制す。", translation:"「静かに」と制する。", highlight:"あなかま", source:"源氏物語", trivia:null, related:[] },
   { id:176, word:"あふひ", pos:"名", meaning:"葵(賀茂祭の象徴)", etym:"「逢ふ日」と掛け詞になることが多い。", example:"あふひの花。", translation:"葵の花。", highlight:"あふひ", source:"(作例)", trivia:"『源氏物語』「葵」巻はこの花にちなむ。", related:[] },
   { id:177, word:"ほい", pos:"名", meaning:"本来の意志・本意", etym:"「朧(おぼろ)け」=ぼんやりした・普通の程度。打消と呼応して「並々でない」の意になる。", example:"ほいなく思ふ。", translation:"残念に思う(本意でない)。", highlight:"ほい", source:"(作例)", trivia:null, related:[] },
-  { id:178, word:"ここち", pos:"名", meaning:"①気持ち ②病気・気分", etym:"「心地(ここち)」。心の状態を幅広く指すが、古文では「体調」の意味で頻出する。", example:"ここち例ならず。", translation:"気分がいつもと違う(=具合が悪い)。", highlight:"ここち", source:"(作例)", trivia:"「ここち例ならず」「ここちあし」=病気がち、の慣用。", related:[{id:105,type:"類"}] },
+  { id:178, word:"ここち", pos:"名", meaning:"①気持ち ②病気・気分", etym:"「心地(ここち)」。心の状態を幅広く指すが、古文では「体調」の意味で頻出する。", example:"うれしきここちす。｜ここち例ならずなり給ひて。", translation:"うれしい気持ちがする。｜ご気分がいつもと違って(=ご病気になって)。", highlight:"ここち｜ここち", source:"(作例)｜源氏物語", trivia:"「ここち例ならず」「ここちあし」=病気がち、の慣用。", related:[{id:105,type:"類"}] },
   { id:179, word:"つみ", pos:"名", meaning:"①罪 ②(仏教の)悪業", etym:"「古(ふ)る」。時間の経過で古びた状態を表す。「あらたし(新)」の対。", example:"前世のつみ深き身なれば。", translation:"前世の罪業の深い身であるので。", highlight:"つみ", source:"(作例)", trivia:null, related:[] },
   { id:180, word:"いんぐわ", pos:"名", meaning:"因果・宿縁・前世からの結果", etym:"漢語「因果」。仏教の重要概念。", example:"これも前の世のいんぐわなり。", translation:"これも前世の因果である。", highlight:"いんぐわ", source:"平家物語", trivia:null, related:[{id:179,type:"類"}] },
   { id:181, word:"せち", pos:"形動ナリ", meaning:"切実だ・はなはだしい・大切だ", etym:"漢語「切(せち)」。差し迫っている様子。古文では「強く」「しきりに」の副詞的用法が多い。", example:"せちに思し嘆く。", translation:"切実にお嘆きになる。", highlight:"せちに", source:"源氏物語", trivia:null, related:[] },
@@ -1464,7 +1464,7 @@ const WORDS = [
   { id:197, word:"みす", pos:"名", meaning:"御簾(貴人の前にかける簾)", etym:"「夕(ゆふ)+辺(へ)」。夕方から宵にかけての時間帯。「あした」の対。", example:"みすの内より。", translation:"御簾の内から。", highlight:"みす", source:"源氏物語", trivia:null, related:[] },
   { id:198, word:"あふぎ", pos:"名", meaning:"扇", etym:"「明け+ほの(仄か)」。空がほのかに白み始める夜明けの一瞬。", example:"あふぎを開く。", translation:"扇を開く。", highlight:"あふぎ", source:"(作例)", trivia:null, related:[] },
   { id:199, word:"すずり", pos:"名", meaning:"硯", etym:"「朝+ほのらけ」。「あけぼの」より少し後の、やや明るい夜明けの段階。", example:"硯にむかひて。", translation:"硯に向かって。", highlight:"硯", source:"(作例)", trivia:null, related:[] },
-  { id:200, word:"ふみ", pos:"名", meaning:"①手紙 ②書物・漢籍・学問", etym:"「文(ふみ)」。手紙(恋文を含む)と書物(漢籍)の両義を持つ重要な基本語。", example:"ふみを書く。", translation:"手紙を書く。", highlight:"ふみ", source:"伊勢物語", trivia:null, related:[] },
+  { id:200, word:"ふみ", pos:"名", meaning:"①手紙 ②書物・漢籍・学問", etym:"「文(ふみ)」。手紙(恋文を含む)と書物(漢籍)の両義を持つ重要な基本語。", example:"ふみを書きて遣はす。｜ふみを読み学ぶ。", translation:"手紙を書いて送る。｜書物を読み学ぶ。", highlight:"ふみ｜ふみ", source:"(作例)｜(作例)", trivia:null, related:[] },
   { id:201, word:"こころざし", pos:"名", meaning:"①意志・志 ②愛情 ③贈り物", etym:"動詞「心ざす」の名詞形。意志・愛情・贈り物と、対象に心を向ける行為全般を含む。", example:"君のこころざし、忘れがたし。", translation:"あなたの愛情は、忘れがたい。", highlight:"こころざし", source:"伊勢物語", trivia:null, related:[{id:96,type:"類"}] },
   { id:202, word:"おもひ", pos:"名", meaning:"①思い ②(特に)恋心", etym:"「思ひ」。和歌で「火」と掛詞。", example:"おもひあまる。", translation:"思いがあふれる。", highlight:"おもひ", source:"古今集", trivia:null, related:[] },
   { id:203, word:"こころ", pos:"名", meaning:"①心 ②情趣 ③(歌・物事の)真意", etym:"上代から。心情・意味・趣の三義を持つ最基本語。「歌の心」は和歌の真意を指す。", example:"歌の心。", translation:"歌の真意。", highlight:"心", source:"古今集", trivia:null, related:[] },
@@ -1483,9 +1483,9 @@ const WORDS = [
   { id:216, word:"うづむ", pos:"動マ下二", meaning:"埋める・隠す", etym:"「御(み)+簾(す)」。貴人のいる空間と外部を隔てる簾。", example:"火をうづむ。", translation:"火を埋ける(火種を灰に埋める)。", highlight:"うづむ", source:"(作例)", trivia:null, related:[] },
   { id:217, word:"きこしめす", pos:"動サ四", meaning:"①お聞きになる(尊敬) ②召し上がる(尊敬)", etym:"「聞(き)こし+召(め)す」。最高敬語。", example:"帝、これをきこしめして。", translation:"帝は、これをお聞きになって。", highlight:"きこしめし", source:"(作例)", trivia:null, related:[{id:73,type:"対"}] },
   { id:218, word:"ごらんず", pos:"動サ変", meaning:"ご覧になる(「見る」の尊敬)", etym:"動詞「あふぐ(扇ぐ)」由来。平安文化では意思伝達・贈答にも用いられた道具。", example:"月をごらんず。", translation:"月をご覧になる。", highlight:"ごらんず", source:"(作例)", trivia:null, related:[] },
-  { id:219, word:"めす", pos:"動サ四", meaning:"①お呼びになる ②お召しになる ③召し上がる(尊敬)", etym:"上代から。文房具の中心。「硯にむかふ」=文章を書こうとすること。", example:"姫君を御前にめす。", translation:"姫君を御前にお呼びになる。", highlight:"めす", source:"(作例)", trivia:null, related:[] },
+  { id:219, word:"めす", pos:"動サ四", meaning:"①お呼びになる ②お召しになる ③召し上がる(尊敬)", etym:"上代から。文房具の中心。「硯にむかふ」=文章を書こうとすること。", example:"姫君を御前にめす。｜御衣をめす。", translation:"姫君を御前にお呼びになる。｜お召し物をお召しになる。", highlight:"めす｜めす", source:"源氏物語｜(作例)", trivia:null, related:[] },
   { id:220, word:"いかが", pos:"副", meaning:"どうして・どのように・どうだろうか", etym:"「文(ふみ)」。手紙・書物の両義。和歌や恋文を「ふみ」と呼ぶことが多い。", example:"いかがし給ふ。", translation:"どうなさるのか。", highlight:"いかが", source:"(作例)", trivia:null, related:[] },
-  { id:221, word:"いかで", pos:"副", meaning:"①どうして・なぜ ②なんとかして〜したい", etym:"「如何で」。願望にも疑問にも。", example:"いかで月を見む。", translation:"なんとかして月を見たい。", highlight:"いかで", source:"竹取物語", trivia:null, related:[{id:220,type:"類"}] },
+  { id:221, word:"いかで", pos:"副", meaning:"①どうして・なぜ ②なんとかして〜したい", etym:"「如何で」。願望にも疑問にも。", example:"いかでかく、おはしけむ。｜いかで月を見む。", translation:"どうしてこのようにいらっしゃったのか。｜なんとかして月を見たい。", highlight:"いかで｜いかで", source:"(作例)｜竹取物語", trivia:null, related:[{id:220,type:"類"}] },
   { id:222, word:"いづれ", pos:"代名", meaning:"どれ・どちら", etym:"「何(いづ)れ」。複数の中から一つを選ぶ問いかけ。『源氏物語』冒頭の語としても有名。", example:"いづれの御時にか。", translation:"どの帝の御代であったか。", highlight:"いづれ", source:"源氏物語", trivia:"『源氏物語』冒頭。", related:[] },
   { id:223, word:"いづこ", pos:"代名", meaning:"どこ", etym:"「何処(いづこ)」。場所を問う疑問代名詞。やや改まった文語的な響きを持つ。", example:"いづこへ行くらむ。", translation:"どこへ行くのだろうか。", highlight:"いづこ", source:"(作例)", trivia:null, related:[] },
   { id:224, word:"そなた", pos:"代名", meaning:"①そちら ②あなた", etym:"「其(そ)+方(なた)」。空間の方向→あなた(二人称)への転義。親しみと敬意の中間。", example:"そなたへ行く。", translation:"そちらへ行く。", highlight:"そなた", source:"(作例)", trivia:null, related:[] },
@@ -1505,7 +1505,7 @@ const WORDS = [
   { id:238, word:"うた", pos:"名", meaning:"和歌・歌", etym:"上代から。文学の中心ジャンル。", example:"うたを詠みて遣はす。", translation:"和歌を詠んで送る。", highlight:"うた", source:"(作例)", trivia:null, related:[] },
   { id:239, word:"ものがたり", pos:"名", meaning:"①物語 ②話・会話", etym:"「物+語り」。人と語り合う行為から、虚構の散文作品のジャンル名へ発展した語。", example:"夜もすがらものがたりし給ふ。", translation:"一晩中お話しなさる。", highlight:"ものがたり", source:"源氏物語", trivia:null, related:[] },
   { id:240, word:"ことのは", pos:"名", meaning:"①言葉 ②和歌", etym:"「言の葉」=言葉を木の葉に見立てた美称。", example:"ことのはを尽くして語る。", translation:"言葉を尽くして語る。", highlight:"ことのは", source:"(作例)", trivia:"『古今和歌集仮名序』に「やまと歌は人の心を種として、よろづのことのはとぞなれりける」。", related:[{id:238,type:"類"}] },
-  { id:241, word:"よむ", pos:"動マ四", meaning:"①(歌を)詠む ②声を出して読む ③数える", etym:"「詠む」は和歌を作ること。「読む」は声に出して読み上げること。", example:"歌をよむ。", translation:"和歌を詠む。", highlight:"よむ", source:"(作例)", trivia:null, related:[{id:238,type:"類"}] },
+  { id:241, word:"よむ", pos:"動マ四", meaning:"①(歌を)詠む ②声を出して読む ③数える", etym:"「詠む」は和歌を作ること。「読む」は声に出して読み上げること。", example:"歌をよむ。｜ふみをよむ。", translation:"和歌を詠む。｜書物を声に出して読む。", highlight:"よむ｜よむ", source:"(作例)｜(作例)", trivia:null, related:[{id:238,type:"類"}] },
   { id:242, word:"こと", pos:"名", meaning:"①琴 ②楽器の総称", etym:"上代から。弦楽器(琴・琵琶など)の総称。「琴の音(ね)」は風雅の象徴。", example:"ことを弾く。", translation:"琴を弾く。", highlight:"こと", source:"(作例)", trivia:null, related:[] },
   { id:243, word:"ふえ", pos:"名", meaning:"笛", etym:"「何(いづ)れ」。複数の選択肢からどれかを問う代名詞。『源氏物語』冒頭語。", example:"ふえを吹く。", translation:"笛を吹く。", highlight:"ふえ", source:"(作例)", trivia:null, related:[] },
   { id:244, word:"まひ", pos:"名", meaning:"舞", etym:"「何処(いづこ)」。場所を問う代名詞。やや改まった語感。", example:"まひを舞ふ。", translation:"舞を舞う。", highlight:"まひ", source:"(作例)", trivia:null, related:[] },
@@ -1540,7 +1540,7 @@ const WORDS = [
   { id:273, word:"おぼえ", pos:"名", meaning:"①評判 ②寵愛・引き立て ③記憶", etym:"動詞「おぼゆ」の名詞形。人からどう思われているか(=評判・寵愛)が中心義。", example:"御おぼえやむごとなき方々。", translation:"ご寵愛の厚い方々。", highlight:"おぼえ", source:"源氏物語", trivia:"平安宮廷文学の最重要語の一つ。「人のおぼえ」=世間の評判、「君のおぼえ」=帝の寵愛。", related:[] },
   { id:274, word:"おとなふ", pos:"動ハ四", meaning:"①音をたてる ②訪れる", etym:"「音(おと)+なふ」=音を立てる、転じて「訪問する」。", example:"いづくよりおとなひ来つる人ならむ。", translation:"どこから訪ねてきた人だろうか。", highlight:"おとなひ", source:"(作例)", trivia:null, related:[] },
   { id:275, word:"ありく", pos:"動カ四", meaning:"①歩き回る ②あちこちで〜する(補助動詞)", etym:"「歩(あり)く」。四段活用。あちこち歩き回る動作。補助動詞「〜ありく」にもなる。", example:"物まうでなどにありきて。", translation:"社寺参りなどに出歩いて。", highlight:"ありき", source:"(作例)", trivia:"動詞の連用形について「〜してまわる」の意の補助動詞にもなる。", related:[] },
-  { id:276, word:"しのぶ", pos:"動バ四・上二", meaning:"①(四段)我慢する・隠す ②(上二段)恋い慕う・思い出す", etym:"「忍ぶ」。四段「人目を忍ぶ」、上二段「昔を偲ぶ」で意味を分ける。", example:"しのぶれど色に出でにけりわが恋はものや思ふと人の問ふまで。", translation:"隠していたけれど顔色に出てしまった、私の恋は。物思いをしているのかと人が問うほどに。", highlight:"しのぶれど", source:"拾遺集・平兼盛", trivia:"百人一首40番。", related:[] },
+  { id:276, word:"しのぶ", pos:"動バ四・上二", meaning:"①(四段)我慢する・隠す ②(上二段)恋い慕う・思い出す", etym:"「忍ぶ」。四段「人目を忍ぶ」、上二段「昔を偲ぶ」で意味を分ける。", example:"しのぶれど色に出でにけりわが恋は。｜昔を偲ぶ。", translation:"隠していたけれど顔色に出てしまった私の恋は。｜昔を懐かしく思い出す。", highlight:"しのぶれど｜偲ぶ", source:"拾遺集・平兼盛｜(作例)", trivia:"百人一首40番。", related:[] },
   { id:277, word:"かたはらいたし", pos:"形ク", meaning:"①(他人を見て)気の毒だ ②(自分が)きまり悪い・はずかしい", etym:"「傍(かたはら)+痛し」=見ているこちらが心痛む。", example:"かたはらいたきもの。よく知らぬ人の前にて内輪のこと語る。", translation:"見ていてはらはらするもの。よく知らない人の前で内輪のことを語ること。", highlight:"かたはらいたき", source:"枕草子", trivia:"清少納言「かたはらいたきもの」段の冒頭。", related:[] },
   { id:278, word:"わづらふ", pos:"動ハ四", meaning:"①病む ②思い悩む ③〜しかねる(補助動詞)", etym:"「煩(わづら)ふ」。病気になる・思い悩む。補助動詞「〜わづらふ」=〜しかねる。", example:"いたうわづらひて月日を経たり。", translation:"ひどく病んで月日を過ごした。", highlight:"わづらひ", source:"(作例)", trivia:null, related:[] },
   { id:279, word:"こちたし", pos:"形ク", meaning:"①おおげさだ・仰々しい ②わずらわしい・うるさい", etym:"「言痛(ことい)たし」=言葉が痛いほど多い。", example:"人言はまこと言痛(こちた)くなりぬとも。", translation:"人の噂はまことにうるさく多くなろうとも。", highlight:"言痛(こちた)く", source:"万葉集", trivia:null, related:[] },
@@ -1561,7 +1561,7 @@ const WORDS = [
   { id:294, word:"むつかし", pos:"形シク", meaning:"①不快だ・うっとうしい ②気味が悪い", etym:"「難(むつ)かし」。原義は不快・気味悪さ。現代語「難しい(困難)」の意は近世以降。", example:"むつかしき夢を見し。", translation:"不快な夢を見た。", highlight:"むつかしき", source:"(作例)", trivia:"現代語「難しい(困難だ)」と意味が違う。古文では「うっとうしい」。", related:[] },
   { id:295, word:"うしろめたし", pos:"形ク", meaning:"気がかりだ・心配だ", etym:"「後ろ目痛し」=後ろが気になる。", example:"幼き人のうしろめたく。", translation:"幼い子どもが気がかりで。", highlight:"うしろめたく", source:"(作例)", trivia:"現代語「後ろめたい(罪悪感)」とは違う。古文では単に「気がかり」。", related:[] },
   { id:296, word:"うしろやすし", pos:"形ク", meaning:"安心だ・後顧の憂いがない", etym:"「後ろ安し」。「うしろめたし」の対。", example:"うしろやすき御後見。", translation:"安心できる後見役。", highlight:"うしろやすき", source:"(作例)", trivia:null, related:[] },
-  { id:297, word:"よし", pos:"名", meaning:"①趣・風情 ②理由・由緒 ③手段 ④旨(=趣旨)", etym:"「由(よし)」。形容詞「よし(良し)」とは別。", example:"よしある所に住みなしたり。", translation:"風情のある所に住み暮らしている。", highlight:"よし", source:"徒然草", trivia:"多義の重要語。「〜のよし、申しける」=「〜という旨を申し上げた」の用法も頻出。", related:[] },
+  { id:297, word:"よし", pos:"名", meaning:"①趣・風情 ②理由・由緒 ③手段 ④旨(=趣旨)", etym:"「由(よし)」。形容詞「よし(良し)」とは別。", example:"よしある所に住みなしたり。｜その由を申す。", translation:"風情のある所に住み暮らしている。｜その旨を申し上げる。", highlight:"よし｜由", source:"徒然草｜(作例)", trivia:"多義の重要語。「〜のよし、申しける」=「〜という旨を申し上げた」の用法も頻出。", related:[] },
   { id:298, word:"なかなか", pos:"副・形動", meaning:"①かえって・むしろ ②なまじっか", etym:"「中々」=中途半端で、転じて「かえって」。", example:"なかなかなることなれば。", translation:"かえって(やらない方がよい)中途半端なことなので。", highlight:"なかなかなる", source:"(作例)", trivia:"現代語「なかなか(=かなり)」と意味が異なる。古文では「かえって」が中心義。", related:[] },
   { id:299, word:"いまだ", pos:"副", meaning:"(下に打消で)まだ〜ない", etym:"「未(いま)だ」。時間的にまだ到達していないこと。下に打消を伴う呼応の副詞。", example:"いまだ知らず。", translation:"まだ知らない。", highlight:"いまだ", source:"(作例)", trivia:null, related:[] },
   { id:300, word:"やや", pos:"副", meaning:"①しだいに ②少し ③ややもすれば", etym:"上代から。「やうやう」と同根。", example:"やや明けゆく空。", translation:"しだいに明けてゆく空。", highlight:"やや", source:"(作例)", trivia:null, related:[] },
@@ -1883,6 +1883,30 @@ function highlightExample(text, hl) {
     `<mark>${escapeHtml(text.slice(idx, idx + hl.length))}</mark>` +
     escapeHtml(text.slice(idx + hl.length));
 }
+
+// Render example(s) — supports ｜-separated multiple examples
+function renderExamples(w) {
+  const exs = w.example.split('｜');
+  const trs = (w.translation || '').split('｜');
+  const hls = (w.highlight || '').split('｜');
+  const srcs = (w.source || '').split('｜');
+  const multi = exs.length > 1;
+
+  return exs.map((ex, i) => {
+    const tr = (trs[i] || '').trim();
+    const hl = (hls[i] || '').trim();
+    const src = (srcs[i] || srcs[0] || '').trim();
+    const label = multi ? `例${'①②③④⑤⑥'[i] || (i+1)}` : '例';
+    return `
+      <div class="detail" ${i > 0 ? 'style="margin-top:8px;"' : ''}>
+        <span class="detail-label shu">${label}</span>
+        <div class="example-jp" lang="ja">${highlightExample(ex.trim(), hl)}</div>
+        <div class="example-src">— 『${src}』</div>
+        ${settings.showTranslation && tr ? `<div class="translation">${escapeHtml(tr)}</div>` : ''}
+      </div>
+    `;
+  }).join('');
+}
 function escapeHtml(s) {
   return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
@@ -2107,12 +2131,7 @@ function openWordModal(id) {
         </div>
 
         <div class="detail" style="margin-bottom:12px;"><span class="detail-label">源</span>${w.etym}</div>
-        <div class="detail" style="margin-bottom:8px;">
-          <span class="detail-label shu">例</span>
-          <div class="example-jp" lang="ja">${highlightExample(w.example, w.highlight)}</div>
-          <div class="example-src">— 『${w.source}』</div>
-          ${settings.showTranslation ? `<div class="translation">${escapeHtml(w.translation || '')}</div>` : ''}
-        </div>
+        ${renderExamples(w)}
         ${w.trivia ? `<div class="detail"><span class="detail-label gold">余</span>${w.trivia}</div>` : ''}
         ${relatedHtml(w)}
 
@@ -2690,12 +2709,7 @@ function renderQuizDetail() {
         <div class="meaning-text">${w.meaning}</div>
       </div>
       <div class="detail" style="margin-top:14px;"><span class="detail-label">源</span>${w.etym}</div>
-      <div class="detail">
-        <span class="detail-label shu">例</span>
-        <div class="example-jp">${highlightExample(w.example, w.highlight)}</div>
-        <div class="example-src">— 『${w.source}』</div>
-        ${settings.showTranslation ? `<div class="translation">${escapeHtml(w.translation || '')}</div>` : ''}
-      </div>
+      ${renderExamples(w)}
       ${triviaHTML}
       ${relatedHtml(w)}
       <button class="quiz-continue" onclick="advanceFromDetail()" type="button" style="margin-top:auto;">次 へ</button>
@@ -2786,12 +2800,7 @@ function renderCardFace() {
       <div class="stage-section" style="margin-top:14px;">
         ${revealTop}
         <div class="detail" style="margin-top:14px;"><span class="detail-label">源</span>${w.etym}</div>
-        <div class="detail">
-          <span class="detail-label shu">例</span>
-          <div class="example-jp">${highlightExample(w.example, w.highlight)}</div>
-          <div class="example-src">— 『${w.source}』</div>
-          ${settings.showTranslation ? `<div class="translation">${escapeHtml(w.translation || '')}</div>` : ''}
-        </div>
+        ${renderExamples(w)}
         ${triviaHTML}
         ${relatedHtml(w)}
       </div>
