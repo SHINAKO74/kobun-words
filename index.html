@@ -1256,7 +1256,7 @@
   <main id="card-area" role="tabpanel" aria-live="polite" aria-atomic="false"></main>
 
   <footer role="contentinfo">
-    KOGO LEXICON v2.2 · 303 words · <span aria-label="キーボードショートカット">⌨ space:めくる 1-2:評価 ←→:スワイプ</span><br>
+    KOGO LEXICON v2.3 · 303 words · <span aria-label="キーボードショートカット">⌨ space:めくる 1-2:評価 ←→:スワイプ</span><br>
     <button class="reset-btn" onclick="resetProgress()" type="button">reset progress</button>
   </footer>
 </div>
@@ -1659,7 +1659,6 @@ function applyRating(c, q) {
 
     if (q === 0) {
       c.step = 0;
-      c.lapses += c.phase === 'review' ? 1 : 0;
       c.due = now + LEARN_STEPS[0] * MIN;
     } else if (q === 1) {
       // hard: stay on current step but with 1.5x delay (distinct from again)
@@ -2296,12 +2295,12 @@ function renderStats() {
     </div>
   `;
 
-  // === Forecast (next 7 days due) ===
+  // === Forecast (next 7 days due) — review/mastered only ===
   const now = Date.now();
   const buckets = Array(7).fill(0);
   WORDS.forEach(w => {
     const c = state.cards[w.id];
-    if (c.phase === 'new') return;
+    if (c.phase !== 'review' && c.phase !== 'mastered') return;
     const diff = c.due - now;
     const dayIdx = Math.floor(diff / DAY);
     if (dayIdx < 0) buckets[0] += 1;
@@ -2662,22 +2661,19 @@ function finishQuiz() {
   if (!currentCard || !quizState) return;
   const c = state.cards[currentCard.id];
   const wasNew = c.phase === 'new';
+  const wasReview = c.phase === 'review' || c.phase === 'mastered';
   const wasCorrect = !!quizState.isCorrect;
-  // Update quizPassed based on result. Wrong/dontknow keeps quiz mode active next time.
   c.quizPassed = wasCorrect;
-  // Apply rating based on quiz result.
-  // Correct → よろし(2): card enters learning step 1
-  // Wrong / DontKnow → あし(0): card enters learning step 0
   const q = wasCorrect ? 2 : 0;
   applyRating(c, q);
   state.lastShownId = currentCard.id;
+  // Only count toward daily limits for new/review; learning is unlimited
   if (wasNew) state.daily.newDone += 1;
-  else state.daily.reviewDone += 1;
+  else if (wasReview) state.daily.reviewDone += 1;
   recordReview(wasNew);
   saveState();
   quizState = null;
 
-  // If wrong and detail-on-wrong is disabled, skip straight to next card
   if (!wasCorrect && !settings.showDetailOnWrong) {
     currentCard = null;
     cardStage = 0;
@@ -2685,7 +2681,6 @@ function finishQuiz() {
     return;
   }
 
-  // Otherwise show detail screen
   renderQuizDetail();
 }
 
