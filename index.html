@@ -267,6 +267,7 @@
     font-size: 11px;
     color: var(--muted);
     margin-top: 24px;
+    padding-top: 18px;
     font-family: 'Klee One', serif;
   }
   .tap-hint::before, .tap-hint::after {
@@ -1223,6 +1224,18 @@
     from { opacity: 0; transform: translateY(6px); }
     to { opacity: 1; transform: translateY(0); }
   }
+
+  /* Utility classes (replacing inline styles) */
+  .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+  .card-header.mb-8 { margin-bottom: 8px; }
+  .mt-auto { margin-top: auto; }
+  .mt-8 { margin-top: 8px; }
+  .mt-14 { margin-top: 14px; }
+  .mb-12 { margin-bottom: 12px; }
+  .text-center { text-align: center; }
+  .text-muted { color: var(--muted); }
+  .stats-sub { margin-top: 6px; font-size: 10px; color: var(--muted); }
+  .modal-actions-single { grid-template-columns: 1fr; }
 </style>
 </head>
 <body>
@@ -1256,7 +1269,7 @@
   <main id="card-area" role="tabpanel" aria-live="polite" aria-atomic="false"></main>
 
   <footer role="contentinfo">
-    KOGO LEXICON v2.3 · 303 words · <span aria-label="キーボードショートカット">⌨ space:めくる 1-2:評価 ←→:スワイプ</span><br>
+    KOGO LEXICON v2.5 · 303 words · <span aria-label="キーボードショートカット">⌨ space:めくる 1-2:評価 ←→:スワイプ</span><br>
     <button class="reset-btn" onclick="resetProgress()" type="button">reset progress</button>
   </footer>
 </div>
@@ -1897,7 +1910,7 @@ function renderExamples(w) {
     const src = (srcs[i] || srcs[0] || '').trim();
     const label = multi ? `例${'①②③④⑤⑥'[i] || (i+1)}` : '例';
     return `
-      <div class="detail" ${i > 0 ? 'style="margin-top:8px;"' : ''}>
+      <div class="detail${i > 0 ? ' mt-8' : ''}">
         <span class="detail-label shu">${label}</span>
         <div class="example-jp" lang="ja">${highlightExample(ex.trim(), hl)}</div>
         <div class="example-src">— 『${src}』</div>
@@ -1920,6 +1933,40 @@ function relatedHtml(w) {
     return `<button class="chip" onclick="event.stopPropagation();openWordModal(${r.id})"><span class="chip-type ${cls}">${r.type}</span>${target.word}</button>`;
   }).join('');
   return `<div class="related-block"><span class="related-label">関連語</span>${chips}</div>`;
+}
+
+// --- Shared HTML builders ---
+function cardHeaderHtml(c, totalIdx, opts) {
+  const dir = opts && opts.dirTag ? `<span class="direction-tag">${opts.dirTag}</span>` : '';
+  const badge = opts && opts.badge ? `<span class="quiz-badge">${opts.badge}</span>` : `<span class="card-phase ${c.phase}">${phaseLabel(c.phase)}</span>`;
+  return `
+    <div class="card-header${opts && opts.mb8 ? ' mb-8' : ''}">
+      ${badge}
+      ${dir}
+      <span class="card-num">№ ${String(totalIdx).padStart(3,'0')} / ${String(WORDS.length).padStart(3,'0')}</span>
+    </div>
+  `;
+}
+
+function etymHtml(w) {
+  return `<div class="detail"><span class="detail-label">源</span>${w.etym}</div>`;
+}
+
+function triviaHtml(w) {
+  return w.trivia ? `<div class="detail"><span class="detail-label gold">余</span>${w.trivia}</div>` : '';
+}
+
+function wordInfoHtml(w) {
+  return `
+    ${etymHtml(w)}
+    ${renderExamples(w)}
+    ${triviaHtml(w)}
+    ${relatedHtml(w)}
+  `;
+}
+
+function wordIdx(w) {
+  return WORDS.findIndex(x => x.id === w.id) + 1;
 }
 
 // =============== UI ===============
@@ -2059,7 +2106,7 @@ function openSettingsModal() {
           </div>
         </fieldset>
 
-        <div class="modal-actions" style="grid-template-columns:1fr;">
+        <div class="modal-actions modal-actions-single">
           <button class="modal-btn" onclick="closeModal()" type="button">閉じる</button>
         </div>
       </div>
@@ -2129,10 +2176,7 @@ function openWordModal(id) {
           </div>
         </div>
 
-        <div class="detail" style="margin-bottom:12px;"><span class="detail-label">源</span>${w.etym}</div>
-        ${renderExamples(w)}
-        ${w.trivia ? `<div class="detail"><span class="detail-label gold">余</span>${w.trivia}</div>` : ''}
-        ${relatedHtml(w)}
+        <div class="mb-12">${wordInfoHtml(w)}</div>
 
         <div class="modal-actions">
           <button class="modal-btn secondary" onclick="closeModal()" type="button">閉じる</button>
@@ -2224,7 +2268,7 @@ function renderStats() {
         <span><b>${s.masteredC}</b> / ${WORDS.length} 習得</span>
         <span>${masteryPct}%</span>
       </div>
-      <div style="margin-top:6px;font-size:10px;color:var(--muted);">
+      <div class="stats-sub">
         着手済み: ${studiedC} 語 (${studiedPct}%)
       </div>
     </div>
@@ -2540,16 +2584,32 @@ function render() {
 let quizState = null; // { word, options, correctIdx, answeredIdx, isCorrect }
 
 function shortenMeaning(m) {
-  // Strip parenthetical notes for cleaner option display
   let s = m.replace(/。\s*\(.*?\)\s*$/, '');
   s = s.replace(/。\s*\(.*?\)\s*$/, '');
   if (s.length > 38) s = s.slice(0, 36) + '…';
   return s;
 }
 
+// Extract keywords for similarity check
+function meaningKeywords(m) {
+  return m.replace(/[①②③④⑤⑥()（）「」〜]/g, '')
+    .split(/[・、。\s\/]+/)
+    .map(k => k.replace(/だ$|な$|する$|い$|を伴って$|の$/,'').trim())
+    .filter(k => k.length >= 2);
+}
+
+// Check if two meanings share any keyword
+function meaningOverlaps(a, b) {
+  const kwA = meaningKeywords(a);
+  const kwB = meaningKeywords(b);
+  return kwA.some(ka => kwB.some(kb =>
+    ka === kb || (ka.length >= 3 && kb.includes(ka)) || (kb.length >= 3 && ka.includes(kb))
+  ));
+}
+
 function buildQuizOptions(targetWord) {
   const correctMeaning = shortenMeaning(targetWord.meaning);
-  // Pick 3 distractors from other words, prefer same pos when possible
+  // Pick 3 distractors: prefer same pos, but exclude words with overlapping meanings
   const samePos = WORDS.filter(w => w.id !== targetWord.id && w.pos === targetWord.pos);
   const others  = WORDS.filter(w => w.id !== targetWord.id && w.pos !== targetWord.pos);
   const pool = [...shuffle(samePos), ...shuffle(others)];
@@ -2558,6 +2618,8 @@ function buildQuizOptions(targetWord) {
   for (const w of pool) {
     const m = shortenMeaning(w.meaning);
     if (seenMeanings.has(m)) continue;
+    // Skip if meaning shares keywords with correct answer
+    if (meaningOverlaps(correctMeaning, m)) continue;
     seenMeanings.add(m);
     distractors.push(m);
     if (distractors.length === 3) break;
@@ -2579,7 +2641,6 @@ function renderQuizFace() {
   const area = document.getElementById('card-area');
   const w = currentCard;
   const c = state.cards[w.id];
-  const totalIdx = WORDS.findIndex(x => x.id === w.id) + 1;
 
   if (!quizState || quizState.wordId !== w.id) {
     const built = buildQuizOptions(w);
@@ -2616,7 +2677,7 @@ function renderQuizFace() {
     if (quizState.isCorrect) {
       resultHtml = `<div class="quiz-result">正解。「${w.word}」=${shortenMeaning(w.meaning)}</div>`;
     } else if (quizState.dontKnow) {
-      resultHtml = `<div class="quiz-result wrong">「${w.word}」=${shortenMeaning(w.meaning)}<br><small style="color:var(--muted);">焦らずいきましょう</small></div>`;
+      resultHtml = `<div class="quiz-result wrong">「${w.word}」=${shortenMeaning(w.meaning)}<br><small class="text-muted">焦らずいきましょう</small></div>`;
     } else {
       resultHtml = `<div class="quiz-result wrong">不正解。正しくは「${w.word}」=${shortenMeaning(w.meaning)}</div>`;
     }
@@ -2626,10 +2687,7 @@ function renderQuizFace() {
 
   area.innerHTML = `
     <div class="card">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-        <span class="quiz-badge">${c.phase === 'new' ? '初出 4択' : '再確認 4択'}</span>
-        <span class="card-num">№ ${String(totalIdx).padStart(3,'0')} / ${String(WORDS.length).padStart(3,'0')}</span>
-      </div>
+      ${cardHeaderHtml(c, wordIdx(w), {badge: c.phase === 'new' ? '初出 4択' : '再確認 4択', mb8: true})}
       <div class="word-pos">${w.pos}</div>
       <div class="word-jp">${w.word}</div>
       <div class="quiz-prompt">意 味 は ど れ か</div>
@@ -2688,26 +2746,18 @@ function renderQuizDetail() {
   const area = document.getElementById('card-area');
   const w = currentCard;
   const c = state.cards[w.id];
-  const totalIdx = WORDS.findIndex(x => x.id === w.id) + 1;
-  const triviaHTML = w.trivia ? `<div class="detail"><span class="detail-label gold">余</span>${w.trivia}</div>` : '';
 
   area.innerHTML = `
     <div class="stage-card" id="quiz-detail">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-        <span class="card-phase ${c.phase}">${phaseLabel(c.phase)}</span>
-        <span class="card-num">№ ${String(totalIdx).padStart(3,'0')} / ${String(WORDS.length).padStart(3,'0')}</span>
-      </div>
+      ${cardHeaderHtml(c, wordIdx(w), {})}
       <div class="word-pos">${w.pos}</div>
       <div class="word-jp">${w.word}</div>
-      <div class="meaning-block" style="margin-top:14px;">
+      <div class="meaning-block mt-14">
         <div class="meaning-label">意　味</div>
         <div class="meaning-text">${w.meaning}</div>
       </div>
-      <div class="detail" style="margin-top:14px;"><span class="detail-label">源</span>${w.etym}</div>
-      ${renderExamples(w)}
-      ${triviaHTML}
-      ${relatedHtml(w)}
-      <button class="quiz-continue" onclick="advanceFromDetail()" type="button" style="margin-top:auto;">次 へ</button>
+      <div class="mt-14">${wordInfoHtml(w)}</div>
+      <button class="quiz-continue mt-auto" onclick="advanceFromDetail()" type="button">次 へ</button>
     </div>
   `;
 }
@@ -2728,25 +2778,13 @@ function renderCardFace() {
   const w = currentCard;
   const c = state.cards[w.id];
 
-  // First-encounter quiz mode: also re-shown if previous quiz failed
   if (!c.quizPassed) {
     renderQuizFace();
     return;
   }
 
-  const totalIdx = WORDS.findIndex(x => x.id === w.id) + 1;
-  const triviaHTML = w.trivia ? `<div class="detail"><span class="detail-label gold">余</span>${w.trivia}</div>` : '';
   const dirTag = currentDirection === 'word2meaning' ? 'word → meaning' : 'meaning → word';
   const fullyOpen = cardStage >= 1;
-
-  // Header chips
-  const header = `
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-      <span class="card-phase ${c.phase}">${phaseLabel(c.phase)}</span>
-      <span class="direction-tag">${dirTag}</span>
-      <span class="card-num">№ ${String(totalIdx).padStart(3,'0')} / ${String(WORDS.length).padStart(3,'0')}</span>
-    </div>
-  `;
 
   // Stage progress dots (2 dots)
   const dots = Array.from({length: STAGE_COUNT}, (_, i) =>
@@ -2771,7 +2809,7 @@ function renderCardFace() {
     `;
   }
 
-  // === Stage 1: full reveal (everything) ===
+  // === Stage 1: full reveal ===
   let stage1 = '';
   if (cardStage >= 1) {
     let revealTop;
@@ -2784,7 +2822,7 @@ function renderCardFace() {
       `;
     } else {
       revealTop = `
-        <div style="text-align:center;">
+        <div class="text-center">
           <div class="word-back">${w.word}</div>
           <div class="word-back-pos">${w.pos}</div>
         </div>
@@ -2792,23 +2830,20 @@ function renderCardFace() {
     }
 
     stage1 = `
-      <div class="stage-section" style="margin-top:14px;">
+      <div class="stage-section mt-14">
         ${revealTop}
-        <div class="detail" style="margin-top:14px;"><span class="detail-label">源</span>${w.etym}</div>
-        ${renderExamples(w)}
-        ${triviaHTML}
-        ${relatedHtml(w)}
+        <div class="mt-14">${wordInfoHtml(w)}</div>
       </div>
     `;
   }
 
-  // Footer: tap hint while collapsed, 2-button rating when open
+  // Footer
   let footer;
   if (!fullyOpen) {
-    footer = `<div class="tap-hint" style="margin-top:auto;padding-top:18px;">tap / space to reveal</div>`;
+    footer = `<div class="tap-hint mt-auto">tap / space to reveal</div>`;
   } else {
     footer = `
-      <div class="ratings two-btn" role="group" aria-label="評価" style="margin-top:auto;">
+      <div class="ratings two-btn mt-auto" role="group" aria-label="評価">
         <button class="rate-btn" data-q="0" onclick="rate(0)" aria-label="あし(忘れた)、次回は${previewInterval(c,0)}後" type="button"><span class="jp" aria-hidden="true">あし</span><span class="interval" aria-hidden="true">${previewInterval(c,0)}</span></button>
         <button class="rate-btn" data-q="2" onclick="rate(2)" aria-label="よし、次回は${previewInterval(c,2)}後" type="button"><span class="jp" aria-hidden="true">よし</span><span class="interval" aria-hidden="true">${previewInterval(c,2)}</span></button>
       </div>
@@ -2819,7 +2854,7 @@ function renderCardFace() {
     <div class="stage-card" id="stage-card">
       <span class="swipe-indicator left" id="swipe-left">あし</span>
       <span class="swipe-indicator right" id="swipe-right">よし</span>
-      ${header}
+      ${cardHeaderHtml(c, wordIdx(w), {dirTag})}
       <div class="stage-progress" aria-hidden="true">${dots}</div>
       ${stage0}
       ${stage1}
