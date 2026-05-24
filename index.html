@@ -633,6 +633,14 @@
   .modal-btn.secondary:hover { color: var(--sumi); border-color: var(--sumi); }
 
   /* No results */
+  .list-count {
+    text-align: right;
+    font-size: 11px;
+    color: var(--muted);
+    padding: 4px 14px 0;
+    letter-spacing: 0.06em;
+    min-height: 16px;
+  }
   .no-results {
     text-align: center;
     padding: 30px 20px;
@@ -728,6 +736,39 @@
     border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
     font-weight: 500;
+  }
+  .example-prompt {
+    text-align: center;
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--sumi);
+    padding: 20px 16px;
+    margin: 12px 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    font-weight: 500;
+    letter-spacing: 0.03em;
+  }
+  .tap-hint-sub {
+    text-align: center;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 6px;
+    letter-spacing: 0.04em;
+  }
+  .setting-note {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 6px;
+    padding: 0 2px;
+    letter-spacing: 0.03em;
+  }
+  .memo-hint {
+    font-size: 10px;
+    color: var(--muted);
+    text-align: right;
+    margin-top: 3px;
+    letter-spacing: 0.04em;
   }
 
   /* Settings panel */
@@ -1412,7 +1453,7 @@
   <main id="card-area" role="tabpanel" aria-live="polite" aria-atomic="false"></main>
 
   <footer role="contentinfo">
-    KOGO LEXICON v6.0 · 550 words · <span aria-label="キーボードショートカット">⌨ space:めくる 1-2:評価 ←→:スワイプ</span><br>
+    KOGO LEXICON v8 · <span id="footer-word-count">—</span> words · <span aria-label="キーボードショートカット">⌨ space:めくる 1-2:評価 ←→:スワイプ</span><br>
     <button class="reset-btn" onclick="resetProgress()" type="button">reset progress</button>
   </footer>
 </div>
@@ -1497,7 +1538,7 @@ const WORDS = [
   { id:72, word:"のたまはす", pos:"動サ下二", meaning:"【最高尊敬】おっしゃる(「言ふ」の最高敬語)", etym:"「のたまふ」＋使役・尊敬の「す」。二重敬語（最高敬語）。", example:"院、しかのたまはす。", translation:"院が、そのようにおっしゃる。", highlight:"のたまはす", source:"源氏物語", trivia:"「のたまふ」をさらに高めた【最高敬語】。主語は帝や院など最高位の人物に限られる。", related:[{id:71,type:"類"},{id:83,type:"参"}] },
   { id:73, word:"きこゆ", pos:"動ヤ下二", meaning:"①【謙譲】申し上げる(「言ふ」の謙譲語) ②【補助謙譲】〜し申し上げる ③聞こえる・評判になる", etym:"「聞こ」＋「ゆ(自発)」。聞こえてくる→耳に入る→申し上げる、と転用された。", example:"うけたまはりきこゆ。｜待ちきこゆ。｜世にきこゆる人。", translation:"承り申し上げる。｜お待ち申し上げる。｜世に評判の人。", highlight:"きこゆ｜きこゆ｜きこゆる", source:"源氏物語｜(作例)｜源氏物語", trivia:"相手の耳に入れる＝「申し上げる」という謙譲語。手紙を差し上げる意にもなる。", related:[{id:75,type:"類"},{id:74,type:"類"},{id:268,type:"類"},{id:217,type:"対"}] },
   { id:74, word:"きこえさす", pos:"動サ下二", meaning:"①【最高謙譲】申し上げる(「言ふ」の最高謙譲語) ②【補助最高謙譲】〜し申し上げる", etym:"「きこゆ」＋「さす」。二重敬語（最高謙譲語）。", example:"宮にきこえさせ給ふ。｜泣ききこえさす。", translation:"宮に申し上げなさる。｜お泣き申し上げる。", highlight:"きこえさせ｜きこえさす", source:"源氏物語｜(作例)", trivia:"「きこゆ」をさらに高めた【最高敬語（謙譲）】。", related:[{id:73,type:"類"},{id:75,type:"類"}] },
-  { id:75, word:"まうす", pos:"動サ四", meaning:"①【謙譲】申し上げる(「言ふ」の謙譲語) ②【補助謙譲】〜し申し上げる", etym:"「申(まう)す」。「言ふ」の謙譲語。自分の発言を低めて相手を高める。", example:"かくなむとまうし給ひぬ。｜読みまうす。", translation:"このようにと申し上げなさった。｜お読み申し上げる。", highlight:"まうし｜まうす", source:"源氏物語｜(作例)", trivia:"古文では②の補助動詞「〜まうす（〜し申し上げる）」の用法が圧倒的に多い。", related:[{id:73,type:"類"},{id:74,type:"類"},{id:405,type:"参"},{id:406,type:"参"},{id:71,type:"対"}] },
+  { id:75, word:"もうす", pos:"動サ四", meaning:"①【謙譲】申し上げる(「言ふ」の謙譲語) ②【補助謙譲】〜し申し上げる", etym:"「申(もう)す」。「言ふ」の謙譲語。自分の発言を低めて相手を高める。", example:"かくなむともうし給ひぬ。｜読みもうす。", translation:"このようにと申し上げなさった。｜お読み申し上げる。", highlight:"もうし｜もうす", source:"源氏物語｜(作例)", trivia:"古文では②の補助動詞「〜もうす（〜し申し上げる）」の用法が圧倒的に多い。", related:[{id:73,type:"類"},{id:74,type:"類"},{id:405,type:"参"},{id:406,type:"参"},{id:71,type:"対"}] },
   { id:76, word:"はべり", pos:"動ラ変", meaning:"①【丁寧】あります・おります ②【補助丁寧】〜です・〜ます ③【謙譲】お仕えする・お控えする", etym:"「侍(はべ)り」。貴人のそば近くに控える意の謙譲語から、聞き手への丁寧語へ変化した。", example:"昔、男ありはべりけり。｜美しくはべり。｜御前にはべる女房たち。", translation:"昔、男がおりました。｜美しうございます。｜御前にお仕えする女房たち。", highlight:"はべり｜はべり｜はべる", source:"伊勢物語｜(作例)｜枕草子", trivia:"古文の最重要丁寧語。単独で使う場合は「あります/おります(丁寧)」「お仕えする(謙譲)」。他の動詞の下につく場合は「〜です/ます(丁寧)」となる。", related:[{id:77,type:"類"},{id:322,type:"参"},{id:371,type:"参"}] },
   { id:77, word:"さぶらふ", pos:"動ハ四", meaning:"①【丁寧】あります・おります ②【補助丁寧】〜です・〜ます ③【謙譲】お仕えする・お控えする", etym:"「候(さぶら)ふ」=身分の高い人のそばに様子をうかがいながら控える。", example:"さぶらふ人あまたあり。｜いと美しくさぶらふ。｜御前にさぶらふ女房。", translation:"おります人が大勢いる。｜たいそう美しうございます。｜御前にお仕えする女房。", highlight:"さぶらふ｜さぶらふ｜さぶらふ", source:"源氏物語｜(作例)｜枕草子", trivia:"「はべり」と全く同じ3つの用法を持つ重要語。中世以降は「さうらふ」と発音され、武士の手紙（候文）の語源となった。", related:[{id:76,type:"類"},{id:322,type:"参"},{id:371,type:"参"}] },
   { id:78, word:"まゐる", pos:"動ラ四", meaning:"①【謙譲】参上する(「行く・来」の謙譲語) ②【謙譲】差し上げる・〜して差し上げる(「与ふ・す」の謙譲語) ③【尊敬】召し上がる・お召しになる", etym:"「参(まゐ)る」。神仏や貴人のもとへ出向く動作が原義。", example:"内裏にまゐる。｜大殿油まゐる。｜御粥などまゐれ。", translation:"宮中に参上する。｜お灯明をともして差し上げる。｜お粥などを召し上がれ。", highlight:"まゐる｜まゐる｜まゐれ", source:"源氏物語｜源氏物語｜枕草子", trivia:"謙譲語が基本だが、文脈によっては「召し上がる」という【尊敬語】になる超重要単語。②は「御格子まゐる」など「〜して差し上げる」の意でも頻出。", related:[{id:79,type:"対"},{id:491,type:"類"},{id:81,type:"類"},{id:492,type:"類"}] },
@@ -2291,8 +2332,8 @@ const MASTERED_THRESHOLD = 21;    // days
 
 // Fuzz: add a small random offset to review intervals so cards
 // studied on the same day gradually spread across different days.
-//   ≤1 day  : no fuzz (too short to matter)
-//   2–7 days: ±1 day
+//   ≤3 days  : no fuzz (too short to matter)
+//   4–7 days : ±1 day
 //   8–30 days: ±10% of interval
 //   >30 days : ±5% of interval
 function fuzzInterval(interval) {
@@ -2425,6 +2466,10 @@ function importData() {
           saveSettings();
         }
         saveState();
+        currentCard = null;
+        cardStage = 0;
+        showingDetail = false;
+        quizState = null;
         closeModal();
         render();
         setTimeout(() => alert(`インポート完了。${Object.keys(importedCards).length}語のデータを復元しました。`), 100);
@@ -2452,25 +2497,21 @@ function loadMemos() {
   try { return JSON.parse(localStorage.getItem(MEMO_KEY) || '{}'); }
   catch(e) { return {}; }
 }
+let _memoCache = null; // ロード済みキャッシュ（無効化まで再利用）
+function _getMemoMap() {
+  if (!_memoCache) _memoCache = loadMemos();
+  return _memoCache;
+}
 function saveMemo(id, text) {
   const memos = loadMemos();
   const t = text.trim();
   if (t) memos[id] = t; else delete memos[id];
   try { localStorage.setItem(MEMO_KEY, JSON.stringify(memos)); } catch(e) {}
+  _memoCache = memos; // キャッシュ更新
 }
-function getMemo(id) { return loadMemos()[id] || ''; }
+function getMemo(id) { return _getMemoMap()[id] || ''; }
 
-// Read-only view (card detail)
-function memoReadHtml(id) {
-  const text = getMemo(id);
-  if (!text) return '';
-  return `<div class="memo-block">
-    <div class="memo-header"><span class="memo-label">✏ マイメモ</span></div>
-    <div class="memo-text">${escapeHtml(text)}</div>
-  </div>`;
-}
-
-// Editable view (modal)
+// Editable view (card detail / study face)
 function memoEditHtml(id) {
   const text = getMemo(id);
   const has = !!text;
@@ -2499,7 +2540,10 @@ function memoEditHtml(id) {
       : `<div class="memo-empty" id="memo-disp-${id}"></div>`
     }
     <div id="memo-edit-area-${id}" style="display:none">
-      <textarea class="memo-textarea" id="memo-ta-${id}" placeholder="この単語についてのメモを入力…">${escapeHtml(text)}</textarea>
+      <textarea class="memo-textarea" id="memo-ta-${id}" placeholder="この単語についてのメモを入力…"
+        onkeydown="if((event.ctrlKey||event.metaKey)&&event.key==='Enter'){event.preventDefault();commitMemo(${id});}"
+      >${escapeHtml(text)}</textarea>
+      <div class="memo-hint">Ctrl + Enter で保存</div>
     </div>
   </div>`;
 }
@@ -2519,6 +2563,8 @@ function startMemoEdit(id) {
   ta.selectionStart = ta.selectionEnd = ta.value.length;
 }
 function cancelMemoEdit(id) {
+  const ta = document.getElementById(`memo-ta-${id}`);
+  if (ta) ta.value = getMemo(id); // 未保存の変更を破棄
   _showMemoBtns(id, 'normal');
   document.getElementById(`memo-edit-area-${id}`).style.display = 'none';
 }
@@ -2733,12 +2779,12 @@ function loadSettings() {
       direction: s.direction || 'word2meaning',
       sound: s.sound !== false,
       showTranslation: s.showTranslation !== false,
-      showDetailOnWrong: s.showDetailOnWrong !== false,
+      showDetailOnWrong: s.showDetailOnWrong === true,
       newLimit: typeof s.newLimit === 'number' ? s.newLimit : DEFAULT_NEW_LIMIT,
       reviewLimit: typeof s.reviewLimit === 'number' ? s.reviewLimit : DEFAULT_REVIEW_LIMIT,
     };
   } catch(e) {
-    return { direction:'word2meaning', sound:true, showTranslation:true, showDetailOnWrong:true, newLimit:DEFAULT_NEW_LIMIT, reviewLimit:DEFAULT_REVIEW_LIMIT };
+    return { direction:'word2meaning', sound:true, showTranslation:true, showDetailOnWrong:false, newLimit:DEFAULT_NEW_LIMIT, reviewLimit:DEFAULT_REVIEW_LIMIT };
   }
 }
 function saveSettings() {
@@ -2868,6 +2914,7 @@ function wordIdx(w) {
 
 // =============== UI ===============
 let currentCard = null;
+let showingDetail = false; // renderQuizDetail を表示中かどうか
 let currentDirection = 'word2meaning';
 let currentView = 'study';
 let listFilter = 'all';
@@ -2875,6 +2922,12 @@ let searchQuery = '';
 let sortMode = 'index';
 
 function pickDirection() {
+  // 習得済みカードは例文→単語 方式で出題
+  if (currentCard && state.cards[currentCard.id].phase === 'mastered') {
+    const ex = (currentCard.example || '').split('｜')[0].trim();
+    const hl = (currentCard.highlight || '').split('｜')[0].trim();
+    if (ex && hl) return 'example2word';
+  }
   if (settings.direction === 'random') {
     return Math.random() < 0.5 ? 'word2meaning' : 'meaning2word';
   }
@@ -2960,8 +3013,8 @@ function openEaseModal(thresh) {
       </div>`;
   }).join('');
 
-  const overlay = document.createElement('div');
-  overlay.innerHTML = `
+  const root = document.getElementById('modal-root');
+  root.innerHTML = `
     <div class="modal-overlay" onclick="if(event.target===this)closeModal()">
       <div class="modal" role="dialog" aria-modal="true" aria-label="苦手な語一覧">
         <button class="modal-close" onclick="closeModal()" aria-label="閉じる" type="button">×</button>
@@ -2978,11 +3031,19 @@ function openEaseModal(thresh) {
         </div>
       </div>
     </div>`;
-  document.getElementById('modal-root').appendChild(overlay.firstElementChild);
-  document.getElementById('modal-root').firstElementChild.querySelector('.modal-close').focus();
+  activateModal();
 }
 
 function closeModal() {
+  // 編集中のメモを自動保存してから閉じる
+  const editArea = document.querySelector('[id^="memo-edit-area-"]');
+  if (editArea && editArea.style.display !== 'none') {
+    const m = editArea.id.match(/memo-edit-area-(\d+)/);
+    if (m) {
+      const ta = document.getElementById(`memo-ta-${m[1]}`);
+      if (ta) saveMemo(parseInt(m[1]), ta.value);
+    }
+  }
   document.getElementById('modal-root').innerHTML = '';
   document.removeEventListener('keydown', modalKeyHandler);
   document.removeEventListener('keydown', trapFocus);
@@ -3020,6 +3081,7 @@ function openSettingsModal() {
             <button class="${settings.direction==='meaning2word'?'active':''}" onclick="setSetting('direction','meaning2word')" role="radio" aria-checked="${settings.direction==='meaning2word'}" type="button">意味→単語</button>
             <button class="${settings.direction==='random'?'active':''}" onclick="setSetting('direction','random')" role="radio" aria-checked="${settings.direction==='random'}" type="button">ランダム</button>
           </div>
+          <div class="setting-note">※ 習得済み単語は設定によらず例文モードで出題されます</div>
         </fieldset>
 
         <fieldset class="setting-group">
@@ -3080,6 +3142,12 @@ function openSettingsModal() {
   activateModal();
 }
 
+// 学習ビューの再描画: 詳細画面中かどうかを考慮する
+function refreshStudyView() {
+  if (showingDetail) renderQuizDetail();
+  else renderCardFace();
+}
+
 function setSetting(key, val) {
   settings[key] = val;
   saveSettings();
@@ -3091,12 +3159,12 @@ function setSetting(key, val) {
   if (currentView === 'study') {
     if (key === 'direction' && currentCard) {
       currentDirection = pickDirection();
-      renderCardFace();
+      refreshStudyView();
     } else if (key === 'newLimit' || key === 'reviewLimit') {
       // If the empty screen was showing because we hit the limit, picking a new card may now succeed
       if (!currentCard) render();
     } else if (currentCard) {
-      renderCardFace();
+      refreshStudyView();
     }
   }
 }
@@ -3162,16 +3230,15 @@ function studyNow(id) {
   document.getElementById('tab-study').classList.add('active');
   document.getElementById('tab-list').classList.remove('active');
   cardStage = 0;
+  showingDetail = false;
+  quizState = null;
   renderCardFace();
 }
 
 function switchView(v) {
-  // 学習タブを離れるときは進行中のカード状態をリセット
-  if (currentView === 'study' && v !== 'study') {
-    currentCard = null;
-    quizState = null;
-    cardStage = 0;
-  }
+  // currentCard / quizState / cardStage はリセットしない。
+  // 戻ったとき同じ単語・同じ進行状態を維持する。
+  searchComposing = false; // IME変換中断を確実にリセット
   currentView = v;
   const tabs = {study:'tab-study', list:'tab-list', stats:'tab-stats'};
   Object.entries(tabs).forEach(([key, id]) => {
@@ -3211,6 +3278,18 @@ function fmtDue(c) {
 
 function phaseLabel(p) {
   return { new:'新出', learning:'学習中', review:'復習', mastered:'習得' }[p];
+}
+
+function timeAgo(ts) {
+  if (!ts) return '';
+  const diff = Date.now() - ts;
+  const mins = Math.floor(diff / 60000);
+  if (mins < 1) return 'たった今';
+  if (mins < 60) return mins + '分前';
+  const hrs = Math.floor(mins / 60);
+  if (hrs < 24) return hrs + '時間前';
+  const days = Math.floor(hrs / 24);
+  return days + '日前';
 }
 
 function renderStats() {
@@ -3399,17 +3478,6 @@ function renderStats() {
   `;
 
   // === Recent reviews (last 30) ===
-  function timeAgo(ts) {
-    if (!ts) return '';
-    const diff = Date.now() - ts;
-    const mins = Math.floor(diff / 60000);
-    if (mins < 1) return 'たった今';
-    if (mins < 60) return mins + '分前';
-    const hrs = Math.floor(mins / 60);
-    if (hrs < 24) return hrs + '時間前';
-    const days = Math.floor(hrs / 24);
-    return days + '日前';
-  }
   const recent = WORDS
     .filter(w => state.cards[w.id].lastReviewedAt > 0)
     .sort((a,b) => state.cards[b.id].lastReviewedAt - state.cards[a.id].lastReviewedAt)
@@ -3452,14 +3520,42 @@ function renderList() {
   const area = document.getElementById('card-area');
   let words = WORDS.slice();
 
-  // search filter
-  if (searchQuery.trim()) {
-    const q = searchQuery.trim().toLowerCase();
+  // ④ AND検索: スペース区切りで複数語 → 全て含む単語のみ
+  const terms = searchQuery.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  if (terms.length) {
     words = words.filter(w =>
-      w.word.toLowerCase().includes(q) ||
-      w.meaning.toLowerCase().includes(q) ||
-      w.pos.toLowerCase().includes(q)
+      terms.every(t =>
+        w.word.toLowerCase().includes(t) ||
+        w.meaning.toLowerCase().includes(t) ||
+        w.pos.toLowerCase().includes(t)
+      )
     );
+
+    // 関連度スコアリング: 完全一致 > 前方一致 > 部分一致
+    // 複数termの場合は最初のtermで単語列の一致度を計算
+    const primary = terms[0];
+    words.sort((a, b) => {
+      const wa = a.word.toLowerCase(), wb = b.word.toLowerCase();
+      const score = w => {
+        if (w === primary) return 3;           // 完全一致
+        if (w.startsWith(primary)) return 2;  // 前方一致
+        return 1;                              // 部分一致
+      };
+      const diff = score(wb) - score(wa);
+      if (diff !== 0) return diff;
+      return a.id - b.id; // 同スコアは収録順
+    });
+  }
+
+  // ③ マッチ箇所ハイライト
+  function highlightTerms(text) {
+    let html = escapeHtml(text);
+    if (!terms.length) return html;
+    terms.forEach(t => {
+      const re = new RegExp(t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+      html = html.replace(re, m => `<mark>${escapeHtml(m)}</mark>`);
+    });
+    return html;
   }
 
   // phase / memo / keigo filter
@@ -3475,8 +3571,9 @@ function renderList() {
     words = words.filter(w => state.cards[w.id].phase === listFilter);
   }
 
-  // sort
-  if (sortMode === 'index') {
+  // sort（検索中はスコア順優先のため既存ソートをスキップ）
+  if (!terms.length) {
+    if (sortMode === 'index') {
     words.sort((a,b) => a.id - b.id);
   } else if (sortMode === 'phase') {
     words.sort((a,b) => {
@@ -3502,6 +3599,7 @@ function renderList() {
       return ca.due - cb.due;
     });
   }
+  } // end !terms.length sort block
 
   const counts = {
     all: WORDS.length,
@@ -3515,18 +3613,24 @@ function renderList() {
     kango: WORDS.filter(w => isKango(w)).length,
   };
 
+  // ② 件数表示テキスト
+  const isFiltered = terms.length > 0 || listFilter !== 'all';
+  const countText = isFiltered ? `${words.length} 件` : '';
+
   const rows = words.map(w => {
     const cs = state.cards[w.id];
     const idx = WORDS.findIndex(x => x.id === w.id) + 1;
     const meaningShort = w.meaning.replace(/。.*$/,'').slice(0,28);
     const metaText = cs.phase === 'new' ? 'new' : `i${cs.interval} · ${fmtDue(cs)}`;
     const phaseText = phaseLabel(cs.phase);
+    const wordHtml    = highlightTerms(w.word);
+    const meaningHtml = highlightTerms(meaningShort);
     return `
       <div class="row" role="button" tabindex="0" onclick="openWordModal(${w.id})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openWordModal(${w.id})}" aria-label="${w.word}, ${meaningShort}, 状態 ${phaseText}">
         <div class="row-num" aria-hidden="true">${String(idx).padStart(2,'0')}</div>
         <div>
-          <div class="row-word" lang="ja">${w.word}${getMemo(w.id)?'<span class="row-memo-dot" title="メモあり"></span>':''}</div>
-          <div class="row-meaning">${meaningShort}</div>
+          <div class="row-word" lang="ja">${wordHtml}${getMemo(w.id)?'<span class="row-memo-dot" title="メモあり"></span>':''}</div>
+          <div class="row-meaning">${meaningHtml}</div>
         </div>
         <div class="row-status">
           <div class="row-meta" aria-hidden="true">${metaText}</div>
@@ -3538,8 +3642,10 @@ function renderList() {
   // Check if list shell already exists (to preserve search input during IME)
   const existingRows = area.querySelector('#list-rows');
   if (existingRows) {
-    // Only update rows + filter counts — don't touch search input
-    existingRows.innerHTML = rows || '<div class="no-results">該当する単語がありません</div>';
+    // Only update rows + filter counts + result count — don't touch search input
+    existingRows.innerHTML = rows || (searchQuery.trim() ? `<div class="no-results">「${escapeHtml(searchQuery.trim())}」に一致する単語はありません</div>` : '<div class="no-results">該当する単語がありません</div>');
+    const countEl = area.querySelector('#list-count');
+    if (countEl) countEl.textContent = countText;
     // Update filter button counts
     const filterBtns = area.querySelectorAll('.list-filter button');
     const countVals = [counts.all, counts.new, counts.learning, counts.review, counts.mastered, counts.memo, counts.keigo, counts.kyo, counts.kango];
@@ -3558,7 +3664,7 @@ function renderList() {
     <div class="list">
       <div class="controls">
         <label class="sr-only" for="search-input">単語検索</label>
-        <input id="search-input" class="search-input" type="search" placeholder="検索 (語・意味・品詞)" value="${searchQuery.replace(/"/g,'&quot;')}" oninput="onSearchInput(this)" oncompositionstart="searchComposing=true" oncompositionend="onSearchCompositionEnd(this)" aria-label="単語を検索">
+        <input id="search-input" class="search-input" type="search" placeholder="検索 (語・意味・品詞)" value="${searchQuery.replace(/"/g,'&quot;')}" oninput="onSearchInput(this)" oncompositionstart="searchComposing=true" oncompositionend="onSearchCompositionEnd(this)" onblur="searchComposing=false" aria-label="単語を検索">
         <label class="sr-only" for="sort-select">並び替え</label>
         <select id="sort-select" class="sort-select" onchange="setSort(this.value)" aria-label="並び替え">
           <option value="index" ${sortMode==='index'?'selected':''}>収録順</option>
@@ -3579,7 +3685,8 @@ function renderList() {
         <button class="${listFilter==='kyo'?'active':''}" onclick="setFilter('kyo')" aria-pressed="${listFilter==='kyo'}" type="button">呼応の副詞 ${counts.kyo}</button>
         <button class="${listFilter==='kango'?'active':''}" onclick="setFilter('kango')" aria-pressed="${listFilter==='kango'}" type="button">漢字 ${counts.kango}</button>
       </div>
-      <div id="list-rows">${rows || '<div class="no-results">該当する単語がありません</div>'}</div>
+      <div id="list-count" class="list-count">${countText}</div>
+      <div id="list-rows">${rows || (searchQuery.trim() ? `<div class="no-results">「${escapeHtml(searchQuery.trim())}」に一致する単語はありません</div>` : '<div class="no-results">該当する単語がありません</div>')}</div>
       <div class="legend">
         <div class="legend-item"><div class="dot new"></div>新出</div>
         <div class="legend-item"><div class="dot learning"></div>学習中</div>
@@ -3629,6 +3736,7 @@ function render() {
     currentCard = pickNextCard();
     currentDirection = pickDirection();
     cardStage = 0;
+    showingDetail = false;
   }
 
   if (!currentCard) {
@@ -3645,6 +3753,11 @@ function render() {
           <div>また後ほど、お戻りくださいませ。</div>
         </div>
       </div>`;
+    return;
+  }
+
+  if (showingDetail) {
+    renderQuizDetail();
     return;
   }
 
@@ -3777,6 +3890,7 @@ function renderQuizFace() {
 
 function answerQuiz(idx) {
   if (!quizState) return;
+  if (quizState.answeredIdx !== null || quizState.dontKnow) return; // 二重回答防止
   if (idx === -1) {
     quizState.dontKnow = true;
     quizState.isCorrect = false;
@@ -3817,6 +3931,7 @@ function finishQuiz() {
 }
 
 function renderQuizDetail() {
+  showingDetail = true;
   const area = document.getElementById('card-area');
   const w = currentCard;
   const c = state.cards[w.id];
@@ -3838,6 +3953,7 @@ function renderQuizDetail() {
 }
 
 function advanceFromDetail() {
+  showingDetail = false;
   autoSaveMemo();
   currentCard = null;
   cardStage = 0;
@@ -3859,7 +3975,9 @@ function renderCardFace() {
     return;
   }
 
-  const dirTag = currentDirection === 'word2meaning' ? 'word → meaning' : 'meaning → word';
+  const dirTag = currentDirection === 'word2meaning' ? 'word → meaning'
+               : currentDirection === 'example2word' ? '例文 → 単語'
+               : 'meaning → word';
   const fullyOpen = cardStage >= 1;
 
   // Stage progress dots (2 dots)
@@ -3869,7 +3987,18 @@ function renderCardFace() {
 
   // === Stage 0: prompt ===
   let stage0;
-  if (currentDirection === 'word2meaning') {
+  if (currentDirection === 'example2word') {
+    const ex  = (w.example  || '').split('｜')[0].trim();
+    const hl  = (w.highlight || '').split('｜')[0].trim();
+    const displayed = highlightExample(ex, hl);
+    stage0 = `
+      <div class="stage-section">
+        <div class="word-pos">${w.pos}</div>
+        <div class="example-prompt">${displayed}</div>
+        <div class="tap-hint-sub">習得済み復習：例文の太字語の意味を確認しましょう</div>
+      </div>
+    `;
+  } else if (currentDirection === 'word2meaning') {
     stage0 = `
       <div class="stage-section">
         <div class="word-pos">${w.pos}</div>
@@ -3889,7 +4018,18 @@ function renderCardFace() {
   let stage1 = '';
   if (cardStage >= 1) {
     let revealTop;
-    if (currentDirection === 'word2meaning') {
+    if (currentDirection === 'example2word') {
+      revealTop = `
+        <div class="text-center">
+          <div class="word-back">${w.word}</div>
+          <div class="word-back-pos">${w.pos}</div>
+        </div>
+        <div class="meaning-block">
+          <div class="meaning-label">意　味</div>
+          <div class="meaning-text">${w.meaning}</div>
+        </div>
+      `;
+    } else if (currentDirection === 'word2meaning') {
       revealTop = `
         <div class="meaning-block">
           <div class="meaning-label">意　味</div>
@@ -4033,6 +4173,7 @@ function attachStageInteractions() {
 
 function advanceStage() {
   if (cardStage >= STAGE_COUNT - 1) return;
+  if (currentCard && !state.cards[currentCard.id].quizPassed) return; // クイズ中は stage 不変
   autoSaveMemo();
   cardStage += 1;
   sfxFlip();
@@ -4066,13 +4207,6 @@ function rate(q) {
   render();
 }
 
-function resetProgress() {
-  if (!confirm('学習履歴をすべてリセットしますか?')) return;
-  localStorage.removeItem(STORAGE_KEY);
-  state = defaultState();
-  render();
-}
-
 // Keyboard shortcuts
 document.addEventListener('keydown', (e) => {
   if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA') return;
@@ -4097,7 +4231,9 @@ document.addEventListener('keydown', (e) => {
 
   if (currentView !== 'study') return;
   if (!currentCard) return;
-  if (cardStage < 1) {
+  if (showingDetail) {
+    if (e.code === 'Space' || e.code === 'Enter') { e.preventDefault(); advanceFromDetail(); }
+  } else if (cardStage < 1) {
     if (e.code === 'Space' || e.code === 'Enter') { e.preventDefault(); advanceStage(); }
   } else {
     if (e.key === '1') rate(0);
@@ -4106,6 +4242,7 @@ document.addEventListener('keydown', (e) => {
 });
 
 loadTheme();
+document.getElementById('footer-word-count').textContent = WORDS.length;
 render();
 </script>
 </body>
