@@ -649,16 +649,66 @@
     font-size: 13px;
   }
 
-  /* Example highlight */
-  .example-jp mark {
-    background: linear-gradient(transparent 55%, rgba(176,58,46,0.28) 55%, rgba(176,58,46,0.28) 92%, transparent 92%);
+  /* ── ハイライト共通 ─────────────────────────────────── */
+
+  /* 例文中の対象語（学習カード・習得済みプロンプト共通） */
+  .example-jp mark,
+  .example-prompt mark {
+    background: linear-gradient(
+      transparent 52%,
+      rgba(176, 58, 46, 0.22) 52%,
+      rgba(176, 58, 46, 0.22) 90%,
+      transparent 90%
+    );
     color: var(--shu-deep);
-    font-weight: 600;
+    font-weight: 700;
     padding: 0 1px;
   }
-  [data-theme="dark"] .example-jp mark {
-    background: linear-gradient(transparent 55%, rgba(214,90,74,0.4) 55%, rgba(214,90,74,0.4) 92%, transparent 92%);
-    color: #f5d4cc;
+  [data-theme="dark"] .example-jp mark,
+  [data-theme="dark"] .example-prompt mark {
+    background: linear-gradient(
+      transparent 52%,
+      rgba(214, 90, 74, 0.55) 52%,
+      rgba(214, 90, 74, 0.55) 90%,
+      transparent 90%
+    );
+    color: #fdddd8;
+    font-weight: 700;
+  }
+
+  /* 検索結果ハイライト（一覧の単語・意味） */
+  mark {
+    background: rgba(168, 137, 74, 0.22);
+    color: inherit;
+    border-radius: 2px;
+    padding: 0 1px;
+    font-weight: 700;
+  }
+  [data-theme="dark"] mark {
+    background: rgba(201, 169, 96, 0.28);
+    color: var(--gold);
+  }
+  /* 例文・プロンプト内のmarkは上記専用スタイルで上書きするため
+     汎用markのbackground/colorをリセット */
+  .example-jp mark,
+  .example-prompt mark {
+    background: linear-gradient(
+      transparent 52%,
+      rgba(176, 58, 46, 0.22) 52%,
+      rgba(176, 58, 46, 0.22) 90%,
+      transparent 90%
+    );
+    color: var(--shu-deep);
+  }
+  [data-theme="dark"] .example-jp mark,
+  [data-theme="dark"] .example-prompt mark {
+    background: linear-gradient(
+      transparent 52%,
+      rgba(214, 90, 74, 0.55) 52%,
+      rgba(214, 90, 74, 0.55) 90%,
+      transparent 90%
+    );
+    color: #fdddd8;
   }
 
   /* Translation */
@@ -769,6 +819,29 @@
     text-align: right;
     margin-top: 3px;
     letter-spacing: 0.04em;
+  }
+  .word-search-links {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid var(--line);
+  }
+  .word-search-link {
+    font-size: 11px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    padding: 3px 8px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .word-search-link:hover, .word-search-link:focus {
+    color: var(--shu);
+    border-color: var(--shu);
+    outline: none;
   }
 
   /* Settings panel */
@@ -991,6 +1064,15 @@
     z-index: 10;
     font-family: 'Klee One', serif;
     letter-spacing: 0.05em;
+  }
+  .hm-tip {
+    min-height: 18px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    margin: 6px 0 2px;
+    font-family: 'Cormorant Garamond', serif;
   }
   .hm-scale {
     display: flex;
@@ -2075,7 +2157,7 @@ const WORDS = [
   { id:602, word:"かつ", pos:"副", meaning:"①一方では・かつまた（並立）②すぐに・たちまち（即時）", etym:"「且つ」。二つの動作が並行して行われること。", example:"かつ消えかつ結びて、｜かつ承りてまゐりたり。", translation:"一方では消え、一方では形を作って、｜すぐにお聞きして参上した。", highlight:"かつ｜かつ", source:"方丈記｜(作例)", trivia:"入試頻出語。", related:[{id:300,type:"参"}] },
   { id:603, word:"ひねもす", pos:"副", meaning:"終日・一日中", etym:"「日（ひ）＋ね（助詞）＋もす（方向・継続）」。日が暮れるまで一日中。", example:"ひねもす海を眺めて、物思ひにふけりけり。", translation:"一日中海を眺めて、物思いにふけっていた。", highlight:"ひねもす", source:"(作例)", trivia:null, related:[{id:531,type:"対"}] },
   { id:604, word:"かけて", pos:"副", meaning:"（下に打消を伴って）少しも〜ない・全く〜ない", etym:"動詞「懸く」の連用形＋「て」。心にかけても（全くない）、の意から。", example:"かく厳しき掟（おきて）あるを、かけても知り侍らざりき。", translation:"このような厳しい決まりがあることを、まったく知りませんでした。", highlight:"かけても", source:"(作例)", trivia:"「かけても」の形でも使われる。呼応の副詞。", related:[{id:59,type:"類"},{id:60,type:"類"}] },
-  { id:605, word:"あかず", pos:"連語", meaning:"満足しない・いつまでも見飽きない", etym:"動詞「飽く」＋打消「ず」。飽きることがない、満足しない。", example:"あかず惜しと思はば、", translation:"満足できず名残惜しいと思うならば、", highlight:"あかず", source:"徒然草", trivia:null, related:[{id:87,type:"参"}] },
+  { id:605, word:"あかず", pos:"連語", meaning:"飽き足りない・名残惜しい・いつまでも〜したい", etym:"動詞「飽く」＋打消「ず」。飽きることがない、満足しない。", example:"あかず惜しと思はば、", translation:"満足できず名残惜しいと思うならば、", highlight:"あかず", source:"徒然草", trivia:null, related:[{id:87,type:"参"}] },
   { id:606, word:"あからめもせず", pos:"連語", meaning:"脇目もふらず・よそ見もしないで", etym:"動詞「あかる（離れる）」の連用形＋目（め）＋も＋せず。目線をそらさないこと。", example:"その麗しき姿を、あからめもせず見つめ奉る。", translation:"その美しいお姿を、わき目もふらずに見つめ申し上げている。", highlight:"あからめもせず", source:"(作例)", trivia:null, related:[{id:414,type:"類"}] },
   { id:607, word:"あらぬ", pos:"連体", meaning:"①別の・他の（異なるものを指す）②とんでもない・あってはならない（道義的否定）", etym:"動詞「あり」の未然形＋打消「ず」の連体形「ぬ」。「そうではない」から「別の」へ。", example:"あらぬ人のやうにも。｜あらぬことを言ひ触らすな。", translation:"別の人のようにも（別人のようにも見えて）。｜とんでもないことを言いふらすな。", highlight:"あらぬ｜あらぬ", source:"源氏物語｜(作例)", trivia:null, related:[{id:308,type:"参"}] },
   { id:608, word:"ありありて", pos:"連語", meaning:"月日が経って・年を経て・生きながらえて", etym:"動詞「あり」の連用形を重ねたもの。時間が連続して経過する様子。", example:"ありありて、今は都を離れ山里に住む。", translation:"長い月日を経て、今は都を離れ山里に暮らしている。", highlight:"ありありて", source:"(作例)", trivia:null, related:[{id:376,type:"参"}] },
@@ -2083,21 +2165,21 @@ const WORDS = [
   { id:610, word:"あれかにもあらず", pos:"連語", meaning:"茫然自失で・我を忘れて", etym:"「あれ（自分）か（疑問）に（断定）も（係助）あらず（打消）」。自分が自分であるかも分からない。", example:"あれかにもあらず泣きゐ給へり。", translation:"茫然自失となって泣き座っていらっしゃる。", highlight:"あれかにもあらず", source:"源氏物語", trivia:null, related:[{id:309,type:"類"},{id:547,type:"類"}] },
   { id:611, word:"いかがはせむ", pos:"連語", meaning:"どうしようもない・しかたない", etym:"疑問副詞「いかが」＋係助詞「は」＋動詞「す」＋推量（反語）「む」。どうしようか、いやどうしようもない。", example:"雨のいたう降れば、出で立ちをためらへど、いかがはせむ。", translation:"雨がひどく降るので、出発をためらうが、どうしようか（いや、行くしかどうしようもない）。", highlight:"いかがはせむ", source:"(作例)", trivia:null, related:[{id:449,type:"類"},{id:503,type:"類"},{id:642,type:"類"}] },
   { id:612, word:"いさ〜知らず", pos:"連語", meaning:"さあどうだろう・知らない（逃げ口上）", etym:"感動詞「いさ」＋「知らず」。さあ、私は知らない。", example:"いさ、我は知らず。神仏にこそ問ひ給へ。", translation:"さあどうだろうか、私は知らない。神仏にこそお尋ねください。", highlight:"いさ", source:"(作例)", trivia:null, related:[{id:220,type:"参"}] },
-  { id:613, word:"いちのひと", pos:"名", meaning:"最高の身分の人・関白・左大臣", etym:"「一の人」。臣下の中で第一位の者。", example:"いちのひとにておはす。", translation:"最高の身分の人でいらっしゃる。", highlight:"いちのひと", source:"(作例)", trivia:null, related:[{id:110,type:"参"},{id:407,type:"参"},{id:408,type:"参"}] },
-  { id:614, word:"いはむかたなし", pos:"連語", meaning:"言いようがない・言葉にならない", etym:"「言は」＋「む（婉曲）」＋「方（方法）」＋「無し」。", example:"月明かりに花の散りゆく風情、げにいふかたなし。", translation:"月明かりの中を桜が散っていく風情は、本当に言葉で言い表せないほどすばらしい。", highlight:"いはむかたなし", source:"(作例)", trivia:null, related:[{id:12,type:"参"},{id:54,type:"参"}] },
+  { id:613, word:"いちのひと", pos:"名", meaning:"最高の身分の人・摂政または関白", etym:"「一の人」。臣下の中で第一位の者。", example:"いちのひとにておはす。", translation:"最高の身分の人でいらっしゃる。", highlight:"いちのひと", source:"(作例)", trivia:null, related:[{id:110,type:"参"},{id:407,type:"参"},{id:408,type:"参"}] },
+  { id:614, word:"いはむかたなし", pos:"連語", meaning:"言いようがない・言葉にならない", etym:"「言は」＋「む（婉曲）」＋「方（方法）」＋「無し」。", example:"月明かりに花の散りゆく風情、げにいはむかたなし。", translation:"月明かりの中を桜が散っていく風情は、本当に言葉で言い表せないほどすばらしい。", highlight:"いはむかたなし", source:"(作例)", trivia:null, related:[{id:12,type:"参"},{id:54,type:"参"}] },
   { id:615, word:"いふもさらなり", pos:"連語", meaning:"言うまでもない", etym:"「言ふ」＋「も」＋形容動詞「更（さら）なり」。", example:"春の曙（あけぼの）の美しきは、いふもさらなり。", translation:"春の夜明けの美しさは、言うまでもない（もちろん最高だ）。", highlight:"いふもさらなり", source:"(作例)", trivia:"枕草子などでよく用いられる定型表現。", related:[{id:161,type:"類"},{id:54,type:"参"}] },
   { id:616, word:"いろに出づ", pos:"連語", meaning:"表情・顔色に現れる", etym:"「色（顔色や表情）」に「出づ」。", example:"色に出でにけり。", translation:"表情に出てしまった。", highlight:"色に出で", source:"拾遺和歌集", trivia:"平兼盛「しのぶれど色に出でにけりわが恋は」", related:[{id:476,type:"参"},{id:276,type:"参"}] },
-  { id:617, word:"いをぬ", pos:"連語", meaning:"眠る（同族目的語の強調表現）", etym:"「寝（い・名詞）」を「寝（ぬ・動詞）」。同じ語根の言葉を繰り返して意味を強調する。", example:"寝をのみ寝給ふ。", translation:"眠ってばかりいらっしゃる。", highlight:"寝を……寝", source:"(作例)", trivia:"漢字では「寝を寝」などと書かれる。「い」は睡眠の意の名詞。古文特有の強調表現。", related:[{id:139,type:"参"},{id:490,type:"参"}] },
+  { id:617, word:"いをぬ", pos:"連語", meaning:"眠る（同族目的語の強調表現）", etym:"「寝（い・名詞）」を「寝（ぬ・動詞）」。同じ語根の言葉を繰り返して意味を強調する。", example:"寝をのみ寝給ふ。", translation:"眠ってばかりいらっしゃる。", highlight:"寝をのみ寝", source:"(作例)", trivia:"漢字では「寝を寝」などと書かれる。「い」は睡眠の意の名詞。古文特有の強調表現。", related:[{id:139,type:"参"},{id:490,type:"参"}] },
   { id:618, word:"えならず", pos:"連語", meaning:"何とも言えないほどすばらしい・絶妙だ", etym:"副詞「え（〜できない）」＋断定「なり」の未然形「なら」＋打消「ず」。表現できないほど素晴らしい。", example:"夜深く聞こゆる笛の音、えならずおもしろし。", translation:"夜深く聞こえてくる笛の音色は、何とも言えないほどすばらしい。", highlight:"えならず", source:"(作例)", trivia:null, related:[{id:45,type:"類"},{id:331,type:"参"}] },
   { id:619, word:"おとにきく", pos:"連語", meaning:"うわさに聞く・名声が広まっている・名高い", etym:"「音（うわさ・名声）」に「聞く」。", example:"音に聞く高師の浜も、かくやあらむと思ひやらる。", translation:"名高い高師の浜もこのようなものだろうと思いやられる。", highlight:"音に聞く", source:"(作例)", trivia:null, related:[{id:273,type:"参"},{id:73,type:"参"}] },
   { id:620, word:"くるしからず", pos:"連語", meaning:"差し支えない・構わない", etym:"形容詞「苦し（不都合だ）」＋打消「ず」。", example:"かくてもくるしからず。", translation:"このようでも差し支えない。", highlight:"くるしからず", source:"(作例)", trivia:null, related:[{id:42,type:"類"}] },
   { id:621, word:"けしきばかり", pos:"連語", meaning:"ほんの少し・形ばかり", etym:"「気色（形だけ・様子）」＋「ばかり（程度）」。", example:"けしきばかり箸をつけて、あとは残し給ひぬ。", translation:"ほんの少し箸をつけて、あとは残しになった。", highlight:"けしきばかり", source:"(作例)", trivia:null, related:[{id:105,type:"参"}] },
   { id:622, word:"げざんにいる", pos:"連語", meaning:"お目にかかる・参上する", etym:"「見参（げざん・目上の人に見てもらうこと）」に「入る」。", example:"見参に入らむ。", translation:"お目にかかろう。", highlight:"見参に入ら", source:"(作例)", trivia:null, related:[{id:322,type:"類"},{id:491,type:"類"}] },
   { id:623, word:"こころあり", pos:"連語", meaning:"①思いやりがある ②風流心がある ③物の道理がわかる・分別がある", etym:"「心（風流を解する心・思いやり）」が「あり」。", example:"こころある人は、かかるをりに一言もかけ給ふ。｜こころある友と、月を眺めて語らひぬ。｜こころなき者は、花の散るをも惜しまず。", translation:"思いやりのある人は、このような折に一言かけてくださる。｜風流心のある友と、月を眺めて語り合った。｜分別のない者は、花が散るのも惜しまない。", highlight:"こころある｜こころある｜こころなき", source:"(作例)", trivia:"「なさけあり」とも同義。", related:[{id:342,type:"類"},{id:107,type:"類"}] },
-  { id:624, word:"こころおく", pos:"連語", meaning:"気がかりに思う・遠慮する・執着する", etym:"「心」を「置く（そこに留める）」。執着する、または相手に気を使うこと。", example:"心置くべき仲にもあらず。", translation:"遠慮しなければならない間柄でもない。", highlight:"心置く", source:"(作例)", trivia:null, related:[{id:442,type:"類"}] },
+  { id:624, word:"こころおく", pos:"連語", meaning:"気がかりに思う・遠慮する・気を配る", etym:"「心」を「置く（そこに留める）」。執着する、または相手に気を使うこと。", example:"心置くべき仲にもあらず。", translation:"遠慮しなければならない間柄でもない。", highlight:"心置く", source:"(作例)", trivia:null, related:[{id:442,type:"類"}] },
   { id:625, word:"こころのやみ", pos:"名", meaning:"子への愛による迷い・道理を忘れた状態", etym:"「心」の「闇（暗く見通しがきかない状態）」。親の愛着による盲目化。", example:"子を思ふ心の闇", translation:"子を愛するがゆえの心の迷い", highlight:"心の闇", source:"後撰和歌集", trivia:"後撰和歌集 藤原兼輔「人の親の心は闇にあらねども子を思ふ道にまどひぬるかな」が語源・出典。", related:[{id:309,type:"参"}] },
   { id:626, word:"こころをやる", pos:"連語", meaning:"気晴らしする・思いを遠くに馳せる", etym:"「心」を別の方向へ「遣る（移動させる）」。", example:"心をやりて遊ぶ。", translation:"気晴らしをして遊ぶ。", highlight:"心をやり", source:"(作例)", trivia:null, related:[{id:317,type:"類"}] },
-  { id:627, word:"こころゆく", pos:"連語", meaning:"心ゆくまで・十分に満足する", etym:"「心」がその方向へ完全に「行く（到達する）」。", example:"心ゆくまでながめ給ふ。", translation:"十分に満足するまで眺めなさる。", highlight:"心ゆく", source:"(作例)", trivia:null, related:[{id:87,type:"参"}] },
+  { id:627, word:"こころゆく", pos:"連語", meaning:"十分に満足する・心が満たされる", etym:"「心」がその方向へ完全に「行く（到達する）」。", example:"心ゆくまでながめ給ふ。", translation:"十分に満足するまで眺めなさる。", highlight:"心ゆく", source:"(作例)", trivia:null, related:[{id:87,type:"参"}] },
   { id:628, word:"さらでだに", pos:"連語", meaning:"そうでなくてさえも", etym:"「さ（然）」＋「あら」＋「で（打消）」＋「だに（類推）」。", example:"さらでだに心細き旅なるに、雨までも降り出でぬ。", translation:"そうでなくてさえも心細い旅なのに、雨まで降り出してしまった。", highlight:"さらでだに", source:"(作例)", trivia:null, related:[{id:163,type:"参"}] },
   { id:629, word:"さらぬ", pos:"連体", meaning:"①そうでない・普通の（然らぬ） ②避けられない（避らぬ）", etym:"「さ（然）」＋「あら」＋「ぬ（打消）」。「避（さ）ら＋ぬ（打消）」で「避けられない」の意になることも。", example:"心の内には驚けど、さらぬ顔して平然たり。", translation:"心の中では驚いているけれど、何でもないような顔をして平気でいる。", highlight:"さらぬ", source:"(作例)", trivia:"語源が2パターン（然らぬ・避らぬ）あるため文脈で注意して訳し分ける必要がある。", related:[{id:344,type:"類"}] },
   { id:630, word:"さるべきにや", pos:"連語", meaning:"前世の因縁だろうか", etym:"「さ（然）」＋「ある」＋「べき（当然）」＋「に（断定）」＋「や（疑問）」。そうなるはずの運命だったのだろうか。", example:"さるべきにやありけむ。", translation:"前世からの因縁であったのだろうか。", highlight:"さるべきにや", source:"徒然草", trivia:null, related:[{id:395,type:"参"},{id:412,type:"参"}] },
@@ -2150,7 +2232,7 @@ const WORDS = [
   { id:677, word:"学生", pos:"名", meaning:"（がくしょう）大学寮で学ぶ学生", etym:"「学」を修める「生（徒）」。当時は漢学などを学ぶエリート候補。", example:"大学の学生", translation:"大学寮の学生", highlight:"学生", source:"(作例)", trivia:null, related:[{id:508,type:"参"}] },
   { id:678, word:"真名", pos:"名", meaning:"（まな）漢字", etym:"「真（正式な）＋名（文字）」。日本で作られた「仮名」に対する、中国の正式な文字。", example:"真名にて書く", translation:"漢字で書く", highlight:"真名", source:"(作例)", trivia:"「仮名（かな）」に対する語。「真字」とも。", related:[{id:200,type:"参"}] },
   { id:679, word:"澪標", pos:"名", meaning:"（みおつくし）航路を示す杭。「身を尽くし」との掛詞", etym:"水脈（みお）に立てる串（くし・標識）。和歌では「身を尽くし（身を滅ぼす）」と掛ける。", example:"わびぬれば今はたおなじ難波なるみをつくしても逢はむとぞ思ふ", translation:"思い悩んでしまったので今はもう同じことだ、難波の澪標ではないが、この身を滅ぼしてでもあなたに逢いたいと思う。", highlight:"みをつくし", source:"百人一首", trivia:"和歌では「水脈の標識」という本来の意味と、「身を滅ぼす」という意味を重ねて訳出する。", related:[{id:238,type:"参"}] },
-  { id:680, word:"空蝉", pos:"名", meaning:"①（うつせみ）セミの抜け殻②現世の人・この世のはかない存在", etym:"「現し臣（うつしおみ）＝生きている人間」が音変化し、セミの抜け殻に掛けられた。", example:"空蝉の殻のごとし。｜空蝉の世", translation:"セミの抜け殻のようだ。｜はかない現世", highlight:"空蝉｜空蝉", source:"(作例)｜(作例)", trivia:null, related:[{id:394,type:"参"}] },
+  { id:680, word:"空蝉", pos:"名", meaning:"①（うつせみ）現世の人・生きている人 ②（掛詞）セミの抜け殻・はかない存在", etym:"「現し臣（うつしおみ）＝生きている人間」が音変化し、セミの抜け殻に掛けられた。", example:"空蝉の殻のごとし。｜空蝉の世", translation:"セミの抜け殻のようだ。｜はかない現世", highlight:"空蝉｜空蝉", source:"(作例)｜(作例)", trivia:null, related:[{id:394,type:"参"}] },
   { id:681, word:"菖蒲", pos:"名", meaning:"（あやめ / しょうぶ）端午の節句に飾る植物。魔除けの効があるとされた", etym:"香りが強く、邪気を払うとされた。5月5日（端午の節句）の軒端に飾る。", example:"菖蒲ふくころ", translation:"菖蒲を軒に葺く（飾る）ころ", highlight:"菖蒲", source:"(作例)", trivia:null, related:[{id:682,type:"参"}] },
   { id:682, word:"女郎花", pos:"名", meaning:"（おみなえし）秋の七草の一つ", etym:"「女（おみな）＋圧し（へし）」。美女を圧倒するほど美しい花の意から。", example:"女郎花さく野", translation:"女郎花が咲く野原", highlight:"女郎花", source:"(作例)", trivia:"※歴史的仮名遣いでは『をみなへし』", related:[{id:683,type:"参"}] },
   { id:683, word:"撫子", pos:"名", meaning:"（なでしこ）秋の七草の一つ。可憐な女性や子供の比喩", etym:"「撫でるように可愛い子」という意から、花の名、そして女性や子の比喩に。", example:"大和撫子", translation:"やまとなでしこ（可憐な女性）", highlight:"撫子", source:"(作例)", trivia:null, related:[{id:682,type:"参"}] },
@@ -2173,7 +2255,7 @@ const WORDS = [
   { id:700, word:"誦経", pos:"名", meaning:"（ずきょう）お経を声に出して読むこと", etym:"「お経」を「誦（そらん）じる（暗誦、音読する）」。", example:"誦経の音", translation:"お経を唱える声", highlight:"誦経", source:"(作例)", trivia:null, related:[{id:701,type:"類"}] },
   { id:701, word:"読経", pos:"名", meaning:"（どきょう）お経を読むこと", etym:"「お経」を「読む」。", example:"読経したまふ。", translation:"お経をお読みになる。", highlight:"読経", source:"(作例)", trivia:null, related:[{id:700,type:"類"}] },
   { id:702, word:"聴聞", pos:"名", meaning:"（ちょうもん）説法やお経を聞くこと", etym:"「聴（きく）」＋「聞（きく）」。仏教の教えをありがたく聞くこと。", example:"説法を聴聞す。", translation:"説法をお聞きする。", highlight:"聴聞", source:"(作例)", trivia:null, related:[{id:701,type:"参"}] },
-  { id:703, word:"衆生", pos:"名", meaning:"（しゅじょう）命あるすべてのもの。人間", etym:"「多くの生きとし生けるもの」。仏が救済する対象。", example:"一切の衆生", translation:"すべての生きとし生けるもの", highlight:"衆生", source:"(作例)", trivia:null, related:[{id:704,type:"参"}] },
+  { id:703, word:"衆生", pos:"名", meaning:"（しゅじょう）命あるすべての生き物", etym:"「多くの生きとし生けるもの」。仏が救済する対象。", example:"一切の衆生", translation:"すべての生きとし生けるもの", highlight:"衆生", source:"(作例)", trivia:null, related:[{id:704,type:"参"}] },
   { id:704, word:"結縁", pos:"名", meaning:"（けちえん）仏道に入り、仏との縁を結ぶこと", etym:"「縁」を「結ぶ」。仏法の教えに触れ、救いのきっかけを作ること。", example:"結縁の法要", translation:"仏と縁を結ぶための法要", highlight:"結縁", source:"(作例)", trivia:null, related:[{id:705,type:"参"}] },
   { id:705, word:"善知識", pos:"名", meaning:"（ぜんちしき）仏道に導いてくれる高僧や優れた指導者", etym:"仏教において、人々を正しい道（善）へ導く「知識（友人・師）」。", example:"善知識にあふ", translation:"優れた仏道の指導者に出会う", highlight:"善知識", source:"(作例)", trivia:null, related:[{id:694,type:"類"},{id:695,type:"類"}] },
   { id:706, word:"冥加", pos:"名", meaning:"（みょうが）神仏の目に見えない加護・恩恵", etym:"「冥（暗闇＝目に見えないところ）」から「加（加護する）」。", example:"神仏の冥加", translation:"神仏の見えないご加護", highlight:"冥加", source:"(作例)", trivia:null, related:[{id:179,type:"参"},{id:396,type:"参"}] },
@@ -2189,7 +2271,7 @@ const WORDS = [
   { id:716, word:"斎宮", pos:"名", meaning:"（さいぐう / いつきのみや）伊勢神宮に奉仕した未婚の内親王", etym:"神を「斎（いつ）き奉る（心身を清めて仕える）」宮。", example:"斎宮に下り給ふ。", translation:"伊勢の斎宮として下向なさる。", highlight:"斎宮", source:"(作例)", trivia:null, related:[{id:717,type:"類"}] },
   { id:717, word:"斎院", pos:"名", meaning:"（さいいん）賀茂神社に奉仕した未婚の内親王", etym:"神を「斎き奉る」院。京都の賀茂神社に仕えた皇女。", example:"斎院の御禊", translation:"斎院が禊（みそぎ）をする儀式", highlight:"斎院", source:"(作例)", trivia:null, related:[{id:716,type:"類"}] },
   { id:718, word:"上達部", pos:"名", meaning:"（かんだちめ）三位以上の公卿と四位の参議の総称。高級官僚", etym:"「上（かみ＝高い身分）に立つ人」の複数形。", example:"上達部、殿上人", translation:"高級貴族と、殿上人", highlight:"上達部", source:"(作例)", trivia:null, related:[{id:719,type:"類"},{id:135,type:"参"}] },
-  { id:719, word:"公卿", pos:"名", meaning:"（くぎょう）上達部と同じ。国政を担う最高幹部", etym:"「公（太政大臣・左大臣・右大臣）」と「卿（大納言・中納言・参議および三位以上の者）」。", example:"公卿あまた集ふ。", translation:"公卿が大勢集まる。", highlight:"公卿", source:"(作例)", trivia:null, related:[{id:718,type:"類"}] },
+  { id:719, word:"公卿", pos:"名", meaning:"（くぎょう）大臣・大中納言・参議・三位以上の高官の総称。国政を担う最高幹部", etym:"「公（太政大臣・左大臣・右大臣）」と「卿（大納言・中納言・参議および三位以上の者）」。", example:"公卿あまた集ふ。", translation:"公卿が大勢集まる。", highlight:"公卿", source:"(作例)", trivia:null, related:[{id:718,type:"類"}] },
   { id:720, word:"蔵人", pos:"名", meaning:"（くろうど）天皇の側近として機密文書や身の回りの世話を扱った役人", etym:"「蔵（文書や宝物をしまう所）」を司る人。", example:"蔵人の頭", translation:"蔵人所の長官", highlight:"蔵人", source:"(作例)", trivia:null, related:[{id:389,type:"参"}] },
   { id:721, word:"宰相", pos:"名", meaning:"（さいしょう）参議の唐名（中国風の呼び方）", etym:"中国で天子を補佐する重職の名を、日本の参議（公卿の一つ）に当てた。", example:"宰相の中将", translation:"参議と中将を兼任している人", highlight:"宰相", source:"(作例)", trivia:null, related:[{id:718,type:"参"}] },
   { id:722, word:"春宮", pos:"名", meaning:"（とうぐう）皇太子。東宮とも書く", etym:"皇太子の住まいが内裏の「東」にあったことから「東宮」。春は方角の東にあたるため「春宮」とも書く。", example:"春宮にまゐらせ給ふ。", translation:"皇太子のもとへ入内なさる。", highlight:"春宮", source:"(作例)", trivia:"読みは「とうぐう」。「みこ」と読むこともある。", related:[{id:112,type:"参"}] },
@@ -2240,7 +2322,7 @@ const WORDS = [
   { id:767, word:"先達", pos:"名", meaning:"（せんだつ）案内者・指導者（特に寺社参詣の）", etym:"「先に達した人」。学問や修行で先を行き、案内や指導をする者。", example:"先達はあらまほしきことなり", translation:"案内者はあってほしいものだ", highlight:"先達", source:"徒然草", trivia:null, related:[{id:46,type:"参"}] },
   { id:768, word:"牛車", pos:"名", meaning:"（ぎっしゃ）牛に引かせる貴族の乗り物", etym:"牛に引かせる車。身分によって乗る車の種類や装飾が決められていた。", example:"牛車に乗りて、", translation:"牛車に乗って、", highlight:"牛車", source:"(作例)", trivia:null, related:[{id:769,type:"参"}] },
   { id:769, word:"輿", pos:"名", meaning:"（こし）人が担いで運ぶ乗り物", etym:"人が肩に担ぐ屋根付きの乗り物。天皇や高級貴族、神輿などに使われた。", example:"輿に乗せ奉りて、", translation:"輿に乗せ申し上げて、", highlight:"輿", source:"(作例)", trivia:null, related:[{id:768,type:"参"}] },
-  { id:770, word:"束帯", pos:"名", meaning:"（そくたい）公家の男性の正装。昼の公務で着用", etym:"「帯（ベルト）」で「束ねる」。笏（しゃく）を持ち、冠を被る正式なスタイル。", example:"束帯の姿", translation:"正装の姿", highlight:"束帯", source:"(作例)", trivia:null, related:[{id:772,type:"参"},{id:778,type:"対"}] },
+  { id:770, word:"束帯", pos:"名", meaning:"（そくたい）公家の男性の正装。公式の儀式・参内で着用", etym:"「帯（ベルト）」で「束ねる」。笏（しゃく）を持ち、冠を被る正式なスタイル。", example:"束帯の姿", translation:"正装の姿", highlight:"束帯", source:"(作例)", trivia:null, related:[{id:772,type:"参"},{id:778,type:"対"}] },
   { id:771, word:"烏帽子", pos:"名", meaning:"（えぼし）男性が普段かぶった略式の冠", etym:"鳥（烏）の羽のように黒く塗られた帽子。元服後は必ず着用し、頭をむき出しにすることは恥とされた。", example:"烏帽子狩衣の姿", translation:"烏帽子に狩衣という普段着の姿", highlight:"烏帽子", source:"(作例)", trivia:null, related:[{id:772,type:"参"}] },
   { id:772, word:"狩衣", pos:"名", meaning:"（かりぎぬ）公家の男性の普段着・鷹狩りなどの野外服", etym:"もとは「狩り」のときに着た動きやすい「衣」。のちに貴族の日常着となった。", example:"狩衣姿にて、", translation:"狩衣姿（普段着）で、", highlight:"狩衣", source:"(作例)", trivia:null, related:[{id:770,type:"参"},{id:771,type:"参"}] },
   { id:773, word:"笏", pos:"名", meaning:"（しゃく）束帯のときに右手に持つ細長い板", etym:"備忘録の紙を裏に貼り付けるための板が起源。威儀を正す持ち物。", example:"笏を持ちて、", translation:"笏を持って、", highlight:"笏", source:"(作例)", trivia:null, related:[{id:770,type:"参"}] },
@@ -2288,7 +2370,7 @@ const WORDS = [
   { id:815, word:"高坏", pos:"名", meaning:"（たかつき）食物を盛るための一本足のついた高い器", etym:"「高い（脚のついた）」「坏（器）」。", example:"高坏に盛りて", translation:"高坏に盛って", highlight:"高坏", source:"(作例)", trivia:null, related:[{id:816,type:"参"}] },
   { id:816, word:"土器", pos:"名", meaning:"（かわらけ）素焼きの杯。酒を飲むのに用いる", etym:"釉薬をかけずに焼いた土（かわら）の器（け）。使い捨てにされた。", example:"土器に酒を入れて", translation:"素焼きの杯に酒を入れて", highlight:"土器", source:"(作例)", trivia:null, related:[{id:815,type:"参"}] },
   { id:817, word:"折敷", pos:"名", meaning:"（おしき）食器などをのせる、縁のあるお盆", etym:"木の葉などを「折り敷いて」器の代わりにしたことから。", example:"折敷に据えて", translation:"お盆にのせて", highlight:"折敷", source:"(作例)", trivia:null, related:[{id:815,type:"参"}] },
-  { id:818, word:"炭櫃", pos:"名", meaning:"（すびつ）囲炉裏・火鉢。炭を入れて火を燃やす四角い箱", etym:"「炭」を入れる「櫃（ひつ＝箱）」。", example:"炭櫃に火をおこして", translation:"火鉢に火を起こして", highlight:"炭櫃", source:"(作例)", trivia:null, related:[{id:819,type:"参"}] },
+  { id:818, word:"炭櫃", pos:"名", meaning:"（すびつ）移動式の暖房具・火鉢の一種。炭を入れて火を燃やす四角い箱", etym:"「炭」を入れる「櫃（ひつ＝箱）」。", example:"炭櫃に火をおこして", translation:"火鉢に火を起こして", highlight:"炭櫃", source:"(作例)", trivia:null, related:[{id:819,type:"参"}] },
   { id:819, word:"火桶", pos:"名", meaning:"（ひおけ）木製の丸い火鉢", etym:"「火」を入れる「桶（木製の丸い器）」。冬の暖房器具。", example:"火桶を引き寄せて", translation:"火鉢を引き寄せて", highlight:"火桶", source:"(作例)", trivia:null, related:[{id:818,type:"参"}] },
   { id:820, word:"火取", pos:"名", meaning:"（ひとり）香を焚くための持ち運びできる香炉", etym:"火を取り扱うための器。", example:"火取に香をたきて", translation:"香炉に香を焚いて", highlight:"火取", source:"(作例)", trivia:null, related:[{id:821,type:"参"}] },
   { id:821, word:"伏籠", pos:"名", meaning:"（ふせご）香炉や火鉢の上に伏せて置き、衣類に香を焚き込めたり乾かしたりする籠", etym:"火や香炉の上に「伏せる」籠。", example:"伏籠に衣うちかけて", translation:"伏籠に着物をかけて（香を焚き染めて）", highlight:"伏籠", source:"(作例)", trivia:null, related:[{id:820,type:"参"}] },
@@ -2780,11 +2862,12 @@ function loadSettings() {
       sound: s.sound !== false,
       showTranslation: s.showTranslation !== false,
       showDetailOnWrong: s.showDetailOnWrong === true,
+      showSearchLinks: (s.showSearchLinks === 'all' || s.showSearchLinks === 'none') ? s.showSearchLinks : 'cultural',
       newLimit: typeof s.newLimit === 'number' ? s.newLimit : DEFAULT_NEW_LIMIT,
       reviewLimit: typeof s.reviewLimit === 'number' ? s.reviewLimit : DEFAULT_REVIEW_LIMIT,
     };
   } catch(e) {
-    return { direction:'word2meaning', sound:true, showTranslation:true, showDetailOnWrong:false, newLimit:DEFAULT_NEW_LIMIT, reviewLimit:DEFAULT_REVIEW_LIMIT };
+    return { direction:'word2meaning', sound:true, showTranslation:true, showDetailOnWrong:false, showSearchLinks:'cultural', newLimit:DEFAULT_NEW_LIMIT, reviewLimit:DEFAULT_REVIEW_LIMIT };
   }
 }
 function saveSettings() {
@@ -2900,11 +2983,20 @@ function triviaHtml(w) {
 }
 
 function wordInfoHtml(w) {
+  const q = encodeURIComponent(w.word);
+  const showLinks = settings.showSearchLinks === 'all' ||
+                   (settings.showSearchLinks === 'cultural' && w.id >= 654);
+  const searchLinks = showLinks ? `
+    <div class="word-search-links" aria-label="外部検索">
+      <a href="https://www.google.com/search?q=${q}&tbm=isch" target="_blank" rel="noopener noreferrer" class="word-search-link" aria-label="${w.word}の画像検索">🔍 画像</a>
+      <a href="https://ja.wikipedia.org/wiki/${q}" target="_blank" rel="noopener noreferrer" class="word-search-link" aria-label="${w.word}のWikipedia">📖 Wiki</a>
+    </div>` : '';
   return `
     ${etymHtml(w)}
     ${renderExamples(w)}
     ${triviaHtml(w)}
     ${relatedHtml(w)}
+    ${searchLinks}
   `;
 }
 
@@ -3097,6 +3189,15 @@ function openSettingsModal() {
           <div class="setting-options" role="radiogroup" aria-label="現代語訳の表示">
             <button class="${settings.showTranslation?'active':''}" onclick="setSetting('showTranslation',true)" role="radio" aria-checked="${settings.showTranslation}" type="button">表示</button>
             <button class="${!settings.showTranslation?'active':''}" onclick="setSetting('showTranslation',false)" role="radio" aria-checked="${!settings.showTranslation}" type="button">非表示</button>
+          </div>
+        </fieldset>
+
+        <fieldset class="setting-group">
+          <legend class="setting-label">詳細画面の検索リンク</legend>
+          <div class="setting-options" role="radiogroup" aria-label="詳細画面の検索リンク">
+            <button class="${settings.showSearchLinks==='all'?'active':''}" onclick="setSetting('showSearchLinks','all')" role="radio" aria-checked="${settings.showSearchLinks==='all'}" type="button">全てに表示</button>
+            <button class="${settings.showSearchLinks==='cultural'?'active':''}" onclick="setSetting('showSearchLinks','cultural')" role="radio" aria-checked="${settings.showSearchLinks==='cultural'}" type="button">id654以降</button>
+            <button class="${settings.showSearchLinks==='none'?'active':''}" onclick="setSetting('showSearchLinks','none')" role="radio" aria-checked="${settings.showSearchLinks==='none'}" type="button">非表示</button>
           </div>
         </fieldset>
 
@@ -3383,17 +3484,17 @@ function renderStats() {
     if (n <= 30) return 3;
     return 4;
   };
-  const monthLabels = ['睦','如','弥','卯','皐','水','文','葉','長','神','霜','師'];
   const cellsHtml = cells.map(c => {
     const lv = levelOf(c.n);
     const tip = `${c.date.getMonth()+1}/${c.date.getDate()}・${c.n}回`;
     const ariaLabel = `${c.date.getMonth()+1}月${c.date.getDate()}日: ${c.n}回の復習`;
-    return `<div class="hm-cell ${lv?'l'+lv:''}" data-tip="${tip}" title="${tip}" role="img" aria-label="${ariaLabel}"></div>`;
+    return `<div class="hm-cell ${lv?'l'+lv:''}" data-tip="${tip}" title="${tip}" role="img" aria-label="${ariaLabel}" onclick="document.getElementById('hm-tip').textContent=this.dataset.tip"></div>`;
   }).join('');
   const heatmapHtml = `
     <div class="panel">
       <h2 class="panel-title">学 習 履 歴 <span class="panel-title-en">last 13 weeks</span></h2>
       <div class="heatmap">${cellsHtml}</div>
+      <div id="hm-tip" class="hm-tip"></div>
       <div class="hm-scale">
         少 <div class="hm-cell"></div>
         <div class="hm-cell l1"></div>
@@ -3490,7 +3591,7 @@ function renderStats() {
           const c = state.cards[w.id];
           const meaningShort = w.meaning.replace(/[①②③④⑤⑥]/g,'').replace(/。.*$/,'').slice(0,20);
           return `
-            <div class="recent-item" onclick="openWordModal(${w.id})">
+            <div class="recent-item" role="button" tabindex="0" onclick="openWordModal(${w.id})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openWordModal(${w.id})}" aria-label="${w.word} ${meaningShort} ${phaseLabel(c.phase)} ${timeAgo(c.lastReviewedAt)}">
               <span class="recent-word">${w.word}</span>
               <span class="recent-meaning">${meaningShort}</span>
               <span class="card-phase ${c.phase} recent-phase">${phaseLabel(c.phase)}</span>
