@@ -2726,8 +2726,14 @@ function applyRating(c, q) {
       c.ease = Math.max(1.3, c.ease - 0.2);
       c.interval = 15;
       c.due = now + 15 * DAY;
+    } else if (c.ease <= 2.0) {
+      // ease低い（苦手）: 正解しても引退させず、間隔を伸ばして再出題し続ける
+      c.ease = Math.min(2.5, c.ease + 0.1);
+      c.interval = fuzzInterval(Math.max(15, Math.round(c.interval * 1.3)));
+      c.due = now + c.interval * DAY;
+      c.reps += 1;
     } else {
-      // 正解: 引退（以後出題されない）
+      // 正解（ease良好）: 引退（以後出題されない）
       c.retired = true;
       c.reps += 1;
     }
@@ -3031,18 +3037,23 @@ function wordIdx(w) {
 // =============== UI ===============
 let currentCard = null;
 let showingDetail = false; // renderQuizDetail を表示中かどうか
+let masteredQuizMode = false; // 習得済み不正解後の補強クイズ中
 let currentDirection = 'word2meaning';
+let currentExampleIdx = 0; // example2word 時にランダム選択した例文のインデックス
 let currentView = 'study';
 let listFilter = 'all';
 let searchQuery = '';
 let sortMode = 'index';
 
 function pickDirection() {
-  // 習得済みカードは例文→単語 方式で出題
+  // 習得済みカードは例文→単語 方式で出題（複数例文があればランダムに選ぶ）
   if (currentCard && state.cards[currentCard.id].phase === 'mastered') {
-    const ex = (currentCard.example || '').split('｜')[0].trim();
-    const hl = (currentCard.highlight || '').split('｜')[0].trim();
-    if (ex && hl) return 'example2word';
+    const exs = (currentCard.example || '').split('｜').map(s => s.trim()).filter(Boolean);
+    const hls = (currentCard.highlight || '').split('｜').map(s => s.trim());
+    if (exs.length > 0 && hls[0]) {
+      currentExampleIdx = Math.floor(Math.random() * exs.length);
+      return 'example2word';
+    }
   }
   if (settings.direction === 'random') {
     return Math.random() < 0.5 ? 'word2meaning' : 'meaning2word';
@@ -3356,6 +3367,7 @@ function studyNow(id) {
   document.getElementById('tab-list').classList.remove('active');
   cardStage = 0;
   showingDetail = false;
+  masteredQuizMode = false;
   quizState = null;
   renderCardFace();
 }
@@ -3364,6 +3376,7 @@ function switchView(v) {
   // currentCard / quizState / cardStage はリセットしない。
   // 戻ったとき同じ単語・同じ進行状態を維持する。
   searchComposing = false; // IME変換中断を確実にリセット
+  masteredQuizMode = false;
   currentView = v;
   const tabs = {study:'tab-study', list:'tab-list', stats:'tab-stats'};
   Object.entries(tabs).forEach(([key, id]) => {
@@ -4031,9 +4044,27 @@ function answerQuiz(idx) {
 function finishQuiz() {
   if (!currentCard || !quizState) return;
   const c = state.cards[currentCard.id];
+  const wasCorrect = !!quizState.isCorrect;
+  quizState = null;
+
+  // 習得済み補強クイズ: スケジュールは rate() 済み、再評価しない
+  if (masteredQuizMode) {
+    masteredQuizMode = false;
+    c.quizPassed = true; // 次回は example2word で出題
+    saveState();
+    if (wasCorrect && settings.showDetailOnWrong !== false) {
+      renderQuizDetail();
+    } else {
+      currentCard = null;
+      cardStage = 0;
+      showingDetail = false;
+      render();
+    }
+    return;
+  }
+
   const wasNew = c.phase === 'new';
   const wasReview = c.phase === 'review' || c.phase === 'mastered';
-  const wasCorrect = !!quizState.isCorrect;
   c.quizPassed = wasCorrect;
   const q = wasCorrect ? 2 : 0;
   applyRating(c, q);
@@ -4043,7 +4074,6 @@ function finishQuiz() {
   else if (wasReview) state.daily.reviewDone += 1;
   recordReview(wasNew);
   saveState();
-  quizState = null;
 
   if (!wasCorrect && !settings.showDetailOnWrong) {
     currentCard = null;
@@ -4113,8 +4143,11 @@ function renderCardFace() {
   // === Stage 0: prompt ===
   let stage0;
   if (currentDirection === 'example2word') {
-    const ex  = (w.example  || '').split('｜')[0].trim();
-    const hl  = (w.highlight || '').split('｜')[0].trim();
+    const exs = (w.example  || '').split('｜').map(s => s.trim());
+    const hls = (w.highlight || '').split('｜').map(s => s.trim());
+    const idx = Math.min(currentExampleIdx, exs.length - 1);
+    const ex = exs[idx] || exs[0];
+    const hl = hls[idx] || hls[0];
     const displayed = highlightExample(ex, hl);
     stage0 = `
       <div class="stage-section">
@@ -4311,6 +4344,7 @@ function rate(q) {
   const c = state.cards[currentCard.id];
   const wasNew = c.phase === 'new';
   const wasReview = c.phase === 'review' || c.phase === 'mastered';
+  const wasMastered = c.phase === 'mastered';
 
   if (q === 0) sfxAgain();
   else if (q === 1) sfxHard();
@@ -4318,7 +4352,7 @@ function rate(q) {
   else if (q === 3) sfxEasy();
 
   applyRating(c, q);
-  if (q === 0 && c.phase !== 'mastered') c.quizPassed = false;
+  if (q === 0 && !wasMastered) c.quizPassed = false;
   c.lastReviewedAt = Date.now();
   state.lastShownId = currentCard.id;
 
@@ -4326,8 +4360,20 @@ function rate(q) {
   else if (wasReview) state.daily.reviewDone += 1;
 
   recordReview(wasNew);
-
   saveState();
+
+  // 習得済み不正解 → 補強クイズを即表示
+  if (wasMastered && q === 0) {
+    masteredQuizMode = true;
+    c.quizPassed = false;
+    quizState = null;
+    cardStage = 0;
+    showingDetail = false;
+    renderCardFace();
+    return;
+  }
+
+  masteredQuizMode = false;
   currentCard = null;
   render();
 }
