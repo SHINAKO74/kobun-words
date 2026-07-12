@@ -4360,7 +4360,7 @@ function rate(q) {
   state.lastShownId = currentCard.id;
 
   if (wasNew) state.daily.newDone += 1;
-  else if (wasMastered) state.daily.reviewDone += 5; // 習得済み例文出題は+5
+  else if (wasMastered) state.daily.reviewDone += 2; // 習得済み例文出題は+2
   else if (wasReview) state.daily.reviewDone += 1;
 
   recordReview(wasNew);
