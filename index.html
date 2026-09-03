@@ -159,7 +159,12 @@
     border: 1px solid var(--line);
     margin-bottom: 18px;
   }
-  .stat { background: var(--washi); padding: 11px 4px; text-align: center; }
+  .stat {
+    background: var(--washi); padding: 11px 4px; text-align: center;
+    border: none; margin: 0; font: inherit; color: inherit; cursor: pointer;
+    display: block; width: 100%;
+  }
+  .stat:hover, .stat:focus-visible { background: var(--card-bg); }
   .stat-num {
     font-family: 'Cormorant Garamond', serif;
     font-size: 24px;
@@ -443,17 +448,7 @@
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
   }
-  .reset-btn {
-    background: none;
-    border: none;
-    color: var(--muted);
-    text-decoration: underline;
-    cursor: pointer;
-    font-family: inherit;
-    font-size: 10px;
-    margin-top: 8px;
-  }
-
+  
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: translateY(0); }
@@ -1030,7 +1025,12 @@
     flex-wrap: wrap;
     gap: 6px;
   }
-  .phase-legend-item { display: flex; align-items: center; gap: 4px; }
+  .phase-legend-item {
+    display: flex; align-items: center; gap: 4px;
+    background: none; border: none; padding: 0; margin: 0;
+    font: inherit; color: inherit; cursor: pointer;
+  }
+  .phase-legend-item:hover, .phase-legend-item:focus-visible { color: var(--sumi); }
 
   /* Heatmap */
   .heatmap {
@@ -1515,10 +1515,10 @@
   </header>
 
   <section class="stats" aria-label="学習状況サマリー">
-    <div class="stat"><div class="stat-num" id="stat-new" aria-live="polite">0</div><div class="stat-label">新出</div></div>
-    <div class="stat"><div class="stat-num shu" id="stat-learn" aria-live="polite">0</div><div class="stat-label">学習中</div></div>
-    <div class="stat"><div class="stat-num" id="stat-due" aria-live="polite">0</div><div class="stat-label">復習</div></div>
-    <div class="stat"><div class="stat-num gold" id="stat-mastered" aria-live="polite">0</div><div class="stat-label">習得</div></div>
+    <button class="stat" onclick="goToListFiltered('new')" type="button"><div class="stat-num" id="stat-new" aria-live="polite">0</div><div class="stat-label">新出</div></button>
+    <button class="stat" onclick="goToListFiltered('learning')" type="button"><div class="stat-num shu" id="stat-learn" aria-live="polite">0</div><div class="stat-label">学習中</div></button>
+    <button class="stat" onclick="goToListFiltered('review')" type="button"><div class="stat-num" id="stat-due" aria-live="polite">0</div><div class="stat-label">復習</div></button>
+    <button class="stat" onclick="goToListFiltered('mastered')" type="button"><div class="stat-num gold" id="stat-mastered" aria-live="polite">0</div><div class="stat-label">習得</div></button>
   </section>
 
   <section class="daily" aria-label="本日の進捗">
@@ -1535,8 +1535,7 @@
   <main id="card-area" role="tabpanel" aria-live="polite" aria-atomic="false"></main>
 
   <footer role="contentinfo">
-    KOGO LEXICON v8 · <span id="footer-word-count">—</span> words · <span aria-label="キーボードショートカット">⌨ space:めくる 1-2:評価 ←→:スワイプ</span><br>
-    <button class="reset-btn" onclick="resetProgress()" type="button">reset progress</button>
+    KOGO LEXICON v8 · <span id="footer-word-count">—</span> words · <span aria-label="キーボードショートカット">⌨ space:めくる 1-2:評価 ←→:スワイプ</span>
   </footer>
 </div>
 
@@ -1809,7 +1808,7 @@ const WORDS = [
   { id:261, word:"ゆゆしく", pos:"副", meaning:"①不吉に ②非常に・たいそう", etym:"形容詞「ゆゆし」(id:22)の連用形。副詞的に用いて「はなはだしく・不吉に」の意。", example:"ゆゆしきこと言ふな。｜ゆゆしくあはれなり。", translation:"不吉なことを言うな。｜たいそうしみじみと感じる。", highlight:"ゆゆしき｜ゆゆしく", source:"源氏物語｜源氏物語", trivia:"形容詞「ゆゆし」(id:22)の連用形。副詞的に用いる。", related:[{id:22,type:"類"},{id:501,type:"類"},{id:536,type:"類"}] },
   { id:262, word:"うつし", pos:"形シク", meaning:"現実だ・正気だ", etym:"「現(うつ)し」。現実世界に属する・正気であるの意。「夢」「まぼろし」の対。", example:"うつしごころのなき人。", translation:"正気でない人。", highlight:"うつし", source:"源氏物語", trivia:null, related:[{id:205,type:"類"}] },
   { id:263, word:"ゆく", pos:"動カ四", meaning:"①行く ②(時が)過ぎる", etym:"上代から。時間の経過にも空間の移動にも使う最基本の動詞。", example:"東へゆく人に伝へよ。｜年ゆけば。", translation:"東へ行く人に伝えよ。｜年が経てば。", highlight:"ゆく｜ゆけ", source:"伊勢物語｜万葉集", trivia:null, related:[{id:264,type:"対"},{id:146,type:"類"},{id:275,type:"類"},{id:147,type:"参"},{id:416,type:"参"}] },
-  { id:264, word:"きたる", pos:"動ラ四", meaning:"来る・やって来る", etym:"「来(き)+至(いた)る」。ラ変活用。「来る」のやや古風な表現。", example:"春来にけらし白妙の。", translation:"春が来たらしい、白い布の。", highlight:"来に", source:"古今集・持統天皇", trivia:null, related:[{id:263,type:"対"}] },
+  { id:264, word:"きたる", pos:"動ラ四", meaning:"来る・やって来る", etym:"「来(き)+至(いた)る」。ラ変活用。「来る」のやや古風な表現。", example:"秋もきたりぬ。｜人きたれば、", translation:"秋もやって来た。｜人が来たので、", highlight:"きたり｜きたれ", source:"(作例)｜(作例)", trivia:"ラ変動詞（きたら・きたり・きたる・きたる・きたれ・きたれ）。「来（く）」より格調ある表現として使われる。", related:[{id:263,type:"対"}] },
   { id:265, word:"あなづらはし", pos:"形シク", meaning:"軽蔑できる・見下せる", etym:"「侮(あなづ)らはし」=見くびることができる・軽んじてよい。", example:"あなづらはしき人にはあらず。", translation:"軽くあしらえる人ではない。", highlight:"あなづらはし", source:"源氏物語", trivia:null, related:[{id:366,type:"類"},{id:471,type:"参"}] },
   { id:266, word:"おぼろけなり", pos:"形動ナリ", meaning:"①並一通りだ ②(打消で)並々でない・尋常でない", etym:"「朧(おぼろ)け」=ぼんやりした・普通の程度。打消と呼応して「並々でない」の意になる。", example:"おぼろけの人にはあらず。｜おぼろけならず悲しとぞ思す。", translation:"並の人ではない。｜並々でなく悲しいとお思いになる。", highlight:"おぼろけ｜おぼろけならず", source:"源氏物語｜源氏物語", trivia:"打消とともに使うと「特別だ」の意。", related:[{id:54,type:"類"},{id:331,type:"類"}] },
   { id:267, word:"つたなし", pos:"形ク", meaning:"①下手だ ②運が悪い", etym:"「拙(つたな)し」。技術・運の不足。「つたなき身の上」=不運な自分。", example:"つたなき歌をよみて。｜つたなき身の上かな。", translation:"下手な歌を詠んで。｜運の悪い身の上だなあ。", highlight:"つたなき｜つたなき", source:"古今集｜源氏物語", trivia:null, related:[{id:101,type:"類"},{id:444,type:"類"},{id:520,type:"類"},{id:354,type:"類"}] },
@@ -1895,7 +1894,7 @@ const WORDS = [
   { id:347, word:"されば", pos:"接続", meaning:"①だから・それゆえ ②ところで", etym:"「然(さ)れば」=「そうであるから」。順接の接続詞。話題転換にも。", example:"されば言はむかたなし。｜されば、かくなりにけり。", translation:"だから言いようがない。｜それだから、このようになってしまった。", highlight:"されば｜されば", source:"徒然草｜伊勢物語", trivia:null, related:[{id:164,type:"参"},{id:231,type:"類"},{id:232,type:"類"},{id:346,type:"類"},{id:348,type:"類"},{id:364,type:"類"},{id:365,type:"類"},{id:401,type:"類"},{id:403,type:"類"},{id:383,type:"類"}] },
   { id:348, word:"さるは", pos:"接続", meaning:"①そうはいうものの・しかし（逆接的接続）②実は・そうではなく（真相・反転の提示）", etym:"「然(さ)るは」=「そうではあるが、実情は」。補足・逆接的な接続詞。", example:"さるは、心にはあらず。｜さるは、よき人なりけり。", translation:"そうはいうものの、本心ではない。｜実は、立派な人だったのだ。", highlight:"さるは｜さるは", source:"(作例)｜徒然草", trivia:null, related:[{id:164,type:"参"},{id:231,type:"類"},{id:232,type:"類"},{id:346,type:"類"},{id:347,type:"類"},{id:364,type:"類"},{id:365,type:"類"},{id:401,type:"類"},{id:403,type:"類"},{id:383,type:"類"},{id:545,type:"類"}] },
   { id:349, word:"おこす", pos:"動サ下二", meaning:"①寄こす・送ってくる ②起こす", etym:"「遣(お)こす」。こちらへ向けて送る意。手紙・使い・贈り物を寄こす場面で頻出。", example:"御文おこせたまひたり。｜風をおこす雲の動き。", translation:"お手紙をよこしてくださった。｜風を起こす雲の動き。", highlight:"おこせ｜おこす", source:"源氏物語｜枕草子", trivia:null, related:[{id:315,type:"類"},{id:556,type:"対"}] },
-  { id:350, word:"おくる", pos:"動ラ下二", meaning:"①先立たれる・取り残される ②遅れる", etym:"「後(おく)る」。先に去った人の後に残される意。現代語「送る」とは異なる。", example:"人におくれて泣き暮らす。｜時においていかれたるやう。", translation:"人に先立たれて泣き暮らす。｜時勢に取り残されたよう。", highlight:"おくれ｜おい", source:"源氏物語｜徒然草", trivia:"現代語「送る」の意味はない。「死別で取り残される」が頻出義。", related:[] },
+  { id:350, word:"おくる", pos:"動ラ下二", meaning:"①先立たれる・取り残される ②遅れる", etym:"「後(おく)る」。先に去った人の後に残される意。現代語「送る」とは異なる。", example:"人におくれて泣き暮らす。｜世におくれたる心地す。", translation:"人に先立たれて泣き暮らす。｜世間から取り残された気持ちがする。", highlight:"おくれ｜おくれ", source:"源氏物語｜(作例)", trivia:"現代語「送る」の意味はない。「死別で取り残される」が頻出義。", related:[] },
   { id:351, word:"わきまふ", pos:"動ハ下二", meaning:"区別する・判断する・わきまえる", etym:"「弁(わきま)ふ」。物事の違いを識別し、適切に判断する。", example:"ものの筋をわきまへぬ人。", translation:"物事の道理をわきまえない人。", highlight:"わきまへ", source:"徒然草", trivia:null, related:[{id:115,type:"類"},{id:579,type:"類"}] },
   { id:352, word:"うしなふ", pos:"動ハ四", meaning:"①失う・なくす②殺す・命を奪う", etym:"「失(うしな)ふ」。大切なものを失う意。人を殺す意にも用いる。", example:"親をうしなひて後。｜かの人をうしなひてけり。", translation:"親を亡くした後。｜あの人を殺してしまった。", highlight:"うしなひ｜うしなひ", source:"源氏物語｜(作例)", trivia:null, related:[{id:500,type:"参"}] },
   { id:353, word:"くまなし", pos:"形ク", meaning:"隈なく明るい・曇りがない・欠点がない", etym:"「隈(くま)+無し」=暗い隅がない。月の光が隅々まで届く様子によく用いる。", example:"くまなき月の光。", translation:"曇りなく輝く月の光。", highlight:"くまなき", source:"源氏物語", trivia:null, related:[{id:123,type:"参"}] },
@@ -1915,7 +1914,7 @@ const WORDS = [
   { id:367, word:"まほし", pos:"助動", meaning:"〜たい・〜してほしい(希望)", etym:"助動詞「まほし」。未然形接続。話し手の希望を表す。「あらまほし」は「ありたい」。", example:"見まほしき花の色かな。｜いかで参らまほしき。", translation:"見たいと思う花の色よ。｜なんとかして参上したい。", highlight:"まほし｜まほし", source:"源氏物語｜源氏物語", trivia:"「ばや」(自己の希望)・「なむ」(他者への希望)と使い分ける。", related:[{id:46,type:"類"}] },
   { id:368, word:"たし", pos:"助動", meaning:"〜たい(希望)", etym:"助動詞「たし」。連用形接続。「まほし」と同義だが、中世以降より一般化。", example:"都に帰り行きたし。｜花見に行きたし。", translation:"都に帰って行きたい。｜花見に行きたい。", highlight:"行きたし｜行きたし", source:"土佐日記｜(作例)", trivia:"「まほし」が雅語、「たし」がやや日常語。", related:[{id:221,type:"類"}] },
   { id:369, word:"ばや", pos:"終助", meaning:"〜したいなあ(自己の願望)", etym:"終助詞「ばや」。未然形接続。話し手自身の希望を表す。", example:"いかで見ばや。", translation:"なんとかして見たいなあ。", highlight:"ばや", source:"竹取物語", trivia:"「なむ」(他者への願望)と区別する。", related:[{id:370,type:"対"}] },
-  { id:370, word:"なむ", pos:"終助", meaning:"〜してほしい(他者への願望)", etym:"終助詞「なむ」。未然形接続。他者に対する話し手の願望を表す。係助詞「なむ」とは別。", example:"こゆるぎの磯の浪なむ立ちかへり見まほしき。", translation:"こゆるぎの磯の波よ、戻ってきて見せてほしいものだ(波に〜してほしいと願う)。", highlight:"まほし", source:"万葉集", trivia:"「ばや」(自分が〜したい)と「なむ」(〜してほしい)の区別は頻出。", related:[{id:369,type:"対"}] },
+  { id:370, word:"なむ", pos:"終助", meaning:"〜してほしい(他者への願望)", etym:"終助詞「なむ」。未然形接続。他者に対する話し手の願望を表す。係助詞「なむ」とは別。", example:"はやく春にならなむ。", translation:"早く春になってほしい。", highlight:"ならなむ", source:"(作例)", trivia:"「ばや」(自分が〜したい)と「なむ」(〜してほしい)の区別は頻出。未然形に接続する点で係助詞「なむ」と区別できる。", related:[{id:369,type:"対"}] },
 
   { id:371, word:"つかうまつる", pos:"動ラ四", meaning:"①【謙譲】お仕えする・いたす(「す」の謙譲語) ②【補助謙譲】〜し申し上げる", etym:"「仕(つかへ)まつる」のウ音便。「する」「仕える」の謙譲語。", example:"殿に年ごろつかうまつる。｜和歌よみつかうまつる。", translation:"殿に長年お仕えする。｜和歌を詠み申し上げる。", highlight:"つかうまつる｜つかうまつる", source:"源氏物語｜(作例)", trivia:"「つかまつる」(id:322)と同一語。何かを行動する際の万能な謙譲語。", related:[{id:77,type:"類"},{id:75,type:"類"},{id:81,type:"類"},{id:622,type:"類"},{id:322,type:"類"},{id:323,type:"対"}] },
   { id:372, word:"たちまち", pos:"副", meaning:"たちまち・すぐに", etym:"「立ち+待ち」由来説。間を置かず瞬時に変化する様。", example:"たちまちに色変はりけり。", translation:"たちまち色が変わった。", highlight:"たちまちに", source:"今昔物語集", trivia:null, related:[{id:233,type:"類"},{id:650,type:"類"}] },
@@ -2784,6 +2783,8 @@ function pickNextCard() {
   const now = Date.now();
   const d = state.daily;
 
+  earlyMasteredPick = false;
+
   // 1) learning cards (no daily limit, always show if due)
   const learning = WORDS
     .filter(w => state.cards[w.id].phase === 'learning' && state.cards[w.id].due <= now)
@@ -2810,6 +2811,29 @@ function pickNextCard() {
 
   // priority: learning > review > new > mastered
   const queue = [...learning, ...reviews, ...news, ...mastered];
+
+  // 5) フォールバック: 未出題（新規）の単語が一つも残っておらず、
+  //    本日の復習が上限に達していない場合、出題予定日が最も近い
+  //    習得済み単語を先出しする（この出題は復習カウント＋5扱い）
+  if (queue.length === 0 && canReview) {
+    const noNewWordsLeft = !WORDS.some(w => state.cards[w.id].phase === 'new');
+    if (noNewWordsLeft) {
+      const upcomingMastered = WORDS
+        .filter(w => {
+          const c = state.cards[w.id];
+          return c.phase === 'mastered' && !c.retired;
+        })
+        .sort((a,b) => state.cards[a.id].due - state.cards[b.id].due);
+      if (upcomingMastered.length > 0) {
+        earlyMasteredPick = true;
+        if (upcomingMastered.length > 1 && upcomingMastered[0].id === state.lastShownId) {
+          return upcomingMastered[1];
+        }
+        return upcomingMastered[0];
+      }
+    }
+  }
+
   if (queue.length === 0) return null;
 
   // anti-repeat
@@ -2998,11 +3022,14 @@ function relatedHtml(w) {
 function cardHeaderHtml(c, totalIdx, opts) {
   const dir = opts && opts.dirTag ? `<span class="direction-tag">${opts.dirTag}</span>` : '';
   const badge = opts && opts.badge ? `<span class="quiz-badge">${opts.badge}</span>` : `<span class="card-phase ${c.phase}">${phaseLabel(c.phase)}</span>`;
+  const numHtml = practiceQueue
+    ? `<span class="card-num" role="button" tabindex="0" onclick="endPractice()" onkeydown="if(event.key==='Enter')endPractice()" title="集中練習を終了">苦手練習 ${Math.min(practiceIndex, practiceTotal)} / ${practiceTotal} ✕</span>`
+    : `<span class="card-num">№ ${String(totalIdx).padStart(3,'0')} / ${String(WORDS.length).padStart(3,'0')}</span>`;
   return `
     <div class="card-header${opts && opts.mb8 ? ' mb-8' : ''}">
       ${badge}
       ${dir}
-      <span class="card-num">№ ${String(totalIdx).padStart(3,'0')} / ${String(WORDS.length).padStart(3,'0')}</span>
+      ${numHtml}
     </div>
   `;
 }
@@ -3040,6 +3067,7 @@ function wordIdx(w) {
 // =============== UI ===============
 let currentCard = null;
 let showingDetail = false; // renderQuizDetail を表示中かどうか
+let earlyMasteredPick = false; // 未出題なし・復習上限未到達時に先出しした習得済み単語かどうか（＋5扱い）
 let masteredQuizMode = false; // 習得済み不正解後の補強クイズ中
 let currentDirection = 'word2meaning';
 let currentExampleIdx = 0; // example2word 時にランダム選択した例文のインデックス
@@ -3047,6 +3075,9 @@ let currentView = 'study';
 let listFilter = 'all';
 let searchQuery = '';
 let sortMode = 'index';
+let practiceQueue = null;  // 苦手語集中練習モードの出題キュー（IDの配列）
+let practiceIndex = 0;
+let practiceTotal = 0;
 
 function pickDirection() {
   // 習得済みカードは例文→単語 方式で出題（複数例文があればランダムに選ぶ）
@@ -3157,11 +3188,61 @@ function openEaseModal(thresh) {
           ? '<div class="stats-empty">該当する語はありません</div>'
           : `<div class="ease-list">${rows}</div>`}
         <div class="modal-actions">
+          ${words.length > 0 ? `<button class="modal-btn" onclick="startWeakPractice()" type="button">この語だけ集中練習</button>` : ''}
           <button class="modal-btn secondary" onclick="closeModal()" type="button">閉じる</button>
         </div>
       </div>
     </div>`;
   activateModal();
+}
+
+function startWeakPractice(threshold) {
+  const t = threshold !== undefined ? threshold : easeThreshold;
+  const ids = WORDS
+    .filter(w => {
+      const c = state.cards[w.id];
+      return c.phase !== 'new' && c.ease <= t;
+    })
+    .sort((a,b) => state.cards[a.id].ease - state.cards[b.id].ease)
+    .map(w => w.id);
+  if (ids.length === 0) {
+    alert('対象の単語がありません。');
+    return;
+  }
+  // シャッフル（弱い語順に固定すると同じ並びになりがちなので毎回ランダムに）
+  for (let i = ids.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [ids[i], ids[j]] = [ids[j], ids[i]];
+  }
+  practiceQueue = ids;
+  practiceIndex = 0;
+  practiceTotal = ids.length;
+  currentCard = null;
+  closeModal();
+  switchView('study');
+}
+function endPractice() {
+  practiceQueue = null;
+  practiceIndex = 0;
+  practiceTotal = 0;
+  currentCard = null;
+  render();
+}
+function nextCardForStudy() {
+  if (practiceQueue) {
+    while (practiceIndex < practiceQueue.length) {
+      const id = practiceQueue[practiceIndex];
+      practiceIndex++;
+      const w = WORDS.find(x => x.id === id);
+      if (w) return w;
+    }
+    // 練習キューを使い切った
+    practiceQueue = null;
+    practiceIndex = 0;
+    practiceTotal = 0;
+    alert('苦手な語の集中練習が終わりました。お疲れさまでした！');
+  }
+  return pickNextCard();
 }
 
 function closeModal() {
@@ -3407,6 +3488,11 @@ function isKango(w) {
   return kanjiOnly || fromChinese;
 }
 function setFilter(f) { listFilter = f; render(); }
+function goToListFiltered(filterKey) {
+  listFilter = filterKey;
+  searchQuery = '';
+  switchView('list');
+}
 
 function fmtDue(c) {
   if (c.phase === 'new') return '—';
@@ -3494,10 +3580,10 @@ function renderStats() {
         ${s.masteredC > 0 ? `<div class="phase-seg mastered" style="flex:${phasePct(s.masteredC)};">${s.masteredC}</div>` : ''}
       </div>
       <div class="phase-legend">
-        <div class="phase-legend-item"><div class="dot new"></div>新出 ${s.newC}</div>
-        <div class="phase-legend-item"><div class="dot learning"></div>学習中 ${s.learnC}</div>
-        <div class="phase-legend-item"><div class="dot review"></div>復習 ${WORDS.length - s.newC - s.learnC - s.masteredC}</div>
-        <div class="phase-legend-item"><div class="dot mastered"></div>習得 ${s.masteredC}</div>
+        <button class="phase-legend-item" onclick="goToListFiltered('new')" type="button"><div class="dot new"></div>新出 ${s.newC}</button>
+        <button class="phase-legend-item" onclick="goToListFiltered('learning')" type="button"><div class="dot learning"></div>学習中 ${s.learnC}</button>
+        <button class="phase-legend-item" onclick="goToListFiltered('review')" type="button"><div class="dot review"></div>復習 ${WORDS.length - s.newC - s.learnC - s.masteredC}</button>
+        <button class="phase-legend-item" onclick="goToListFiltered('mastered')" type="button"><div class="dot mastered"></div>習得 ${s.masteredC}</button>
       </div>
     </div>
   `;
@@ -3874,7 +3960,7 @@ function render() {
   const area = document.getElementById('card-area');
 
   if (!currentCard) {
-    currentCard = pickNextCard();
+    currentCard = nextCardForStudy();
     currentDirection = pickDirection();
     cardStage = 0;
     showingDetail = false;
@@ -4068,13 +4154,16 @@ function finishQuiz() {
 
   const wasNew = c.phase === 'new';
   const wasReview = c.phase === 'review' || c.phase === 'mastered';
+  const wasMastered = c.phase === 'mastered';
   c.quizPassed = wasCorrect;
   const q = wasCorrect ? 2 : 0;
   applyRating(c, q);
   c.lastReviewedAt = Date.now();
   state.lastShownId = currentCard.id;
   if (wasNew) state.daily.newDone += 1;
+  else if (wasMastered && earlyMasteredPick) state.daily.reviewDone += 5; // 未出題なし時の先出し習得済み単語は+5
   else if (wasReview) state.daily.reviewDone += 1;
+  earlyMasteredPick = false;
   recordReview(wasNew);
   saveState();
 
@@ -4360,8 +4449,10 @@ function rate(q) {
   state.lastShownId = currentCard.id;
 
   if (wasNew) state.daily.newDone += 1;
+  else if (wasMastered && earlyMasteredPick) state.daily.reviewDone += 5; // 未出題なし時の先出し習得済み単語は+5
   else if (wasMastered) state.daily.reviewDone += 2; // 習得済み例文出題は+2
   else if (wasReview) state.daily.reviewDone += 1;
+  earlyMasteredPick = false;
 
   recordReview(wasNew);
   saveState();
